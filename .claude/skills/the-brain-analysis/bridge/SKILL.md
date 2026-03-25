@@ -10,10 +10,8 @@ timeout: 0
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Positions: !`ls notes/positions/ 2>/dev/null | head -50`
-Repos: !`ls repos/*.yml 2>/dev/null`
-Graph projects: !`head -5 knowledge/graph-projects.yml 2>/dev/null`
-Ledger size: !`wc -l < knowledge/epistemic-ledger.jsonl 2>/dev/null || echo 0`
+
+(At start of execution, use Glob and Read to check: position files from notes/positions/*.md, registered repos from repos/*.yml, knowledge/graph-projects.yml contents, and whether knowledge/epistemic-ledger.jsonl exists and its size.)
 
 # /bridge — Belief-Action Alignment Engine
 

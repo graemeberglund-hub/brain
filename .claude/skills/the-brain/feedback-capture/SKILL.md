@@ -9,9 +9,9 @@ input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
-Vault root: !`echo "$BRAIN_VAULT_PATH"`
-Ledger exists: !`test -f $BRAIN_VAULT_PATH/knowledge/feedback-ledger.jsonl && echo "yes" || echo "no"`
-Ledger lines: !`wc -l < $BRAIN_VAULT_PATH/knowledge/feedback-ledger.jsonl 2>/dev/null || echo "0"`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Read to check: whether knowledge/feedback-ledger.jsonl exists and count its lines.)
 
 # /feedback-capture — Log Skill Quality Signal
 

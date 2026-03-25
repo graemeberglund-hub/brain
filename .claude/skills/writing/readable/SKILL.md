@@ -7,7 +7,7 @@ argument-hint: "[file or directory path, optional: output dir]"
 
 input = $ARGUMENTS
 
-Style file: !`test -f ~/.claude/styles/clean-90s.md && echo "~/.claude/styles/clean-90s.md exists" || echo "MISSING — will use fallback palette"`
+(At start of execution, use Read to check: whether ~/.claude/styles/clean-90s.md exists for styling.)
 
 # /readable — Markdown to Styled HTML
 

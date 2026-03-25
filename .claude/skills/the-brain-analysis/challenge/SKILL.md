@@ -8,10 +8,9 @@ argument-hint: "[position-slug] [--all] [--write]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: !`echo "$BRAIN_VAULT_PATH"`
-Position count: !`ls $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
-Held positions: !`grep -rl "status: held" $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
-High confidence: !`grep -rl "confidence: high\|confidence: convicted" $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Glob and Grep to check: position count from notes/positions/*.md, held positions by grepping for "status: held", and high-confidence positions by grepping for "confidence: high" or "confidence: convicted".)
 
 # /challenge — Epistemic Immune System
 

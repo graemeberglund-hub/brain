@@ -9,8 +9,9 @@ input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
-Vault root: !`echo "$BRAIN_VAULT_PATH"`
-Skill catalog: !`grep "^  - name:" .claude/skill-index.yml 2>/dev/null | sed 's/.*name: //' | tr '\n' ', '`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Read to check: skill catalog by reading .claude/skill-index.yml for available skill names.)
 
 # /delegate — Intent Decomposition & Multi-Skill Execution
 

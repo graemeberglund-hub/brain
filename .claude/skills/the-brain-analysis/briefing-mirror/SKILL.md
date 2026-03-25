@@ -12,12 +12,8 @@ input = $ARGUMENTS
 Today's date: !`date +%Y-%m-%d`
 Day of week: !`date +%A`
 Current time: !`date +%H:%M`
-Last briefing: !`ls -1 studio/briefing/*.html 2>/dev/null | tail -1 || echo "(none)"`
-Inbox count: !`ls notes/inbox/ 2>/dev/null | wc -l | tr -d ' '`
-Position count: !`ls notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
-Question count: !`grep -l "classification: question" notes/positions/*.md 2>/dev/null | wc -l | tr -d ' '`
-Ledger size: !`wc -l < knowledge/epistemic-ledger.jsonl 2>/dev/null || echo 0`
-Recent daily notes: !`ls -1 notes/daily/ 2>/dev/null | grep -E '^[0-9]{4}-' | tail -3`
+
+(At start of execution, use Glob, Grep, and Read to check: last briefing from studio/briefing/*.html, inbox count from notes/inbox/*.md excluding .gitkeep, position count from notes/positions/*.md, question count by grepping for "classification: question", epistemic ledger size from knowledge/epistemic-ledger.jsonl, and recent daily notes from notes/daily/*.md.)
 
 # /briefing — The Mirror
 

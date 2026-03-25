@@ -10,8 +10,8 @@ input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
-Registered repos: !`ls repos/*.yml 2>/dev/null | xargs -I{} basename {} .yml | tr '\n' ', ' || echo "none"`
-Position count: !`ls notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
+
+(At start of execution, use Glob to check: registered repos by listing repos/*.yml files, and position count from notes/positions/*.md.)
 
 # /scout — External System Intelligence Extraction
 

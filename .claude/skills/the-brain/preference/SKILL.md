@@ -8,9 +8,10 @@ argument-hint: "'preference description' [--category surface|color|typography|te
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Existing taste positions: !`grep -l "classification: taste" $BRAIN_VAULT_PATH/notes/positions/*.md 2>/dev/null | head -50`
-Preference index: !`echo "$BRAIN_VAULT_PATH/studio/design-system/preference-index.yml"`
-Vault root: !`echo "$BRAIN_VAULT_PATH"`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+Preference index: studio/design-system/preference-index.yml
+
+(At start of execution, use Grep to check: existing taste positions by searching notes/positions/ for classification: taste.)
 
 # /preference — Record a Design Taste Decision
 

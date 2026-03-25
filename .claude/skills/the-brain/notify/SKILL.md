@@ -9,8 +9,9 @@ input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
-Vault root: !`echo "$BRAIN_VAULT_PATH"`
-Config exists: !`test -f $BRAIN_VAULT_PATH/.claude/automation/notifications.yml && echo "yes" || echo "no"`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Glob to check: whether .claude/automation/notifications.yml exists.)
 
 # /notify — Push-Based Vault Alerts
 

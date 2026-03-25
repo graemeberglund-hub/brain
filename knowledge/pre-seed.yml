@@ -1,0 +1,58 @@
+# Pre-seed profile for Graeme Berglund
+# Source: OSINT report pasted during /onboard session
+# Generated: 2026-03-24
+
+name: Graeme Berglund
+location: Vancouver, BC (Mount Pleasant area)
+timezone: America/Vancouver
+
+identity_cluster: Vancouver-based visual artist and cultural organizer
+
+domains:
+  - visual-art:
+      modalities: [painting, illustration, photorealism, "analog digital", sculpture]
+      notable: "realistic urban paintings, hand-pixelated works, salvaged-wood sculpture"
+  - cultural-organizing:
+      projects: [The Cheaper Show, Black & Yellow Gallery]
+      role: "platform builder for emerging/local artists"
+  - music:
+      project: Street Trials
+      role: "performer, Vancouver-based quartet"
+  - film:
+      entity: MNMNT Films
+      credits: ["Co-Producer, Defining Human (2023)"]
+      narrative: "deliberate pivot toward writing/directing after 20-year arts career"
+  - writing:
+      current: "multimedia literary project, ~70% through content writing"
+      target: "launch within 6 months (by ~September 2026)"
+  - civic:
+      role: "Arts and Culture Policy Council, City of Vancouver (2012-2014)"
+
+career_arc:
+  theme: "art practice + cultural infrastructure building"
+  start: 2001
+  milestones:
+    - "2001: Cheaper Show launched"
+    - "2006: Growth phase, press coverage"
+    - "2011: Cheaper Show finale (~12,500 attendees)"
+    - "2012-2014: City of Vancouver Arts and Culture Policy Council"
+    - "2013: Black & Yellow Gallery (Waldorf Hotel)"
+    - "2017: Set art/murals for TV production (Dwell feature)"
+    - "2019: MNMNT Films pivot"
+    - "2023: Defining Human co-producer credit"
+    - "2026: Multimedia literary project in progress"
+
+working_style_signals:
+  - "platform builder / instigator archetype"
+  - "multi-modal creative practice"
+  - "community connector"
+  - "currently focused primarily on writing"
+
+online_presence:
+  x: "@GraemeBerglund"
+  instagram: ["@instagraemeberglund", "@graeme.berglund.artwork"]
+  website: "graemeberglund.ca (currently unreachable)"
+  name_collision_risk: "Global News 2021 - 'Graeme Berglund of Idle No More' - likely different person"
+
+corporate:
+  - "GRAEME BERGLUND ENTERPRISE LTD. (BC registry, identity linkage uncertain)"

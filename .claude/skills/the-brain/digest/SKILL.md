@@ -12,11 +12,7 @@ input = $ARGUMENTS
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
 
-Positions (all): !`ls notes/positions/ 2>/dev/null | head -30`
-Questions (classification: question): !`grep -l "classification: question" notes/positions/*.md 2>/dev/null | xargs -I{} basename {} | head -30`
-Recent intake (last 5 commits): !`git diff --name-only HEAD~5 -- notes/inbox/ notes/references/ notes/conversations/ notes/concepts/ 2>/dev/null | grep '\.md$' | head -30`
-Ledger size: !`wc -l < knowledge/epistemic-ledger.jsonl 2>/dev/null || echo 0`
-Last digest candidates: !`tail -5 knowledge/event-candidates.jsonl 2>/dev/null || echo "(empty)"`
+(At start of execution, use Glob, Grep, and Read to gather: positions in notes/positions/, questions by grepping notes/positions/ for classification: question, recent intake notes from notes/inbox/ notes/references/ notes/conversations/ notes/concepts/, ledger size from knowledge/epistemic-ledger.jsonl, and last few lines of knowledge/event-candidates.jsonl.)
 
 # /digest — Epistemic Metabolism Orchestrator
 

@@ -8,7 +8,8 @@ argument-hint: "skill-name [--all] [--family family-name] [--verbose]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Skill count: !`find .claude/skills -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' '`
+
+(At start of execution, use Glob to check: skill count by listing .claude/skills/*/SKILL.md and .claude/skills/*/*/SKILL.md files.)
 
 # /skill-test — Skill Validation
 

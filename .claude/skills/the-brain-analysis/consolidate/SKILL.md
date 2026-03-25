@@ -10,12 +10,8 @@ timeout: 180
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Graph index: !`cat knowledge/graph-index.yml 2>/dev/null | head -20`
-Cross-cutting exists: !`test -f knowledge/graph-cross-cutting.yml && echo "yes" || echo "no"`
-Dev entity count: !`grep -c "^  [a-z]" knowledge/graph-dev.yml 2>/dev/null || echo 0`
-Projects entity count: !`grep -c "^  [a-z]" knowledge/graph-projects.yml 2>/dev/null || echo 0`
-Epistemic entity count: !`grep -c "^  [a-z]" knowledge/graph-epistemic.yml 2>/dev/null || echo 0`
-Emergent entity count: !`grep -c "^  [a-z]" knowledge/graph-emergent.yml 2>/dev/null || echo 0`
+
+(At start of execution, use Read and Glob to check: knowledge/graph-index.yml contents, whether knowledge/graph-cross-cutting.yml exists, and entity counts in knowledge/graph-dev.yml, knowledge/graph-projects.yml, knowledge/graph-epistemic.yml, and knowledge/graph-emergent.yml by reading each and counting top-level entities.)
 
 # /consolidate — Cross-Domain Pattern Synthesis
 

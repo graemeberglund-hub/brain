@@ -9,7 +9,8 @@ input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
-Existing positions: !`ls notes/positions/ 2>/dev/null | head -20 || echo "(none)"`
+
+(At start of execution, use Glob to check: existing positions in notes/positions/ for dedup and linking.)
 
 # /llm — LLM Conversation Knowledge Extraction
 

@@ -10,8 +10,9 @@ timeout: 0
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: !`echo "$BRAIN_VAULT_PATH"`
-Registered repos: !`ls $BRAIN_VAULT_PATH/repos/*.yml | xargs -I{} basename {} .yml | tr '\n' ', '`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Glob to check: registered repos by listing repos/*.yml files.)
 
 # /repo-health — Repo Health Workstream
 

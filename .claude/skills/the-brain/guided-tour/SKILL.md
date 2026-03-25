@@ -8,11 +8,9 @@ argument-hint: "[--skip-to step-number]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: !`echo "$BRAIN_VAULT_PATH"`
-Has areas: !`ls $BRAIN_VAULT_PATH/notes/areas/ 2>/dev/null | head -3`
-Has positions: !`ls $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | head -3`
-Has questions: !`grep -rl 'classification: question' $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | head -3`
-Inbox count: !`ls $BRAIN_VAULT_PATH/notes/inbox/ 2>/dev/null | wc -l | tr -d ' '`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Glob and Grep to check: whether notes/areas/ has files, whether notes/positions/ has files, whether any positions have classification: question, and inbox count from notes/inbox/.)
 
 # /guided-tour — Interactive Vault Walkthrough
 

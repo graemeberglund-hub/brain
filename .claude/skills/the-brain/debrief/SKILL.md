@@ -9,7 +9,8 @@ dashterm: true
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Registered repos: !`ls repos/*.yml 2>/dev/null | xargs -I{} basename {} .yml || echo "none"`
+
+(At start of execution, use Glob to check: registered repos by listing repos/*.yml files.)
 
 # /debrief — Process Insight Extraction from Git Commits
 

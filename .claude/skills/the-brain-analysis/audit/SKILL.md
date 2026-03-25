@@ -10,12 +10,8 @@ timeout: 300
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Position count: !`ls notes/positions/ 2>/dev/null | wc -l`
-Question count: !`grep -l "classification: question" notes/positions/*.md 2>/dev/null | wc -l`
-Feature repos: !`ls activity/features/ 2>/dev/null || echo "none"`
-Ledger size: !`wc -l < knowledge/epistemic-ledger.jsonl 2>/dev/null || echo 0`
-Op ledger size: !`wc -l < knowledge/operational-ledger.jsonl 2>/dev/null || echo 0`
-Corrections: !`wc -l < knowledge/corrections-ledger.jsonl 2>/dev/null || echo 0`
+
+(At start of execution, use Glob, Grep, and Read to check: position count from notes/positions/*.md, question count by grepping for "classification: question", feature repos from activity/features/, and line counts of knowledge/epistemic-ledger.jsonl, knowledge/operational-ledger.jsonl, and knowledge/corrections-ledger.jsonl.)
 
 # /audit — Comprehensive Weekly Reasoning Pass
 

@@ -8,7 +8,8 @@ argument-hint: "[product/project name] [optional: --out path]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Repo root: !`git rev-parse --show-toplevel 2>/dev/null || pwd`
+
+(At start of execution, determine the repo root from the current working directory context.)
 
 # /brand-foundation — Research-Backed Branding Foundation
 

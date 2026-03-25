@@ -16,6 +16,13 @@
       "Bash(mv *)",
       "Bash(test *)",
       "Bash(mkdir *)",
+      "Bash(echo *)",
+      "Bash(grep *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(cat *)",
+      "Bash(tr *)",
+      "Bash(*$BRAIN_VAULT_PATH*)",
       "WebSearch"
     ]
   },

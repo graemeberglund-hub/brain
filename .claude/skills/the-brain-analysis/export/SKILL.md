@@ -8,8 +8,9 @@ argument-hint: "'query or filter' [--format dir|zip] [--output path]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: !`echo "$BRAIN_VAULT_PATH"`
-Note count: !`find $BRAIN_VAULT_PATH/notes -name "*.md" 2>/dev/null | wc -l | tr -d ' '`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Glob to check: total note count by listing notes/**/*.md files.)
 
 # /export — Package Vault Subset for Sharing
 

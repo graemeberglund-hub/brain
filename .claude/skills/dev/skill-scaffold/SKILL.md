@@ -8,8 +8,8 @@ argument-hint: "family/skill-name 'what the skill does'"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Existing families: !`ls -d .claude/skills/*/  2>/dev/null | sed 's|.claude/skills/||;s|/||' | tr '\n' ', '`
-Skill count: !`find .claude/skills -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' '`
+
+(At start of execution, use Glob to check: existing skill families by listing .claude/skills/*/ directories, and skill count by listing .claude/skills/*/SKILL.md and .claude/skills/*/*/SKILL.md files.)
 
 # /skill-scaffold — Generate a New Skill
 

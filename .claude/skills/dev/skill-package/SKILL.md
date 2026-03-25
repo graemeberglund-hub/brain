@@ -8,7 +8,8 @@ argument-hint: "skill-name|family-name [--output path]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Output dir exists: !`test -d artifacts/skill-packages && echo "yes" || echo "no"`
+
+(At start of execution, use Glob to check: whether artifacts/skill-packages/ directory exists.)
 
 # /skill-package — Package Skills for Distribution
 

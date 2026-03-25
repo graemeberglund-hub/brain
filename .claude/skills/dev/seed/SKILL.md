@@ -8,7 +8,9 @@ argument-hint: "repo-name 'brief description of domain/purpose'"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Registered repos: !`ls $BRAIN_VAULT_PATH/repos/*.yml 2>/dev/null | xargs -I{} basename {} .yml | tr '\n' ', '`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Glob to check: registered repos by listing repos/*.yml files in the vault root.)
 
 # /seed — Scaffold a New Tracked Repo
 

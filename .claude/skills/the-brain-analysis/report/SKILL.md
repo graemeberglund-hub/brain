@@ -8,10 +8,9 @@ argument-hint: "'query description' [--format html|md] [--output path]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: !`echo "$BRAIN_VAULT_PATH"`
-Position count: !`ls $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
-Project count: !`ls $BRAIN_VAULT_PATH/notes/projects/ 2>/dev/null | wc -l | tr -d ' '`
-Readable style exists: !`test -f $BRAIN_VAULT_PATH/studio/readable/style.css && echo "yes" || echo "no"`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Glob to check: position count from notes/positions/*.md, project count from notes/projects/*/, and whether studio/readable/style.css exists.)
 
 # /report — Generate Shareable Report from Vault Data
 

@@ -7,8 +7,9 @@ dashterm: true
 
 TODAY=!`date +%Y-%m-%d`
 NOW=!`date +%H:%M`
-BRAIN_DIR=!`echo "$BRAIN_VAULT_PATH"`
-INBOX_COUNT=!`find "$BRAIN_DIR/notes/inbox" -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
+BRAIN_DIR=/Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Glob to check: inbox count by listing notes/inbox/*.md files excluding .gitkeep.)
 
 # /handoff — Session End
 

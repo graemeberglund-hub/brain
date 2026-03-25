@@ -12,7 +12,8 @@ input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
-Emergent entity count: !`grep -c "^  [a-z]" knowledge/graph-emergent.yml 2>/dev/null || echo 0`
+
+(At start of execution, use Read to check: emergent entity count by reading knowledge/graph-emergent.yml and counting top-level entities.)
 
 # /drift — Emergent Layer Synthesizer
 

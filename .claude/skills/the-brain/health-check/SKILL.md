@@ -8,10 +8,9 @@ argument-hint: "[--verbose]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: !`echo "$BRAIN_VAULT_PATH"`
-Inbox count: !`ls $BRAIN_VAULT_PATH/notes/inbox/ 2>/dev/null | wc -l | tr -d ' '`
-Position count: !`ls $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
-Question count: !`grep -rl 'classification: question' $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Glob and Grep to gather: inbox count from notes/inbox/, position count from notes/positions/, and question count by grepping notes/positions/ for classification: question.)
 
 # /health-check — Vault Operational Health
 

@@ -7,8 +7,7 @@ argument-hint: "<source-file> [to <recipient-name> <recipient-email>]"
 
 input = $ARGUMENTS
 
-Style file: !`test -f ~/.claude/styles/clean-90s.md && echo "~/.claude/styles/clean-90s.md exists" || echo "MISSING — will use fallback palette"`
-Brand file: !`test -f brand/brand.md && echo "brand/brand.md exists — READ THIS for brand alignment" || echo "no brand/brand.md found"`
+(At start of execution, use Read to check: whether ~/.claude/styles/clean-90s.md exists for styling, and whether brand/brand.md exists for brand alignment.)
 
 # /briefing — Interactive Document with Fillable Questions
 

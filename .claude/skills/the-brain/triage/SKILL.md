@@ -8,7 +8,7 @@ dashterm: true
 
 filter = $ARGUMENTS
 
-Inbox count: !`find notes/inbox -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
+(At start of execution, use Glob to check: inbox count by listing notes/inbox/*.md files excluding .gitkeep.)
 
 # /triage — Inbox Conveyor Belt
 

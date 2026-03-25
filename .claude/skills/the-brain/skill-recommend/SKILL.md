@@ -10,11 +10,9 @@ input = $ARGUMENTS
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
 Day of week: !`date +%A`
-Vault root: !`echo "$BRAIN_VAULT_PATH"`
-Inbox count: !`ls $BRAIN_VAULT_PATH/notes/inbox/ 2>/dev/null | wc -l | tr -d ' '`
-Feedback entries: !`wc -l < $BRAIN_VAULT_PATH/knowledge/feedback-ledger.jsonl 2>/dev/null || echo "0"`
-Last digest: !`stat -f "%Sm" -t "%Y-%m-%d" $BRAIN_VAULT_PATH/knowledge/epistemic-ledger.jsonl 2>/dev/null || echo "never"`
-Last briefing: !`ls -t $BRAIN_VAULT_PATH/studio/briefing/ 2>/dev/null | head -1 || echo "none"`
+Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
+
+(At start of execution, use Glob and Read to gather: inbox count from notes/inbox/, feedback entry count from knowledge/feedback-ledger.jsonl, last modification of knowledge/epistemic-ledger.jsonl, and most recent file in studio/briefing/.)
 
 # /skill-recommend — What Should I Run Next?
 

@@ -1,0 +1,23 @@
+subgraphs:
+  dev:
+    file: graph-dev.yml
+    description: Software development knowledge — solutions, patterns, dead-ends, tools
+    entity_types: [solution, pattern, dead-end, tool]
+    updated_by: [sync]
+  projects:
+    file: graph-projects.yml
+    description: Project state snapshots
+    entity_types: [project]
+    updated_by: [sync]
+  epistemic:
+    file: graph-epistemic.yml
+    description: Belief and question states
+    entity_types: [position, question, prediction]
+    updated_by: [digest, resolve-feedback]
+  emergent:
+    file: graph-emergent.yml
+    description: Emergent themes and blindspots
+    entity_types: [theme, blindspot, bridge]
+    updated_by: [drift]
+
+relations: {}

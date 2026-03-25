@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en" data-style="{{DEFAULT_STYLE}}" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} — System Diagram</title>
+{{FONT_LINKS}}
+<style>
+/* ---- ENGINE DEFAULTS ---- */
+:root {
+  --bg: #0d0d0d;
+  --bg-2: #131311;
+  --bg-panel: #161616;
+  --grid: rgba(42,40,38,0.35);
+  --grid-major: rgba(58,56,54,0.4);
+  --border: #2a2826;
+  --border-strong: #3a3836;
+  --text: #9a9690;
+  --text-bright: #d4d0c8;
+  --text-dim: #4a4840;
+  --text-note: #6a6560;
+  --amber: #c4a35a;
+  --purple: #9a8ac8;
+  --cyan: #5aadad;
+  --blue: #6a90c0;
+  --green: #6aaa90;
+  --orange: #d4b030;
+  --red: #c47070;
+  --pink: #a09585;
+  --shadow-panel: 0 1px 2px rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.20);
+  --glass-bg: rgba(13,13,13,0.92);
+  --glass-bg-heavy: rgba(13,13,13,0.95);
+  --box-bg: rgba(22,22,22,0.92);
+  --conn-opacity: 0.3;
+  --conn-opacity-hi: 0.7;
+  --conn-opacity-dim: 0.05;
+  --conn-width: 2.5;
+  --conn-width-hi: 4;
+}
+[data-theme="light"] {
+  --bg: #f5f0e8;
+  --bg-2: #ede8df;
+  --bg-panel: #faf7f2;
+  --grid: rgba(26,26,24,0.06);
+  --grid-major: rgba(26,26,24,0.10);
+  --border: rgba(26,26,24,.10);
+  --border-strong: rgba(26,26,24,.18);
+  --text: rgba(26,26,24,.65);
+  --text-bright: #1a1a18;
+  --text-dim: rgba(26,26,24,.40);
+  --text-note: rgba(26,26,24,.50);
+  --amber: #9e7c3a;
+  --purple: #7b6bab;
+  --cyan: #3a8a8a;
+  --blue: #4a6fa5;
+  --green: #4d8a74;
+  --orange: #b8960c;
+  --red: #a85656;
+  --pink: #8a7d6b;
+  --shadow-panel: 0 1px 2px rgba(26,26,24,0.04), 0 4px 16px rgba(26,26,24,0.06);
+  --glass-bg: rgba(250,247,242,0.92);
+  --glass-bg-heavy: rgba(250,247,242,0.95);
+  --box-bg: rgba(250,247,242,0.92);
+}
+
+/* ---- STYLE OVERRIDES (injected) ---- */
+{{STYLE_BLOCKS}}
+
+/* ---- BASE RESET ---- */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--bg);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 12px;
+  color: var(--text);
+  overflow: hidden;
+  height: 100vh; width: 100vw;
+  cursor: grab;
+  user-select: none;
+}
+body.dragging { cursor: grabbing; }
+
+/* ---- TOOLBAR ---- */
+.toolbar {
+  position:fixed; top:14px; left:14px; z-index:100;
+  display:flex; gap:8px; align-items:center;
+  background: var(--glass-bg); border:1px solid var(--border);
+  padding:8px 14px; border-radius:4px; backdrop-filter:blur(8px);
+}
+.toolbar .title { color:var(--amber); font-family:'Instrument Serif',Georgia,serif; font-size:16px; font-weight:400; letter-spacing:0.5px; margin-right:12px; }
+.toolbar .sep { width:1px; height:16px; background:var(--border); }
+.toolbar button {
+  background:var(--box-bg); border:1px solid var(--border);
+  color:var(--text); padding:5px 12px; font-family:inherit;
+  font-size:11px; cursor:pointer; border-radius:3px; transition:all 0.15s;
+}
+.toolbar button:hover { color:var(--amber); border-color:rgba(196,163,90,0.4); background:rgba(196,163,90,0.06); }
+.toolbar .zoom-display { color:var(--text-dim); font-size:11px; min-width:40px; text-align:center; }
+
+/* ---- INFO PANEL ---- */
+.info-panel {
+  position:absolute; z-index:50;
+  background:var(--glass-bg-heavy); border:1px solid var(--border-strong);
+  padding:20px 24px; border-radius:6px; max-width:560px;
+  backdrop-filter:blur(8px); box-shadow:var(--shadow-panel); display:none;
+  animation: popover-in 0.15s ease-out;
+  pointer-events:auto;
+}
+@keyframes popover-in { from { opacity:0; transform:scale(0.92); } to { opacity:1; transform:scale(1); } }
+.info-panel.open { display:block; }
+.info-panel h3 { color:var(--amber); font-family:'Instrument Serif',Georgia,serif; font-size:22px; margin-bottom:6px; font-weight:400; }
+.info-panel .ip-plain { color:var(--green); font-size:15px; line-height:1.6; margin-bottom:10px; font-style:italic; }
+.info-panel .ip-tech { color:var(--text); font-size:13px; line-height:1.6; margin-bottom:10px; }
+.info-panel .ip-path { color:var(--cyan); font-size:12px; opacity:0.7; margin-bottom:10px; }
+.info-panel .ip-stats { display:flex; gap:6px; flex-wrap:wrap; }
+.info-panel .ip-stat {
+  font-size:12px; padding:4px 10px; border-radius:3px;
+  border:1px solid var(--border); color:var(--text-bright); background:rgba(255,255,255,0.03);
+}
+.info-panel .close-btn {
+  position:absolute; top:10px; right:12px; background:none; border:none;
+  color:var(--text-dim); cursor:pointer; font-size:18px; font-family:inherit;
+}
+
+/* ---- LEGEND ---- */
+.legend {
+  position:fixed; top:54px; left:14px; z-index:100;
+  background:var(--glass-bg-heavy); border:1px solid var(--border);
+  padding:12px 16px; border-radius:4px; backdrop-filter:blur(8px);
+}
+.legend-title { color:var(--text-dim); font-size:11px; text-transform:uppercase; letter-spacing:0.16em; margin-bottom:8px; }
+.legend-row { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
+.legend-line { width:24px; height:0; border-top:2.5px solid; }
+.legend-line.dashed { border-top-style:dashed; }
+.legend-label { font-size:11px; }
+
+/* ---- VIEWPORT + CANVAS ---- */
+.diagram-viewport { width:100vw; height:100vh; overflow:hidden; position:relative; }
+.diagram-canvas {
+  position:absolute; transform-origin:0 0;
+  width:6000px; height:4000px;
+  will-change: transform;
+}
+.diagram-canvas.smooth { transition: transform 0.12s ease-out; }
+.diagram-canvas::before {
+  content:'';
+  position:absolute; top:0;left:0;right:0;bottom:0;
+  background-image:
+    radial-gradient(circle, var(--grid) 1px, transparent 1px),
+    radial-gradient(circle, var(--grid-major) 1.2px, transparent 1.2px);
+  background-size: 24px 24px, 120px 120px;
+}
+
+/* ---- SVG CONNECTIONS ---- */
+.connections {
+  position:absolute; top:0;left:0; width:100%; height:100%;
+  pointer-events:none; z-index:2;
+}
+.connections polyline, .connections line {
+  fill:none; stroke-width:var(--conn-width); opacity:var(--conn-opacity);
+  transition: opacity 0.15s, stroke-width 0.15s;
+}
+.connections polyline.highlight, .connections line.highlight { opacity:var(--conn-opacity-hi); stroke-width:var(--conn-width-hi); }
+.connections polyline.dim, .connections line.dim { opacity:var(--conn-opacity-dim); }
+
+/* ---- REGIONS ---- */
+.region {
+  position:absolute; z-index:0;
+  border:1px solid rgba(42,40,38,0.5);
+  border-radius:8px;
+}
+.region-header {
+  position:absolute; top:-1px; left:20px;
+  background: var(--bg);
+  padding:2px 14px;
+  font-size:11px; font-weight:400;
+  text-transform:uppercase; letter-spacing:0.16em;
+  color:var(--text-dim);
+}
+.region-note {
+  position:absolute; bottom:10px; left:16px; right:16px;
+  font-size:11px; color:var(--text-note); line-height:1.6;
+  opacity:0.7;
+}
+
+/* ---- BOXES ---- */
+.box {
+  position:absolute; z-index:10;
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:12px 14px;
+  cursor:pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  background: var(--box-bg);
+  backdrop-filter: blur(6px);
+  touch-action: none;
+}
+.box:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-panel);
+  z-index:20;
+}
+.box.selected {
+  border-color: var(--amber);
+  box-shadow: 0 0 16px rgba(196,163,90,0.12);
+  z-index:20;
+}
+.box.dragging {
+  cursor: grabbing !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3) !important;
+  opacity: 0.92;
+  z-index: 30 !important;
+}
+.box .box-accent {
+  position:absolute; top:0; left:0; bottom:0; width:4px;
+  border-radius:4px 0 0 4px;
+}
+.box .box-label {
+  font-family:'Instrument Serif',Georgia,serif;
+  font-size:14px; font-weight:400;
+  color:var(--text-bright);
+  margin-bottom:2px;
+}
+.box .box-sub {
+  font-size:10px; color:var(--text-dim);
+  margin-bottom:6px;
+}
+.box .box-note {
+  font-size:11px; color:var(--text-note);
+  line-height:1.5;
+  border-top:1px solid var(--border);
+  padding-top:6px;
+  margin-top:4px;
+}
+
+/* badges */
+.box-badge {
+  position:absolute; top:-6px; right:-6px;
+  font-size:9px; padding:2px 7px;
+  border-radius:3px; font-weight:700; z-index:12;
+}
+.box-badge.live { background:var(--green); color:#000; }
+.box-badge.disabled { background:var(--red); color:#fff; }
+.box-badge.blocked { background:var(--orange); color:#000; }
+
+/* ---- MARGIN NOTES ---- */
+.margin-note {
+  position:absolute; z-index:30;
+  pointer-events:auto;
+  min-width:200px; min-height:80px;
+  width:480px;
+  cursor:grab;
+  overflow:hidden;
+  touch-action: none;
+}
+.margin-note.dragging { cursor:grabbing; z-index:40; }
+.margin-note .mn-title {
+  font-family:'Instrument Serif',Georgia,serif;
+  font-size:38px; font-weight:400;
+  color:var(--text-bright);
+  line-height:1.15;
+  margin-bottom:12px;
+  opacity:0.8;
+  outline:none;
+  cursor:text;
+}
+.margin-note .mn-title:empty::before {
+  content:'Untitled note'; color:var(--text-dim); opacity:0.5;
+}
+.margin-note .mn-body {
+  font-size:16px; font-weight:300;
+  color:var(--text);
+  line-height:1.75;
+  opacity:0.6;
+  outline:none;
+  cursor:text;
+  min-height:24px;
+}
+.margin-note .mn-body:empty::before {
+  content:'Click to write...'; color:var(--text-dim); opacity:0.4;
+}
+.margin-note .mn-delete {
+  position:absolute; top:4px; right:8px;
+  background:none; border:none; color:var(--text-dim);
+  font-size:18px; cursor:pointer; opacity:0;
+  transition:opacity 0.15s; font-family:inherit;
+  pointer-events:auto;
+}
+.margin-note:hover .mn-delete { opacity:0.6; }
+.margin-note .mn-delete:hover { opacity:1; color:var(--red); }
+.connections .leader {
+  fill:none; stroke:var(--text-dim); stroke-width:1;
+  stroke-dasharray:6,4; opacity:0.35;
+}
+.connections .leader-dot {
+  fill:var(--text-dim); opacity:0.5;
+}
+
+/* ---- LINE LABELS ---- */
+.line-label {
+  position:absolute; z-index:5;
+  font-size:12px; color:var(--text-dim);
+  background: var(--bg); padding:2px 8px;
+  pointer-events:none; white-space:nowrap;
+  letter-spacing:0.5px;
+}
+
+/* ---- GRAIN OVERLAY ---- */
+.grain-overlay {
+  position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+</style>
+</head>
+<body>
+<div class="grain-overlay" aria-hidden="true"></div>
+
+<div class="toolbar">
+  <span class="title">{{TITLE}}</span>
+  <div class="sep"></div>
+  <button onclick="zoomIn()">+</button>
+  <span class="zoom-display" id="zoom-display">45%</span>
+  <button onclick="zoomOut()">&ndash;</button>
+  <button onclick="resetView()">FIT</button>
+  <div class="sep"></div>
+  <button onclick="addNote()">+ NOTE</button>
+  <div class="sep"></div>
+  <button onclick="undo()" title="Ctrl+Z">UNDO</button>
+  <button onclick="resetLayout()">RESET</button>
+  <div class="sep"></div>
+  <button id="theme-toggle" onclick="toggleTheme()">LIGHT</button>
+  <div class="sep"></div>
+  <button onclick="cycleStyle(-1)" style="padding:5px 6px;">&lsaquo;</button>
+  <span id="style-label" style="font-size:11px;min-width:72px;text-align:center;color:var(--text-dim);">{{DEFAULT_STYLE_LABEL}}</span>
+  <button onclick="cycleStyle(1)" style="padding:5px 6px;">&rsaquo;</button>
+</div>
+
+<div class="legend" id="legend"></div>
+
+<div class="diagram-viewport" id="viewport">
+<div class="diagram-canvas" id="canvas">
+
+<div class="info-panel" id="info-panel">
+  <button class="close-btn" onclick="closeInfo()">&times;</button>
+  <div id="info-content"></div>
+</div>
+
+<!-- SVG layer for connections -->
+<svg class="connections" id="connections-svg" viewBox="0 0 6000 4000" preserveAspectRatio="none">
+  <defs id="arrow-defs"></defs>
+  <g id="connections-g"></g>
+  <g id="leader-lines"></g>
+</svg>
+
+<!-- Line labels container -->
+<div id="line-labels-container"></div>
+
+</div><!-- /canvas -->
+</div><!-- /viewport -->
+
+<script>
+// ================================================================
+// DIAGRAM SPEC — injected by /diagram skill
+// ================================================================
+const SPEC = {{SPEC_JSON}};
+
+// ================================================================
+// STYLE CONFIG
+// ================================================================
+const STYLES = {{STYLE_NAMES}};
+const STYLE_REGION_BG = { 'clean-90s': '0.02', 'signal-ink': '0.04', 'teenage-engineering': '0.03' };
+const STYLE_REGION_BORDER = { 'clean-90s': '0.15', 'signal-ink': '0.22', 'teenage-engineering': '0.10' };
+
+// ================================================================
+// COLOR MAP — maps spec color names to CSS rgba for regions
+// ================================================================
+const COLOR_MAP = {
+  orange:  { rgb: '251,146,60',  var: '--orange' },
+  cyan:    { rgb: '34,211,238',  var: '--cyan' },
+  purple:  { rgb: '167,139,250', var: '--purple' },
+  amber:   { rgb: '201,164,90',  var: '--amber' },
+  blue:    { rgb: '96,165,250',  var: '--blue' },
+  green:   { rgb: '74,222,128',  var: '--green' },
+  red:     { rgb: '196,112,112', var: '--red' },
+  pink:    { rgb: '160,149,133', var: '--pink' },
+};
+
+// ================================================================
+// STATE
+// ================================================================
+const canvasEl = document.getElementById('canvas');
+const viewportEl = document.getElementById('viewport');
+const SVG_NS = 'http://www.w3.org/2000/svg';
+let scale = 0.34, panX = 20, panY = 10;
+let isPanning = false, panStartX, panStartY, panStartPanX, panStartPanY;
+let selectedBox = null;
+let noteCounter = 0;
+const storagePrefix = SPEC.id + '-';
+
+// ---- UNDO ----
+const undoStack = [];
+const MAX_UNDO = 50;
+
+function captureState() {
+  const boxes = {};
+  canvasEl.querySelectorAll('.box').forEach(box => {
+    boxes[box.id] = { x: parseFloat(box.style.left), y: parseFloat(box.style.top) };
+  });
+  const notes = [];
+  canvasEl.querySelectorAll('.margin-note').forEach(note => {
+    notes.push({
+      id: note.id,
+      x: parseFloat(note.style.left), y: parseFloat(note.style.top),
+      title: note.querySelector('.mn-title').innerHTML,
+      body: note.querySelector('.mn-body').innerHTML,
+      targetX: note.dataset.targetX || '', targetY: note.dataset.targetY || '',
+      width: note.style.width ? parseFloat(note.style.width) : null,
+      height: note.style.height ? parseFloat(note.style.height) : null,
+    });
+  });
+  return { boxes, notes };
+}
+
+function pushUndo() {
+  undoStack.push(captureState());
+  if (undoStack.length > MAX_UNDO) undoStack.shift();
+}
+
+function undo() {
+  if (!undoStack.length) return;
+  const state = undoStack.pop();
+  Object.entries(state.boxes).forEach(([id, pos]) => {
+    const el = document.getElementById(id);
+    if (el) { el.style.left = pos.x + 'px'; el.style.top = pos.y + 'px'; }
+  });
+  canvasEl.querySelectorAll('.margin-note').forEach(n => n.remove());
+  state.notes.forEach(d => {
+    canvasEl.appendChild(createNoteEl(d.id, d.x, d.y, d.title, d.body, d.targetX, d.targetY, d.width, d.height));
+  });
+  saveBoxPositions();
+  saveNotes();
+  redrawConnections();
+  drawLeaders();
+}
+
+// ================================================================
+// DOM BUILDERS — construct everything from SPEC at runtime
+// ================================================================
+
+function buildRegions() {
+  const bgOp = STYLE_REGION_BG[SPEC.defaultStyle] || '0.02';
+  const bcOp = STYLE_REGION_BORDER[SPEC.defaultStyle] || '0.15';
+  SPEC.regions.forEach(r => {
+    const div = document.createElement('div');
+    div.className = 'region';
+    div.id = 'region-' + r.id;
+    div.style.cssText = `left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px;`;
+    const cm = COLOR_MAP[r.color] || COLOR_MAP.amber;
+    div.style.borderColor = `rgba(${cm.rgb},${bcOp})`;
+    div.style.background = `rgba(${cm.rgb},${bgOp})`;
+
+    const header = document.createElement('div');
+    header.className = 'region-header';
+    header.style.color = `var(${cm.var})`;
+    header.textContent = r.label;
+    div.appendChild(header);
+
+    if (r.note) {
+      const note = document.createElement('div');
+      note.className = 'region-note';
+      note.textContent = r.note;
+      div.appendChild(note);
+    }
+    canvasEl.appendChild(div);
+  });
+}
+
+function buildBoxes() {
+  // Group boxes by region for grid-pack layout
+  const byRegion = {};
+  SPEC.boxes.forEach(b => {
+    const rId = b.region || '__none';
+    if (!byRegion[rId]) byRegion[rId] = [];
+    byRegion[rId].push(b);
+  });
+
+  // Layout boxes within each region
+  Object.entries(byRegion).forEach(([rId, boxes]) => {
+    const region = SPEC.regions.find(r => r.id === rId);
+    if (region) {
+      layoutBoxesInRegion(boxes, region);
+    } else {
+      // Orphan boxes — position sequentially
+      boxes.forEach((b, i) => {
+        if (b.x === undefined) { b.x = 40; b.y = 40 + i * 100; }
+      });
+    }
+
+    boxes.forEach(b => {
+      const div = document.createElement('div');
+      div.className = 'box';
+      div.id = b.id;
+      div.style.left = b.x + 'px';
+      div.style.top = b.y + 'px';
+      if (b.w) div.style.width = b.w + 'px';
+      else div.style.width = '240px';
+      if (b.info) div.dataset.info = b.id;
+
+      const cm = COLOR_MAP[b.color] || COLOR_MAP.amber;
+      const accent = document.createElement('div');
+      accent.className = 'box-accent';
+      accent.style.background = `var(${cm.var})`;
+      div.appendChild(accent);
+
+      const label = document.createElement('div');
+      label.className = 'box-label';
+      label.textContent = b.label;
+      div.appendChild(label);
+
+      if (b.sub) {
+        const sub = document.createElement('div');
+        sub.className = 'box-sub';
+        sub.textContent = b.sub;
+        div.appendChild(sub);
+      }
+
+      if (b.note) {
+        const note = document.createElement('div');
+        note.className = 'box-note';
+        note.textContent = b.note;
+        div.appendChild(note);
+      }
+
+      if (b.badge) {
+        const badge = document.createElement('div');
+        badge.className = 'box-badge ' + (b.badge.type || '');
+        badge.textContent = b.badge.text || '';
+        div.appendChild(badge);
+      }
+
+      canvasEl.appendChild(div);
+    });
+  });
+}
+
+function layoutBoxesInRegion(boxes, region) {
+  const padding = 40;
+  const headerH = 30;
+  const gap = 16;
+  const noteH = region.note ? 50 : 0;
+  const count = boxes.length;
+  if (count === 0) return;
+
+  const cols = Math.max(1, Math.floor(Math.sqrt(count)));
+  const rows = Math.ceil(count / cols);
+
+  const availW = region.w - padding * 2;
+  const availH = region.h - headerH - padding - noteH;
+  const cellW = availW / cols;
+  const cellH = availH / rows;
+  const boxW = Math.min(cellW - gap, 260);
+
+  boxes.forEach((b, i) => {
+    if (b.x !== undefined && b.y !== undefined) return; // already positioned
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    b.x = region.x + padding + col * cellW + (cellW - boxW) / 2;
+    b.y = region.y + headerH + padding + row * cellH + gap / 2;
+    b.w = boxW;
+  });
+}
+
+function buildArrowDefs() {
+  const defs = document.getElementById('arrow-defs');
+  const colors = new Set();
+  SPEC.connections.forEach(c => colors.add(c.color));
+  colors.forEach(color => {
+    const cm = COLOR_MAP[color] || COLOR_MAP.amber;
+    const marker = document.createElementNS(SVG_NS, 'marker');
+    marker.setAttribute('id', 'a-' + color);
+    marker.setAttribute('markerWidth', '8');
+    marker.setAttribute('markerHeight', '6');
+    marker.setAttribute('refX', '7');
+    marker.setAttribute('refY', '3');
+    marker.setAttribute('orient', 'auto');
+    const poly = document.createElementNS(SVG_NS, 'polygon');
+    poly.setAttribute('points', '0 0,8 3,0 6');
+    poly.setAttribute('fill', `var(${cm.var})`);
+    poly.setAttribute('opacity', '0.7');
+    marker.appendChild(poly);
+    defs.appendChild(marker);
+  });
+}
+
+function buildLegend() {
+  if (!SPEC.legend || !SPEC.legend.length) return;
+  const legend = document.getElementById('legend');
+  const title = document.createElement('div');
+  title.className = 'legend-title';
+  title.textContent = 'Signal Flows';
+  legend.appendChild(title);
+
+  SPEC.legend.forEach(item => {
+    const cm = COLOR_MAP[item.color] || COLOR_MAP.amber;
+    const row = document.createElement('div');
+    row.className = 'legend-row';
+    const line = document.createElement('div');
+    line.className = 'legend-line' + (item.dashed ? ' dashed' : '');
+    line.style.borderColor = `var(${cm.var})`;
+    const label = document.createElement('span');
+    label.className = 'legend-label';
+    label.style.color = `var(${cm.var})`;
+    label.textContent = item.label;
+    row.appendChild(line);
+    row.appendChild(label);
+    legend.appendChild(row);
+  });
+}
+
+function buildMarginNotes() {
+  SPEC.marginNotes.forEach(mn => {
+    // Compute target position from region
+    let tx = '', ty = '';
+    if (mn.targetRegion) {
+      const region = SPEC.regions.find(r => r.id === mn.targetRegion);
+      if (region) {
+        tx = String(region.x + region.w / 2);
+        ty = String(region.y + region.h / 2);
+      }
+    }
+    // Position note to the right of all regions
+    const maxX = Math.max(...SPEC.regions.map(r => r.x + r.w));
+    const regionIdx = SPEC.regions.findIndex(r => r.id === mn.targetRegion);
+    const noteY = regionIdx >= 0
+      ? SPEC.regions[regionIdx].y
+      : (SPEC.marginNotes.indexOf(mn) * 320 + 80);
+
+    const note = createNoteEl(
+      mn.id, maxX + 200, noteY,
+      mn.title, mn.body, tx, ty
+    );
+    canvasEl.appendChild(note);
+  });
+}
+
+// ================================================================
+// CONNECTION ROUTING
+// ================================================================
+
+function getBoxRect(id) {
+  const el = document.getElementById(id);
+  if (!el) return null;
+  return {
+    x: parseFloat(el.style.left) || 0,
+    y: parseFloat(el.style.top) || 0,
+    w: el.offsetWidth, h: el.offsetHeight
+  };
+}
+
+function routeConnection(fromId, toId) {
+  const a = getBoxRect(fromId), b = getBoxRect(toId);
+  if (!a || !b) return '';
+  const aCx = a.x + a.w / 2, aCy = a.y + a.h / 2;
+  const bCx = b.x + b.w / 2, bCy = b.y + b.h / 2;
+  const dx = bCx - aCx, dy = bCy - aCy;
+  let sx, sy, ex, ey;
+  if (Math.abs(dx) >= Math.abs(dy)) {
+    if (dx > 0) { sx = a.x + a.w; sy = aCy; ex = b.x; ey = bCy; }
+    else { sx = a.x; sy = aCy; ex = b.x + b.w; ey = bCy; }
+    const mx = (sx + ex) / 2;
+    return `${sx},${sy} ${mx},${sy} ${mx},${ey} ${ex},${ey}`;
+  } else {
+    if (dy > 0) { sx = aCx; sy = a.y + a.h; ex = bCx; ey = b.y; }
+    else { sx = aCx; sy = a.y; ex = bCx; ey = b.y + b.h; }
+    const my = (sy + ey) / 2;
+    return `${sx},${sy} ${sx},${my} ${ex},${my} ${ex},${ey}`;
+  }
+}
+
+function getConnVars() {
+  const s = getComputedStyle(document.documentElement);
+  return {
+    w: s.getPropertyValue('--conn-width').trim() || '2.5',
+    wHi: s.getPropertyValue('--conn-width-hi').trim() || '4',
+    op: s.getPropertyValue('--conn-opacity').trim() || '0.3',
+    opHi: s.getPropertyValue('--conn-opacity-hi').trim() || '0.7',
+    opDim: s.getPropertyValue('--conn-opacity-dim').trim() || '0.05',
+  };
+}
+
+function redrawConnections() {
+  const g = document.getElementById('connections-g');
+  if (!g) return;
+  g.innerHTML = '';
+  const cv = getConnVars();
+  SPEC.connections.forEach(conn => {
+    const points = routeConnection(conn.from, conn.to);
+    if (!points) return;
+    const cm = COLOR_MAP[conn.color] || COLOR_MAP.amber;
+    const poly = document.createElementNS(SVG_NS, 'polyline');
+    poly.setAttribute('points', points);
+    poly.setAttribute('stroke', `var(${cm.var})`);
+    poly.setAttribute('fill', 'none');
+    poly.setAttribute('stroke-width', cv.w);
+    poly.setAttribute('marker-end', `url(#a-${conn.color})`);
+    if (conn.dashed) poly.setAttribute('stroke-dasharray', '8,4');
+    poly.dataset.from = conn.from;
+    poly.dataset.to = conn.to;
+    if (selectedBox) {
+      if (conn.from === selectedBox.id || conn.to === selectedBox.id) {
+        poly.setAttribute('opacity', cv.opHi);
+        poly.setAttribute('stroke-width', cv.wHi);
+      } else {
+        poly.setAttribute('opacity', cv.opDim);
+      }
+    } else {
+      poly.setAttribute('opacity', cv.op);
+    }
+    g.appendChild(poly);
+  });
+  redrawLineLabels();
+}
+
+function redrawLineLabels() {
+  const container = document.getElementById('line-labels-container');
+  if (!container) return;
+  container.innerHTML = '';
+  if (!SPEC.connectionLabels) return;
+  SPEC.connectionLabels.forEach(cl => {
+    const a = getBoxRect(cl.from), b = getBoxRect(cl.to);
+    if (!a || !b) return;
+    const mx = (a.x + a.w / 2 + b.x + b.w / 2) / 2 - 30;
+    const my = (a.y + a.h / 2 + b.y + b.h / 2) / 2 - 6;
+    const label = document.createElement('div');
+    label.className = 'line-label';
+    label.style.left = mx + 'px';
+    label.style.top = my + 'px';
+    label.textContent = cl.text;
+    container.appendChild(label);
+  });
+}
+
+// ================================================================
+// PAN / ZOOM
+// ================================================================
+
+function updateTransform() {
+  canvasEl.style.transform = `translate(${panX}px,${panY}px) scale(${scale})`;
+  document.getElementById('zoom-display').textContent = Math.round(scale * 100) + '%';
+}
+updateTransform();
+
+viewportEl.addEventListener('pointerdown', e => {
+  if (e.target.closest('.box,.margin-note,.info-panel,.toolbar,.legend')) return;
+  isPanning = true;
+  panStartX = e.clientX; panStartY = e.clientY;
+  panStartPanX = panX; panStartPanY = panY;
+  canvasEl.classList.remove('smooth');
+  document.body.classList.add('dragging');
+  viewportEl.setPointerCapture(e.pointerId);
+});
+viewportEl.addEventListener('pointermove', e => {
+  if (!isPanning) return;
+  panX = panStartPanX + (e.clientX - panStartX);
+  panY = panStartPanY + (e.clientY - panStartY);
+  updateTransform();
+});
+viewportEl.addEventListener('pointerup', () => {
+  isPanning = false;
+  document.body.classList.remove('dragging');
+});
+
+viewportEl.addEventListener('wheel', e => {
+  e.preventDefault();
+  const r = viewportEl.getBoundingClientRect();
+  const mx = e.clientX - r.left, my = e.clientY - r.top;
+  const oldScale = scale;
+  scale *= e.deltaY < 0 ? 1.06 : 0.94;
+  scale = Math.max(0.12, Math.min(3, scale));
+  panX = mx - (mx - panX) * (scale / oldScale);
+  panY = my - (my - panY) * (scale / oldScale);
+  canvasEl.classList.add('smooth');
+  updateTransform();
+}, { passive: false });
+
+function zoomIn() { canvasEl.classList.add('smooth'); scale = Math.min(3, scale * 1.2); updateTransform(); }
+function zoomOut() { canvasEl.classList.add('smooth'); scale = Math.max(0.12, scale * 0.8); updateTransform(); }
+
+function getContentBounds() {
+  const els = canvasEl.querySelectorAll('.region, .box, .margin-note');
+  let minX = Infinity, minY = Infinity, maxX = 0, maxY = 0;
+  els.forEach(el => {
+    const x = parseFloat(el.style.left) || 0;
+    const y = parseFloat(el.style.top) || 0;
+    const w = el.offsetWidth || parseFloat(el.style.width) || 0;
+    const h = el.offsetHeight || parseFloat(el.style.height) || 0;
+    if (x < minX) minX = x;
+    if (y < minY) minY = y;
+    if (x + w > maxX) maxX = x + w;
+    if (y + h > maxY) maxY = y + h;
+  });
+  const pad = 60;
+  return { x: minX - pad, y: minY - pad, w: maxX - minX + pad * 2, h: maxY - minY + pad * 2 };
+}
+
+function resetView() {
+  canvasEl.classList.add('smooth');
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const bounds = getContentBounds();
+  const leftInset = 220, topInset = 60;
+  const availW = vw - leftInset;
+  const availH = vh - topInset;
+  scale = Math.min(availW / bounds.w, availH / bounds.h) * 0.95;
+  const contentW = bounds.w * scale, contentH = bounds.h * scale;
+  panX = leftInset + (availW - contentW) / 2 - bounds.x * scale;
+  panY = topInset + (availH - contentH) / 2 - bounds.y * scale;
+  updateTransform();
+}
+
+// ================================================================
+// BOX DRAG (vanilla pointer events — no library)
+// ================================================================
+
+(function initBoxDrag() {
+  let dragEl = null, dragStartX, dragStartY, elStartX, elStartY, hasMoved;
+
+  canvasEl.addEventListener('pointerdown', e => {
+    const box = e.target.closest('.box');
+    if (!box || e.target.closest('.info-panel')) return;
+    e.stopPropagation();
+    dragEl = box;
+    hasMoved = false;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    elStartX = parseFloat(box.style.left) || 0;
+    elStartY = parseFloat(box.style.top) || 0;
+    box.setPointerCapture(e.pointerId);
+  });
+
+  canvasEl.addEventListener('pointermove', e => {
+    if (!dragEl) return;
+    const dx = (e.clientX - dragStartX) / scale;
+    const dy = (e.clientY - dragStartY) / scale;
+    if (!hasMoved && Math.abs(dx) < 5 && Math.abs(dy) < 5) return;
+    if (!hasMoved) {
+      hasMoved = true;
+      pushUndo();
+      dragEl.classList.add('dragging');
+    }
+    dragEl.style.left = (elStartX + dx) + 'px';
+    dragEl.style.top = (elStartY + dy) + 'px';
+    redrawConnections();
+    drawLeaders();
+  });
+
+  canvasEl.addEventListener('pointerup', e => {
+    if (!dragEl) return;
+    const box = dragEl;
+    dragEl.classList.remove('dragging');
+    if (hasMoved) {
+      saveBoxPositions();
+      redrawConnections();
+    } else {
+      // It was a click, not a drag — open info panel
+      handleBoxClick(box, e);
+    }
+    dragEl = null;
+  });
+})();
+
+// ================================================================
+// MARGIN NOTE DRAG (vanilla pointer events)
+// ================================================================
+
+(function initNoteDrag() {
+  let dragEl = null, dragStartX, dragStartY, elStartX, elStartY, hasMoved;
+
+  canvasEl.addEventListener('pointerdown', e => {
+    const note = e.target.closest('.margin-note');
+    if (!note) return;
+    // Don't drag if clicking editable content or delete button
+    if (e.target.closest('[contenteditable], .mn-delete')) return;
+    e.stopPropagation();
+    dragEl = note;
+    hasMoved = false;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    elStartX = parseFloat(note.style.left) || 0;
+    elStartY = parseFloat(note.style.top) || 0;
+    note.setPointerCapture(e.pointerId);
+  });
+
+  canvasEl.addEventListener('pointermove', e => {
+    if (!dragEl) return;
+    const dx = (e.clientX - dragStartX) / scale;
+    const dy = (e.clientY - dragStartY) / scale;
+    if (!hasMoved && Math.abs(dx) < 5 && Math.abs(dy) < 5) return;
+    if (!hasMoved) {
+      hasMoved = true;
+      pushUndo();
+      dragEl.classList.add('dragging');
+    }
+    dragEl.style.left = (elStartX + dx) + 'px';
+    dragEl.style.top = (elStartY + dy) + 'px';
+    drawLeaders();
+  });
+
+  canvasEl.addEventListener('pointerup', e => {
+    if (!dragEl) return;
+    dragEl.classList.remove('dragging');
+    if (hasMoved) saveNotes();
+    dragEl = null;
+  });
+})();
+
+// ================================================================
+// BOX CLICK → INFO PANEL
+// ================================================================
+
+function handleBoxClick(box, e) {
+  const key = box.dataset.info;
+  const spec = SPEC.boxes.find(b => b.id === key);
+  if (!spec || !spec.info) return;
+  const info = spec.info;
+
+  if (selectedBox) selectedBox.classList.remove('selected');
+  box.classList.add('selected');
+  selectedBox = box;
+
+  const panel = document.getElementById('info-panel');
+  let html = `<h3>${spec.label}</h3>`;
+  if (info.plain) html += `<p class="ip-plain">${info.plain}</p>`;
+  if (info.tech) html += `<p class="ip-tech">${info.tech}</p>`;
+  if (info.path) html += `<div class="ip-path">${info.path}</div>`;
+  if (info.stats && info.stats.length) {
+    html += `<div class="ip-stats">${info.stats.map(s => `<span class="ip-stat">${s}</span>`).join('')}</div>`;
+  }
+  document.getElementById('info-content').innerHTML = html;
+  panel.classList.add('open');
+
+  // Position popover next to box
+  const bx = parseFloat(box.style.left) || 0;
+  const by = parseFloat(box.style.top) || 0;
+  const bw = box.offsetWidth;
+  const bh = box.offsetHeight;
+  const vx = bx * scale + panX;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const spaceRight = vw - (vx + bw * scale);
+  const spaceLeft = vx;
+  const spaceBelow = vh - ((by * scale + panY) + bh * scale);
+  let px = bx + bw + 16;
+  let py = by;
+  if (spaceRight < 600 * scale && spaceLeft > spaceRight) px = bx - 576;
+  if (spaceBelow < 200 * scale) py = by - 200;
+  panel.style.left = px + 'px';
+  panel.style.top = py + 'px';
+  redrawConnections();
+}
+
+viewportEl.addEventListener('click', e => {
+  if (e.target.closest('.box,.info-panel,.margin-note,.toolbar,.legend')) return;
+  closeInfo();
+});
+
+function closeInfo() {
+  document.getElementById('info-panel').classList.remove('open');
+  if (selectedBox) selectedBox.classList.remove('selected');
+  selectedBox = null;
+  redrawConnections();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeInfo();
+  if ((e.metaKey || e.ctrlKey) && e.key === 'z' && !e.target.closest('[contenteditable]')) {
+    e.preventDefault();
+    undo();
+  }
+});
+
+// ================================================================
+// THEME + STYLE
+// ================================================================
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  document.getElementById('theme-toggle').textContent = next === 'light' ? 'DARK' : 'LIGHT';
+  try { localStorage.setItem(storagePrefix + 'theme', next); } catch(e) {}
+}
+
+function cycleStyle(dir) {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-style') || STYLES[0];
+  const idx = STYLES.indexOf(current);
+  const next = STYLES[(idx + dir + STYLES.length) % STYLES.length];
+  applyStyle(next, current);
+  try { localStorage.setItem(storagePrefix + 'style', next); } catch(e) {}
+}
+
+function applyStyle(next, prev) {
+  const html = document.documentElement;
+  html.setAttribute('data-style', next);
+  document.getElementById('style-label').textContent = next.toUpperCase();
+  const prevBg = STYLE_REGION_BG[prev] || '0.02';
+  const nextBg = STYLE_REGION_BG[next] || '0.02';
+  const prevBc = STYLE_REGION_BORDER[prev] || '0.15';
+  const nextBc = STYLE_REGION_BORDER[next] || '0.15';
+  if (prevBg !== nextBg || prevBc !== nextBc) {
+    document.querySelectorAll('.region').forEach(r => {
+      r.style.background = r.style.background.replace(new RegExp(',\\s*' + prevBg.replace('.', '\\.') + '\\)'), ',' + nextBg + ')');
+      r.style.borderColor = r.style.borderColor.replace(new RegExp(',\\s*' + prevBc.replace('.', '\\.') + '\\)'), ',' + nextBc + ')');
+    });
+  }
+  redrawConnections();
+  drawLeaders();
+}
+
+// ================================================================
+// LEADER LINES (margin notes → regions)
+// ================================================================
+
+function drawLeaders() {
+  const g = document.getElementById('leader-lines');
+  if (!g) return;
+  g.innerHTML = '';
+  canvasEl.querySelectorAll('.margin-note').forEach(note => {
+    const tx = note.dataset.targetX, ty = note.dataset.targetY;
+    if (!tx || !ty) return;
+    const nx = parseFloat(note.style.left);
+    const ny = parseFloat(note.style.top) + 30;
+    const targetX = parseFloat(tx), targetY = parseFloat(ty);
+    const midX = nx - 40;
+    const poly = document.createElementNS(SVG_NS, 'polyline');
+    poly.setAttribute('class', 'leader');
+    poly.setAttribute('points', `${nx},${ny} ${midX},${ny} ${midX},${targetY} ${targetX},${targetY}`);
+    g.appendChild(poly);
+    const dot = document.createElementNS(SVG_NS, 'circle');
+    dot.setAttribute('class', 'leader-dot');
+    dot.setAttribute('cx', targetX);
+    dot.setAttribute('cy', targetY);
+    dot.setAttribute('r', '4');
+    g.appendChild(dot);
+  });
+}
+
+// ================================================================
+// PERSISTENCE
+// ================================================================
+
+function saveBoxPositions() {
+  const positions = {};
+  canvasEl.querySelectorAll('.box').forEach(box => {
+    positions[box.id] = { x: parseFloat(box.style.left), y: parseFloat(box.style.top) };
+  });
+  try { localStorage.setItem(storagePrefix + 'positions', JSON.stringify(positions)); } catch(e) {}
+}
+
+function loadBoxPositions() {
+  try {
+    const data = JSON.parse(localStorage.getItem(storagePrefix + 'positions'));
+    if (!data) return;
+    Object.entries(data).forEach(([id, pos]) => {
+      const el = document.getElementById(id);
+      if (el) { el.style.left = pos.x + 'px'; el.style.top = pos.y + 'px'; }
+    });
+  } catch(e) {}
+}
+
+function resetLayout() {
+  localStorage.removeItem(storagePrefix + 'positions');
+  localStorage.removeItem(storagePrefix + 'notes');
+  localStorage.removeItem(storagePrefix + 'style');
+  localStorage.removeItem(storagePrefix + 'theme');
+  location.reload();
+}
+
+function saveNotes() {
+  const data = [];
+  canvasEl.querySelectorAll('.margin-note').forEach(note => {
+    const d = {
+      id: note.id,
+      x: parseFloat(note.style.left), y: parseFloat(note.style.top),
+      title: note.querySelector('.mn-title').innerHTML,
+      body: note.querySelector('.mn-body').innerHTML,
+      targetX: note.dataset.targetX || '', targetY: note.dataset.targetY || '',
+    };
+    if (note.style.width) d.width = parseFloat(note.style.width);
+    if (note.style.height) d.height = parseFloat(note.style.height);
+    data.push(d);
+  });
+  try { localStorage.setItem(storagePrefix + 'notes', JSON.stringify(data)); } catch(e) {}
+}
+
+function loadNotes() {
+  let data;
+  try { data = JSON.parse(localStorage.getItem(storagePrefix + 'notes')); } catch(e) {}
+  if (!data || !data.length) return false;
+  canvasEl.querySelectorAll('.margin-note').forEach(n => n.remove());
+  data.forEach(d => {
+    canvasEl.appendChild(createNoteEl(d.id, d.x, d.y, d.title, d.body, d.targetX, d.targetY, d.width, d.height));
+  });
+  return true;
+}
+
+function createNoteEl(id, x, y, title, body, targetX, targetY, width, height) {
+  const note = document.createElement('div');
+  note.className = 'margin-note';
+  note.id = id;
+  note.style.left = x + 'px';
+  note.style.top = y + 'px';
+  if (width) note.style.width = width + 'px';
+  if (height) note.style.height = height + 'px';
+  if (targetX) note.dataset.targetX = targetX;
+  if (targetY) note.dataset.targetY = targetY;
+  note.innerHTML = `
+    <button class="mn-delete" title="Delete note">&times;</button>
+    <div class="mn-title" contenteditable="true">${title}</div>
+    <div class="mn-body" contenteditable="true">${body}</div>
+  `;
+  note.querySelector('.mn-delete').addEventListener('click', e => {
+    e.stopPropagation();
+    pushUndo();
+    note.remove();
+    drawLeaders();
+    saveNotes();
+  });
+  note.addEventListener('input', () => saveNotes());
+  return note;
+}
+
+function addNote() {
+  pushUndo();
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const cx = (vw / 2 - panX) / scale;
+  const cy = (vh / 2 - panY) / scale;
+  noteCounter++;
+  const id = 'mn-user-' + Date.now() + '-' + noteCounter;
+  const note = createNoteEl(id, cx - 240, cy - 60, '', '', '', '');
+  canvasEl.appendChild(note);
+  note.querySelector('.mn-title').focus();
+  saveNotes();
+  drawLeaders();
+}
+
+// ---- RIGHT-CLICK TO ADD NOTE ON ELEMENT ----
+canvasEl.addEventListener('contextmenu', e => {
+  const target = e.target.closest('.box, .region');
+  if (!target) return;
+  e.preventDefault();
+  pushUndo();
+  const elX = parseFloat(target.style.left) || 0;
+  const elY = parseFloat(target.style.top) || 0;
+  const elW = target.offsetWidth;
+  const elH = target.offsetHeight;
+  const noteX = elX + elW + 20;
+  const noteY = elY;
+  const targetCx = String(elX + elW / 2);
+  const targetCy = String(elY + elH / 2);
+  noteCounter++;
+  const id = 'mn-ctx-' + Date.now() + '-' + noteCounter;
+  const note = createNoteEl(id, noteX, noteY, '', '', targetCx, targetCy);
+  canvasEl.appendChild(note);
+  note.querySelector('.mn-title').focus();
+  saveNotes();
+  drawLeaders();
+});
+
+// ================================================================
+// BOOT
+// ================================================================
+
+(function init() {
+  // Build DOM from spec
+  buildRegions();
+  buildBoxes();
+  buildArrowDefs();
+  buildLegend();
+  buildMarginNotes();
+
+  // Load saved state (overrides defaults)
+  loadBoxPositions();
+  const notesLoaded = loadNotes();
+
+  // Restore saved style/theme
+  try {
+    const savedStyle = localStorage.getItem(storagePrefix + 'style');
+    if (savedStyle && STYLES.includes(savedStyle)) {
+      applyStyle(savedStyle, SPEC.defaultStyle);
+    }
+    const savedTheme = localStorage.getItem(storagePrefix + 'theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.getElementById('theme-toggle').textContent = savedTheme === 'light' ? 'DARK' : 'LIGHT';
+    }
+  } catch(e) {}
+
+  // Draw connections and fit view
+  redrawConnections();
+  drawLeaders();
+  window.addEventListener('load', resetView);
+})();
+
+</script>
+</body>
+</html>

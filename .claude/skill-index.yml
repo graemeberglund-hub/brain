@@ -1,0 +1,532 @@
+# .claude/skill-index.yml
+# Machine-readable skill catalog. Canonical source paths live in this repo.
+# Personal-scope deployments use symlinks back into these source directories.
+# Fields: name, trigger, path, deployed_to (optional)
+# Used by: /find-skills and future skill discovery tooling
+
+meta:
+  updated: "2026-03-23"
+  families:
+    the-brain: 28
+    the-brain-analysis: 14
+    inputs: 4
+    dev: 16
+    writing: 5
+    google: 20
+    google-recipes: 9
+    personas: 10
+    research: 3
+    seo: 14
+    integrations: 1
+    media: 1
+
+vault_skills:
+  # the-brain family - core vault capture, intake, and session rituals
+  the-brain:
+    - name: "boot"
+      trigger: "Session start ritual \u2014 surface active context, inbox depth, top recommendations, available modes, and any queued inbox work. Read-only."
+      path: .claude/skills/the-brain/boot/SKILL.md
+      deployed_to: ~/.claude/skills/boot
+    - name: "capture"
+      trigger: "Capture a note, idea, or reference into the daily note and optionally inbox. Use when user shares a thought, idea, or observation worth remembering."
+      path: .claude/skills/the-brain/capture/SKILL.md
+      deployed_to: ~/.claude/skills/capture
+    - name: "debrief"
+      trigger: "Extract process insights, agent patterns, and learnings from a day's commits. Deeper than sync \u2014 reads full diffs and analyzes the shape of work. Use when user wants to reflect on how work happened, not just what."
+      path: .claude/skills/the-brain/debrief/SKILL.md
+      deployed_to: ~/.claude/skills/debrief
+    - name: "decision"
+      trigger: "Log a structured decision. Use when user states a decision, choice, or trade-off they've made."
+      path: .claude/skills/the-brain/decision/SKILL.md
+      deployed_to: ~/.claude/skills/decision
+    - name: "delegate"
+      trigger: "Decompose a complex request into skill calls \u2014 natural language intent to structured execution plan. Use when a request spans multiple skills."
+      path: .claude/skills/the-brain/delegate/SKILL.md
+    - name: "digest"
+      trigger: "Run epistemic metabolism \u2014 process new intake against existing positions and questions, emit events to the ledger. Use when user wants to digest recent captures, or periodically to keep the knowledge system current."
+      path: .claude/skills/the-brain/digest/SKILL.md
+      deployed_to: ~/.claude/skills/digest
+    - name: "domain-seed"
+      trigger: "Pre-contextualize a vault for a specific domain \u2014 scaffold starter positions, questions, areas, and curated skill subset. Use when onboarding a new domain or client."
+      path: .claude/skills/the-brain/domain-seed/SKILL.md
+    - name: "feedback-capture"
+      trigger: "Log skill output quality \u2014 accepted, edited, rejected, or deferred. Builds the learning signal for skill improvement. Use when recording whether a skill output was useful."
+      path: .claude/skills/the-brain/feedback-capture/SKILL.md
+    - name: "guided-tour"
+      trigger: "Interactive walkthrough of core vault skills using your real data. Runs 6 skills with narration. Use when onboarding or wanting a refresher on what the system does."
+      path: .claude/skills/the-brain/guided-tour/SKILL.md
+    - name: "handoff"
+      trigger: "Session end ritual \u2014 record decisions, flag unresolved questions, surface inbox depth, update active context. Writes to daily note and active-context.md only."
+      path: .claude/skills/the-brain/handoff/SKILL.md
+      deployed_to: ~/.claude/skills/handoff
+    - name: "repo-health"
+      trigger: "Multi-phase repo health workstream \u2014 naming conventions, CLAUDE.md accuracy, manifest integrity, frontmatter, link integrity, graph staleness, git hygiene. Run periodically to catch drift."
+      path: .claude/skills/the-brain/repo-health/SKILL.md
+      deployed_to: ~/.claude/skills/repo-health
+    - name: "health-check"
+      trigger: "Fast operational health scan \u2014 inbox depth, stale positions, broken links, scheduler status, skill integrity. Use when checking if the vault is working."
+      path: .claude/skills/the-brain/health-check/SKILL.md
+    - name: "ingest"
+      trigger: "Thin dispatcher for ingesting content into the vault. Routes to the right extraction skill based on declared type. Use when user says \"ingest {type} {path}\"."
+      path: .claude/skills/the-brain/ingest/SKILL.md
+      deployed_to: ~/.claude/skills/ingest
+    - name: "mode"
+      trigger: "Crystallize current working context into a reusable mode loadout. Save, list, or load named cognitive stances for cross-session re-entry."
+      path: .claude/skills/the-brain/mode/SKILL.md
+      deployed_to: ~/.claude/skills/mode
+    - name: "notify"
+      trigger: "Send alerts when vault conditions are met \u2014 inbox overflow, stale positions, missed schedules. Use when setting up push-based vault monitoring."
+      path: .claude/skills/the-brain/notify/SKILL.md
+    - name: "onboard"
+      trigger: "Interactive first contact + vault scaffolding. Greets the user with pre-seed context (or conversational fallback), communicates the product thesis, seeds areas/positions/questions, and initializes the absorption pipeline."
+      path: .claude/skills/the-brain/onboard/SKILL.md
+      deployed_to: ~/.claude/skills/onboard
+    - name: "playbook"
+      trigger: "Create, run, and manage named workflows with conditional logic and decision points. User-facing skill orchestration. Use when building or running reusable workflows."
+      path: .claude/skills/the-brain/playbook/SKILL.md
+    - name: "position"
+      trigger: "Create or update a position/thesis note. Use when user states a belief, thesis, or position they hold or want to track."
+      path: .claude/skills/the-brain/position/SKILL.md
+      deployed_to: ~/.claude/skills/position
+    - name: "pre-seed"
+      trigger: "Research phase \u2014 build a profile of a new user from public information before interactive onboarding. Writes to knowledge/pre-seed.yml. Runs unattended."
+      path: .claude/skills/the-brain/pre-seed/SKILL.md
+      deployed_to: ~/.claude/skills/pre-seed
+    - name: "profile-init"
+      trigger: "Legacy first-run interview \u2014 manual 7-question form. Use /onboard instead for the recommended experience."
+      path: .claude/skills/the-brain/profile-init/SKILL.md
+    - name: "question"
+      trigger: "Create or update an open question note. Use when user poses a question they want to track, investigate, or resolve over time."
+      path: .claude/skills/the-brain/question/SKILL.md
+      deployed_to: ~/.claude/skills/question
+    - name: "reference"
+      trigger: "Capture an external reference (article, video, tool, paper). Use when user shares a URL, article, video, tool, or paper."
+      path: .claude/skills/the-brain/reference/SKILL.md
+      deployed_to: ~/.claude/skills/reference
+    - name: "resolve-feedback"
+      trigger: "Flow prediction resolution outcomes back to Brain positions via staged interpretation. Use when PH predictions resolve (pass/fail) and linked brain positions need updating."
+      path: .claude/skills/the-brain/resolve-feedback/SKILL.md
+      deployed_to: ~/.claude/skills/resolve-feedback
+    - name: "skill-recommend"
+      trigger: "Context-aware skill suggestions \u2014 reads vault state, time, recent activity, and feedback history to recommend what to run next. Use when asking 'what should I do?'"
+      path: .claude/skills/the-brain/skill-recommend/SKILL.md
+    - name: "sync"
+      trigger: "Sync git commits from registered repos into today's daily note with synthesis and knowledge graph. Use when user wants git commits reflected in daily notes."
+      path: .claude/skills/the-brain/sync/SKILL.md
+      deployed_to: ~/.claude/skills/sync
+    - name: "triage"
+      trigger: "Triage inbox notes into their proper destinations. Use when user wants to clean up, organize, or process inbox notes."
+      path: .claude/skills/the-brain/triage/SKILL.md
+      deployed_to: ~/.claude/skills/triage
+    - name: "watch"
+      trigger: "Monitor files, URLs, or RSS feeds for changes \u2014 creates inbox notes when sources update. Use when setting up automated intake from external sources."
+      path: .claude/skills/the-brain/watch/SKILL.md
+
+  # the-brain-analysis family - review, audit, and synthesis skills
+  the-brain-analysis:
+    - name: "audit"
+      trigger: "Comprehensive weekly 1M reasoning pass across the full vault. Surfaces lifecycle candidates, coherence tensions, prediction monitoring, cognitive signature evolution, and self-audit metrics. Interactive \u2014 user validates each finding."
+      path: .claude/skills/the-brain-analysis/audit/SKILL.md
+      deployed_to: ~/.claude/skills/audit
+    - name: "bridge"
+      trigger: "Check belief-action alignment \u2014 compare positions against operational activity (git commits, project state) to detect misalignment."
+      path: .claude/skills/the-brain-analysis/bridge/SKILL.md
+      deployed_to: ~/.claude/skills/bridge
+    - name: "briefing"
+      trigger: "Generate an editorial daily briefing \u2014 The Mirror. A narrative HTML page that tells you about yourself through your vault data. Not a dashboard \u2014 a warm, honest, occasionally wry editorial voice."
+      path: .claude/skills/the-brain-analysis/briefing-mirror/SKILL.md
+      deployed_to: ~/.claude/skills/briefing-mirror
+    - name: "challenge"
+      trigger: "Adversarial epistemic prompts \u2014 argue against held positions, surface untested beliefs, and stress-test confidence levels. Use when wanting to challenge your own thinking."
+      path: .claude/skills/the-brain-analysis/challenge/SKILL.md
+    - name: "connect"
+      trigger: "Find structural bridges between two topics in the vault. Use when user asks how two topics connect or relate."
+      path: .claude/skills/the-brain-analysis/connect/SKILL.md
+      deployed_to: ~/.claude/skills/connect
+    - name: "consolidate"
+      trigger: "Scan all subgraphs for cross-domain patterns, promote to cross-cutting layer. Run weekly/biweekly."
+      path: .claude/skills/the-brain-analysis/consolidate/SKILL.md
+      deployed_to: ~/.claude/skills/consolidate
+    - name: "drift"
+      trigger: "Detect unnamed themes and conceptual gaps across the vault, persist them to the emergent layer, and archive the run."
+      path: .claude/skills/the-brain-analysis/drift/SKILL.md
+      deployed_to: ~/.claude/skills/drift
+    - name: "export"
+      trigger: "Package a vault subset as a portable bundle \u2014 by tag, type, project, or explicit list. Resolves wikilinks, strips internal paths. Use when sharing vault content externally."
+      path: .claude/skills/the-brain-analysis/export/SKILL.md
+    - name: "memory-refresh"
+      trigger: "Full-vault synthesis into living-tier memory files. Narrative assessment, not mechanical summary. Updates positions-summary, questions-summary, project-state, and decision-patterns from behavioral evidence."
+      path: .claude/skills/the-brain-analysis/memory-refresh/SKILL.md
+      deployed_to: ~/.claude/skills/memory-refresh
+    - name: "publish"
+      trigger: "Push a report, readable, or briefing artifact to a shareable location \u2014 Google Drive, local server, or clipboard. Use when sharing vault output externally."
+      path: .claude/skills/the-brain-analysis/publish/SKILL.md
+    - name: "report"
+      trigger: "Generate a styled, portable report from vault data \u2014 positions, projects, decisions, or any filtered subset. Use when creating shareable documents from vault content."
+      path: .claude/skills/the-brain-analysis/report/SKILL.md
+    - name: "scout"
+      trigger: "Analyze an external repo or system \u2014 map architecture, compare against own systems, extract actionable learnings to vault."
+      path: .claude/skills/the-brain-analysis/scout/SKILL.md
+      deployed_to: ~/.claude/skills/scout
+    - name: "trace"
+      trigger: "Trace the evolution timeline of a topic across the vault. Use when user asks about history or evolution of a topic."
+      path: .claude/skills/the-brain-analysis/trace/SKILL.md
+      deployed_to: ~/.claude/skills/trace
+    - name: "weekly-review"
+      trigger: "Generate canonical weekly activity YAML from daily notes and other sources. Use when user asks about their week or wants a summary."
+      path: .claude/skills/the-brain-analysis/weekly-review/SKILL.md
+      deployed_to: ~/.claude/skills/weekly-review
+
+  # inputs family - external content extraction and ingestion
+  inputs:
+    - name: "llm"
+      trigger: "Extract knowledge from LLM conversation outputs (GPT, Claude, Gemini). Creates timestamped position, decision, and inbox notes. Use when user has an LLM conversation or model output to ingest."
+      path: .claude/skills/inputs/llm/SKILL.md
+      deployed_to: ~/.claude/skills/llm
+    - name: "transcribe"
+      trigger: "Transcribe a conversation from audio, extract threads, and connect to the vault."
+      path: .claude/skills/inputs/transcribe/SKILL.md
+      deployed_to: ~/.claude/skills/transcribe
+    - name: "youtube"
+      trigger: "Extract knowledge from a YouTube video transcript \u2014 claims, positions, and reference note. Use when user shares a YouTube video for deep analysis. Add \"comments\" before the URL to extract comments instead of transcript."
+      path: .claude/skills/inputs/youtube/SKILL.md
+      deployed_to: ~/.claude/skills/youtube
+    - name: "pinterest"
+      trigger: "Analyze Pinterest board screenshots to extract aesthetic preferences. Accepts one or more board grid images, runs vision analysis, and generates preference notes in the vault. Use when user uploads Pinterest board screenshots or says 'ingest pinterest'."
+      path: .claude/skills/inputs/pinterest/SKILL.md
+      deployed_to: ~/.claude/skills/pinterest
+
+dev_skills:
+  # dev family - repo/tooling helpers sourced from Brain
+  dev:
+    - name: "debug-RCA"
+      trigger: "Systematically debug and diagnose reported problems with root cause analysis"
+      path: .claude/skills/dev/debug-RCA/SKILL.md
+      deployed_to: ~/.claude/skills/debug-RCA
+    - name: "diagram"
+      trigger: "Generate interactive system diagrams from any codebase"
+      path: .claude/skills/dev/diagram/SKILL.md
+      deployed_to: ~/.claude/skills/diagram
+    - name: "new-dev-branch"
+      trigger: "Create new development branch from develop branch"
+      path: .claude/skills/dev/new-dev-branch/SKILL.md
+      deployed_to: ~/.claude/skills/new-dev-branch
+    - name: "onboarding"
+      trigger: "Comprehensive onboarding analysis for new developers joining the project"
+      path: .claude/skills/dev/onboarding/SKILL.md
+      deployed_to: ~/.claude/skills/onboarding
+    - name: "prime-core"
+      trigger: "Prime Claude Code with core knowledge about the project structure and purpose"
+      path: .claude/skills/dev/prime-core/SKILL.md
+      deployed_to: ~/.claude/skills/prime-core
+    - name: "prp-audit"
+      trigger: "Adversarial audit of the last executed PRP — verify every spec item was implemented. Use when user says 'audit the PRP', 'prp audit', 'verify the PRP', 'check the implementation'."
+      path: .claude/skills/dev/prp-audit/SKILL.md
+      deployed_to: ~/.claude/skills/prp-audit
+    - name: "prp-base-execute"
+      trigger: "Execute a PRP with phase gates, anti-laziness checks, and evidence-based verification. Use when user wants to execute/implement a PRP."
+      path: .claude/skills/dev/prp-base-execute/SKILL.md
+      deployed_to: ~/.claude/skills/prp-base-execute
+    - name: "prp-optimize"
+      trigger: "Verify every factual claim in a PRP against source files, fix errors, and produce an execution-ready spec. Use when a PRP needs accuracy verification before execution."
+      path: .claude/skills/dev/prp-optimize/SKILL.md
+      deployed_to: ~/.claude/skills/prp-optimize
+    - name: "prp-create"
+      trigger: "Generate a complete, production-grade PRP through deep research with built-in quality gates. Use when user wants to create a PRP or product requirement prompt."
+      path: .claude/skills/dev/prp-create/SKILL.md
+      deployed_to: ~/.claude/skills/prp-create
+    - name: "prp-planning-create"
+      trigger: "Transform rough ideas into comprehensive PRDs with rich visual documentation"
+      path: .claude/skills/dev/prp-planning-create/SKILL.md
+      deployed_to: ~/.claude/skills/prp-planning-create
+    - name: "seed"
+      trigger: "Scaffold a new repo with CLAUDE.md agent router, .claude/ infrastructure, and brain vault registration. Use when user wants to start a new tracked repo."
+      path: .claude/skills/dev/seed/SKILL.md
+      deployed_to: ~/.claude/skills/seed
+    - name: "skill-audit"
+      trigger: "Scan all skills for health issues \u2014 stale triggers, missing frontmatter, broken symlinks, orphaned skills. Use when validating skill infrastructure."
+      path: .claude/skills/dev/skill-audit/SKILL.md
+    - name: "skill-package"
+      trigger: "Export a skill or family as a portable bundle with dependencies, install script, and metadata. Use when packaging skills for distribution."
+      path: .claude/skills/dev/skill-package/SKILL.md
+    - name: "skill-scaffold"
+      trigger: "Generate a new skill from a description \u2014 creates SKILL.md with correct frontmatter, routing entry, and skill-index entry. Use when building a new skill."
+      path: .claude/skills/dev/skill-scaffold/SKILL.md
+    - name: "skill-test"
+      trigger: "Validate a skill runs correctly \u2014 check frontmatter, dry-run with fixture args, verify output shape. Use when testing skills before deployment or after edits."
+      path: .claude/skills/dev/skill-test/SKILL.md
+    - name: "task-list-init"
+      trigger: "Create comprehensive task list with detailed implementation steps from a PRP or project description"
+      path: .claude/skills/dev/task-list-init/SKILL.md
+      deployed_to: ~/.claude/skills/task-list-init
+    - name: "update-docs"
+      trigger: "Update README.md and STATUS.md after completing work in any folder"
+      path: .claude/skills/dev/update-docs/SKILL.md
+      deployed_to: ~/.claude/skills/update-docs
+
+writing_skills:
+  # writing family - prompts, readability, and editorial polish
+  writing:
+    - name: "briefing-interactive"
+      trigger: "Convert markdown documents with embedded questions into interactive HTML briefings with fillable answer boxes, copy-to-clipboard, and email-to-recipient. Use when user says \"briefing\", \"interactive doc\", \"questions for [person]\", or wants a document someone can fill out and send back."
+      path: .claude/skills/writing/briefing-interactive/SKILL.md
+      deployed_to: ~/.claude/skills/briefing-interactive
+    - name: "create-prompt"
+      trigger: "Expert prompt engineer that creates optimized, XML-structured prompts with intelligent depth selection. Use when user wants to create a prompt."
+      path: .claude/skills/writing/create-prompt/SKILL.md
+      deployed_to: ~/.claude/skills/create-prompt
+    - name: "humanize"
+      trigger: "Evaluate and rewrite AI-sounding text to read like a human wrote it. Detects 24 AI patterns, 500+ vocabulary terms across 3 tiers, and statistical tells. Shows before/after examples, then rewrites. Use when user says \"humanize\", \"make more human\", \"less AI\", \"de-AI\", \"sounds like a robot\", or wants natural-sounding writing."
+      path: .claude/skills/writing/humanize/SKILL.md
+      deployed_to: ~/.claude/skills/humanize
+    - name: "readable"
+      trigger: "Convert markdown files to styled, mobile-friendly HTML for reading on any device. Use when user says \"make readable\", \"create HTML\", \"readable version\", or wants phone-friendly documents."
+      path: .claude/skills/writing/readable/SKILL.md
+      deployed_to: ~/.claude/skills/readable
+    - name: "style"
+      trigger: "Apply a named style/design system to the current frontend. Use when user says \"apply style X\", \"use style X\", or \"style list\"."
+      path: .claude/skills/writing/style/SKILL.md
+      deployed_to: ~/.claude/skills/style
+
+google_skills:
+  # google family - direct Google Workspace capabilities
+  google:
+    - name: "gws-calendar"
+      trigger: "Google Calendar: Manage calendars and events."
+      path: .claude/skills/google/gws-calendar/SKILL.md
+      deployed_to: ~/.claude/skills/gws-calendar
+    - name: "gws-calendar-insert"
+      trigger: "Google Calendar: Create a new event."
+      path: .claude/skills/google/gws-calendar-insert/SKILL.md
+      deployed_to: ~/.claude/skills/gws-calendar-insert
+    - name: "gws-docs"
+      trigger: "Read and write Google Docs."
+      path: .claude/skills/google/gws-docs/SKILL.md
+      deployed_to: ~/.claude/skills/gws-docs
+    - name: "gws-docs-write"
+      trigger: "Google Docs: Append text to a document."
+      path: .claude/skills/google/gws-docs-write/SKILL.md
+      deployed_to: ~/.claude/skills/gws-docs-write
+    - name: "gws-drive"
+      trigger: "Google Drive: Manage files, folders, and shared drives."
+      path: .claude/skills/google/gws-drive/SKILL.md
+      deployed_to: ~/.claude/skills/gws-drive
+    - name: "gws-drive-upload"
+      trigger: "Google Drive: Upload a file with automatic metadata."
+      path: .claude/skills/google/gws-drive-upload/SKILL.md
+      deployed_to: ~/.claude/skills/gws-drive-upload
+    - name: "gws-gmail"
+      trigger: "Gmail: Send, read, and manage email."
+      path: .claude/skills/google/gws-gmail/SKILL.md
+      deployed_to: ~/.claude/skills/gws-gmail
+    - name: "gws-gmail-triage"
+      trigger: "Gmail: Show unread inbox summary (sender, subject, date)."
+      path: .claude/skills/google/gws-gmail-triage/SKILL.md
+      deployed_to: ~/.claude/skills/gws-gmail-triage
+    - name: "gws-gmail-watch"
+      trigger: "Gmail: Watch for new emails and stream them as NDJSON."
+      path: .claude/skills/google/gws-gmail-watch/SKILL.md
+      deployed_to: ~/.claude/skills/gws-gmail-watch
+    - name: "gws-meet"
+      trigger: "Manage Google Meet conferences."
+      path: .claude/skills/google/gws-meet/SKILL.md
+      deployed_to: ~/.claude/skills/gws-meet
+    - name: "gws-sheets"
+      trigger: "Google Sheets: Read and write spreadsheets."
+      path: .claude/skills/google/gws-sheets/SKILL.md
+      deployed_to: ~/.claude/skills/gws-sheets
+    - name: "gws-sheets-append"
+      trigger: "Google Sheets: Append a row to a spreadsheet."
+      path: .claude/skills/google/gws-sheets-append/SKILL.md
+      deployed_to: ~/.claude/skills/gws-sheets-append
+    - name: "gws-sheets-read"
+      trigger: "Google Sheets: Read values from a spreadsheet."
+      path: .claude/skills/google/gws-sheets-read/SKILL.md
+      deployed_to: ~/.claude/skills/gws-sheets-read
+    - name: "gws-slides"
+      trigger: "Google Slides: Read and write presentations."
+      path: .claude/skills/google/gws-slides/SKILL.md
+      deployed_to: ~/.claude/skills/gws-slides
+    - name: "gws-tasks"
+      trigger: "Google Tasks: Manage task lists and tasks."
+      path: .claude/skills/google/gws-tasks/SKILL.md
+      deployed_to: ~/.claude/skills/gws-tasks
+    - name: "gws-workflow"
+      trigger: "Google Workflow: Cross-service productivity workflows."
+      path: .claude/skills/google/gws-workflow/SKILL.md
+      deployed_to: ~/.claude/skills/gws-workflow
+    - name: "gws-workflow-email-to-task"
+      trigger: "Google Workflow: Convert a Gmail message into a Google Tasks entry."
+      path: .claude/skills/google/gws-workflow-email-to-task/SKILL.md
+      deployed_to: ~/.claude/skills/gws-workflow-email-to-task
+    - name: "gws-workflow-meeting-prep"
+      trigger: "Google Workflow: Prepare for your next meeting: agenda, attendees, and linked docs."
+      path: .claude/skills/google/gws-workflow-meeting-prep/SKILL.md
+      deployed_to: ~/.claude/skills/gws-workflow-meeting-prep
+    - name: "gws-workflow-standup-report"
+      trigger: "Google Workflow: Today's meetings + open tasks as a standup summary."
+      path: .claude/skills/google/gws-workflow-standup-report/SKILL.md
+      deployed_to: ~/.claude/skills/gws-workflow-standup-report
+    - name: "gws-workflow-weekly-digest"
+      trigger: "Google Workflow: Weekly summary: this week's meetings + unread email count."
+      path: .claude/skills/google/gws-workflow-weekly-digest/SKILL.md
+      deployed_to: ~/.claude/skills/gws-workflow-weekly-digest
+
+  # google-recipes family - higher-level Google Workspace workflows
+  google-recipes:
+    - name: "recipe-create-gmail-filter"
+      trigger: "Create a Gmail filter to automatically label, star, or categorize incoming messages."
+      path: .claude/skills/google-recipes/recipe-create-gmail-filter/SKILL.md
+      deployed_to: ~/.claude/skills/recipe-create-gmail-filter
+    - name: "recipe-find-large-files"
+      trigger: "Identify large Google Drive files consuming storage quota."
+      path: .claude/skills/google-recipes/recipe-find-large-files/SKILL.md
+      deployed_to: ~/.claude/skills/recipe-find-large-files
+    - name: "recipe-label-and-archive-emails"
+      trigger: "Apply Gmail labels to matching messages and archive them to keep your inbox clean."
+      path: .claude/skills/google-recipes/recipe-label-and-archive-emails/SKILL.md
+      deployed_to: ~/.claude/skills/recipe-label-and-archive-emails
+    - name: "recipe-organize-drive-folder"
+      trigger: "Create a Google Drive folder structure and move files into the right locations."
+      path: .claude/skills/google-recipes/recipe-organize-drive-folder/SKILL.md
+      deployed_to: ~/.claude/skills/recipe-organize-drive-folder
+    - name: "recipe-plan-weekly-schedule"
+      trigger: "Review your Google Calendar week, identify gaps, and add events to fill them."
+      path: .claude/skills/google-recipes/recipe-plan-weekly-schedule/SKILL.md
+      deployed_to: ~/.claude/skills/recipe-plan-weekly-schedule
+    - name: "recipe-save-email-attachments"
+      trigger: "Find Gmail messages with attachments and save them to a Google Drive folder."
+      path: .claude/skills/google-recipes/recipe-save-email-attachments/SKILL.md
+      deployed_to: ~/.claude/skills/recipe-save-email-attachments
+    - name: "recipe-save-email-to-doc"
+      trigger: "Save a Gmail message body into a Google Doc for archival or reference."
+      path: .claude/skills/google-recipes/recipe-save-email-to-doc/SKILL.md
+      deployed_to: ~/.claude/skills/recipe-save-email-to-doc
+    - name: "recipe-schedule-recurring-event"
+      trigger: "Create a recurring Google Calendar event with attendees."
+      path: .claude/skills/google-recipes/recipe-schedule-recurring-event/SKILL.md
+      deployed_to: ~/.claude/skills/recipe-schedule-recurring-event
+    - name: "recipe-watch-drive-changes"
+      trigger: "Subscribe to change notifications on a Google Drive file or folder."
+      path: .claude/skills/google-recipes/recipe-watch-drive-changes/SKILL.md
+      deployed_to: ~/.claude/skills/recipe-watch-drive-changes
+
+persona_skills:
+  # personas family - role-based operating personas
+  personas:
+    - name: "persona-content-creator"
+      trigger: "Create, organize, and distribute content across Workspace."
+      path: .claude/skills/personas/persona-content-creator/SKILL.md
+      deployed_to: ~/.claude/skills/persona-content-creator
+    - name: "persona-customer-support"
+      trigger: "Manage customer support \u2014 track tickets, respond, escalate issues."
+      path: .claude/skills/personas/persona-customer-support/SKILL.md
+      deployed_to: ~/.claude/skills/persona-customer-support
+    - name: "persona-event-coordinator"
+      trigger: "Plan and manage events \u2014 scheduling, invitations, and logistics."
+      path: .claude/skills/personas/persona-event-coordinator/SKILL.md
+      deployed_to: ~/.claude/skills/persona-event-coordinator
+    - name: "persona-exec-assistant"
+      trigger: "Manage an executive's schedule, inbox, and communications."
+      path: .claude/skills/personas/persona-exec-assistant/SKILL.md
+      deployed_to: ~/.claude/skills/persona-exec-assistant
+    - name: "persona-hr-coordinator"
+      trigger: "Handle HR workflows \u2014 onboarding, announcements, and employee comms."
+      path: .claude/skills/personas/persona-hr-coordinator/SKILL.md
+      deployed_to: ~/.claude/skills/persona-hr-coordinator
+    - name: "persona-it-admin"
+      trigger: "Administer IT \u2014 monitor security and configure Workspace."
+      path: .claude/skills/personas/persona-it-admin/SKILL.md
+      deployed_to: ~/.claude/skills/persona-it-admin
+    - name: "persona-project-manager"
+      trigger: "Coordinate projects \u2014 track tasks, schedule meetings, and share docs."
+      path: .claude/skills/personas/persona-project-manager/SKILL.md
+      deployed_to: ~/.claude/skills/persona-project-manager
+    - name: "persona-researcher"
+      trigger: "Organize research \u2014 manage references, notes, and collaboration."
+      path: .claude/skills/personas/persona-researcher/SKILL.md
+      deployed_to: ~/.claude/skills/persona-researcher
+    - name: "persona-sales-ops"
+      trigger: "Manage sales workflows \u2014 track deals, schedule calls, client comms."
+      path: .claude/skills/personas/persona-sales-ops/SKILL.md
+      deployed_to: ~/.claude/skills/persona-sales-ops
+    - name: "persona-team-lead"
+      trigger: "Lead a team \u2014 run standups, coordinate tasks, and communicate."
+      path: .claude/skills/personas/persona-team-lead/SKILL.md
+      deployed_to: ~/.claude/skills/persona-team-lead
+
+research_skills:
+  # research family - deep analysis and sprint orchestration
+  research:
+    - name: "brand-foundation"
+      trigger: "Build a research-backed brand foundation before naming or visual identity. Use when the user wants a truth audit, current market/category analysis, ICP definition, proof mapping, or a staged branding pipeline."
+      path: .claude/skills/research/brand-foundation/SKILL.md
+      deployed_to: ~/.claude/skills/brand-foundation
+    - name: "research-sprint"
+      trigger: "Generate a customized set of frontier-model prompts (research, adversarial, audit) tuned to a specific domain and project. Use when starting deep analysis on a new seed, business opportunity, or high-stakes decision."
+      path: .claude/skills/research/research-sprint/SKILL.md
+      deployed_to: ~/.claude/skills/research-sprint
+    - name: "run-research-sprint"
+      trigger: "Autonomously execute a multi-phase research sprint: orient, recon (web research), design prompts, execute them, audit each phase, and synthesize findings. Use when user wants deep automated research on a business or domain. Run from the target repo."
+      path: .claude/skills/research/run-research-sprint/SKILL.md
+      deployed_to: ~/.claude/skills/run-research-sprint
+
+  # seo family - SEO operating system plus sub-skills
+  seo:
+    - name: "seo"
+      trigger: "Comprehensive SEO analysis for any website or business type. Performs full site audits, single-page deep analysis, technical SEO checks (crawlability, indexability, Core Web Vitals with INP), schema markup detection/validation/generation, content quality assessment (E-E-A-T framework per Dec 2025 update extending to all competitive queries), image optimization, sitemap analysis, and Generative Engine Optimization (GEO) for AI Overviews, ChatGPT, and Perplexity citations. Analyzes AI crawler accessibility (GPTBot, ClaudeBot, PerplexityBot), llms.txt compliance, brand mention signals, and passage-level citability. Industry detection for SaaS, e-commerce, local business, publishers, agencies. Triggers on: \"SEO\", \"audit\", \"schema\", \"Core Web Vitals\", \"sitemap\", \"E-E-A-T\", \"AI Overviews\", \"GEO\", \"technical SEO\", \"content quality\", \"page speed\", \"structured data\"."
+      path: .claude/skills/seo/seo/SKILL.md
+      deployed_to: ~/.claude/skills/seo
+    - name: "seo-audit"
+      trigger: "Full website SEO audit with parallel subagent delegation. Crawls up to 500 pages, detects business type, delegates to 7 specialists, generates health score. Use when user says \"audit\", \"full SEO check\", \"analyze my site\", or \"website health check\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-audit/SKILL.md
+    - name: "seo-competitor-pages"
+      trigger: "Generate SEO-optimized competitor comparison and alternatives pages. Covers \"X vs Y\" layouts, \"alternatives to X\" pages, feature matrices, schema markup, and conversion optimization. Use when user says \"comparison page\", \"vs page\", \"alternatives page\", \"competitor comparison\", or \"X vs Y\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-competitor-pages/SKILL.md
+    - name: "seo-content"
+      trigger: "Content quality and E-E-A-T analysis with AI citation readiness assessment. Use when user says \"content quality\", \"E-E-A-T\", \"content analysis\", \"readability check\", \"thin content\", or \"content audit\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-content/SKILL.md
+    - name: "seo-dataforseo"
+      trigger: "Live SEO data via DataForSEO MCP server. SERP analysis (Google, Bing, Yahoo, YouTube), keyword research (volume, difficulty, intent, trends), backlink profiles, on-page analysis (Lighthouse, content parsing), competitor analysis, content analysis, business listings, AI visibility (ChatGPT scraper, LLM mention tracking), and domain analytics. Requires DataForSEO extension installed. Use when user says \"dataforseo\", \"live SERP\", \"keyword volume\", \"backlink data\", \"competitor data\", \"AI visibility check\", \"LLM mentions\", or \"real search data\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-dataforseo/SKILL.md
+    - name: "seo-geo"
+      trigger: "Optimize content for AI Overviews (formerly SGE), ChatGPT web search, Perplexity, and other AI-powered search experiences. Generative Engine Optimization (GEO) analysis including brand mention signals, AI crawler accessibility, llms.txt compliance, passage-level citability scoring, and platform-specific optimization. Use when user says \"AI Overviews\", \"SGE\", \"GEO\", \"AI search\", \"LLM optimization\", \"Perplexity\", \"AI citations\", \"ChatGPT search\", or \"AI visibility\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-geo/SKILL.md
+    - name: "seo-hreflang"
+      trigger: "Hreflang and international SEO audit, validation, and generation. Detects common mistakes, validates language/region codes, and generates correct hreflang implementations. Use when user says \"hreflang\", \"i18n SEO\", \"international SEO\", \"multi-language\", \"multi-region\", or \"language tags\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-hreflang/SKILL.md
+    - name: "seo-images"
+      trigger: "Image optimization analysis for SEO and performance. Checks alt text, file sizes, formats, responsive images, lazy loading, and CLS prevention. Use when user says \"image optimization\", \"alt text\", \"image SEO\", \"image size\", or \"image audit\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-images/SKILL.md
+    - name: "seo-page"
+      trigger: "Deep single-page SEO analysis covering on-page elements, content quality, technical meta tags, schema, images, and performance. Use when user says \"analyze this page\", \"check page SEO\", or provides a single URL for review."
+      path: .claude/skills/seo/seo/sub-skills/seo-page/SKILL.md
+    - name: "seo-plan"
+      trigger: "Strategic SEO planning for new or existing websites. Industry-specific templates, competitive analysis, content strategy, and implementation roadmap. Use when user says \"SEO plan\", \"SEO strategy\", \"content strategy\", \"site architecture\", or \"SEO roadmap\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-plan/SKILL.md
+    - name: "seo-programmatic"
+      trigger: "Programmatic SEO planning and analysis for pages generated at scale from data sources. Covers template engines, URL patterns, internal linking automation, thin content safeguards, and index bloat prevention. Use when user says \"programmatic SEO\", \"pages at scale\", \"dynamic pages\", \"template pages\", \"generated pages\", or \"data-driven SEO\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-programmatic/SKILL.md
+    - name: "seo-schema"
+      trigger: "Detect, validate, and generate Schema.org structured data. JSON-LD format preferred. Use when user says \"schema\", \"structured data\", \"rich results\", \"JSON-LD\", or \"markup\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-schema/SKILL.md
+    - name: "seo-sitemap"
+      trigger: "Analyze existing XML sitemaps or generate new ones with industry templates. Validates format, URLs, and structure. Use when user says \"sitemap\", \"generate sitemap\", \"sitemap issues\", or \"XML sitemap\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-sitemap/SKILL.md
+    - name: "seo-technical"
+      trigger: "Technical SEO audit across 9 categories: crawlability, indexability, security, URL structure, mobile, Core Web Vitals, structured data, JavaScript rendering, and IndexNow protocol. Use when user says \"technical SEO\", \"crawl issues\", \"robots.txt\", \"Core Web Vitals\", \"site speed\", or \"security headers\"."
+      path: .claude/skills/seo/seo/sub-skills/seo-technical/SKILL.md
+
+  # integrations family - capability discovery and external bridges
+  integrations:
+    - name: "find-skills"
+      trigger: "Helps users discover available local skills when they ask \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or want to see what the system can do."
+      path: .claude/skills/integrations/find-skills/SKILL.md
+      deployed_to: ~/.claude/skills/find-skills
+
+  # media family - media-production guidance
+  media:
+    - name: "remotion-best-practices"
+      trigger: "Best practices for Remotion - Video creation in React"
+      path: .claude/skills/media/remotion-best-practices/SKILL.md
+      deployed_to: ~/.claude/skills/remotion-best-practices

@@ -8,10 +8,11 @@ argument-hint: "'name' [repo1 repo2 ...] [--skip-preseed]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
-Kit path: /Users/graeme/Desktop/DEVELOPMENT/brain/product/onboarding-kit
-
-(At start of execution, use Glob and Read to check: whether knowledge/pre-seed.yml exists, existing seeds in product/onboarding-kit/project-seeds/, and conversation notes in notes/conversations/ matching the target user name.)
+Vault root: !`cd "$(dirname "$0")/../../../.." && pwd`
+Kit path: !`cd "$(dirname "$0")/../../../.." && echo "$(pwd)/product/onboarding-kit"`
+Pre-seed exists: !`VAULT=$(cd "$(dirname "$0")/../../../.." && pwd) && test -f "$VAULT/knowledge/pre-seed.yml" && echo "yes" || echo "no"`
+Existing seeds: !`VAULT=$(cd "$(dirname "$0")/../../../.." && pwd) && ls "$VAULT/product/onboarding-kit/project-seeds/" 2>/dev/null`
+Conversation notes: !`VAULT=$(cd "$(dirname "$0")/../../../.." && pwd) && ls "$VAULT/notes/conversations/" 2>/dev/null | grep -i "$(echo '$ARGUMENTS' | awk '{print $1}' | tr '[:upper:]' '[:lower:]')" | head -5`
 
 # /onboarding-kit — Prepare Kit for New External User
 

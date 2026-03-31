@@ -3,7 +3,13 @@
 Read by skills on demand. NOT loaded into every session.
 
 ## Filenames
-Convention v2 — `YYYY-MM-DD-{type_tag}-{slug}.md`. Type tags: pos, con, ref, conv, in, journal, trace, project, prp. LLM artifacts: prompt, output, spec. Exceptions: daily notes (`YYYY-MM-DD.md`), area notes (`slug.md`). Never use bare sequential numbers. All epistemic notes (beliefs, tastes, goals, questions, decisions) use the `pos` tag — classification lives in frontmatter, not the filename.
+Convention v2 — `YYYY-MM-DD-{type_tag}-{slug}.md`. Type tags: pos, con, clm, ref, conv, in, journal, trace, project, prp. LLM artifacts: prompt, output, spec. Exceptions: daily notes (`YYYY-MM-DD.md`), area notes (`slug.md`). Never use bare sequential numbers. All epistemic notes (beliefs, tastes, goals, questions, decisions) use the `pos` tag — classification lives in frontmatter, not the filename.
+
+## Title Scoping
+Position titles must be scoped to their evidence, not their aspiration. Titles propagate through wikilinks, graph entities, and agent retrieval — an over-scoped title inflates downstream. Scope the claim to what was actually observed or tested.
+- BAD: "Institutional abuse operates through total environment control" (universal claim, RLA-specific evidence)
+- GOOD: "RLA's abuse was architected through total environment control" (scoped to evidence)
+When evidence later supports the broader claim, the title can be widened. Start narrow.
 
 ## Knowledge Graph
 Split into purpose-built subgraphs routed by `knowledge/graph-index.yml`:
@@ -15,10 +21,21 @@ Split into purpose-built subgraphs routed by `knowledge/graph-index.yml`:
 - Relation verbs: `belongs-to`, `evolved-into`, `replaced-by`, `same-session`, `caused-by`, `uses`, `spawned`
 
 ## Absorption Log
-`knowledge/absorption-log.jsonl` — tracks content consumption: seen → shaping → committed. Written by `/youtube`, `/reference`, `/llm`, `/transcribe`. Read by `/drift`, `/boot`, `/briefing`. Schema: `{timestamp, type, source, source_author, domain_tags, claims_extracted, positions_seeded, positions_reinforced, absorption_state}`.
+`knowledge/absorption-log.jsonl` — tracks content consumption through the intake pipeline. Two paths:
+- **Evaluative** (`intent: evaluative`): `seen → shaping → committed`. Claims extracted at intake. `positions_seeded` increments only at `/digest` endorsement, never at intake.
+- **Applied** (`intent: applied`): `seen → applied`. Techniques extracted at intake. No claims pipeline. The act of applying IS the endorsement.
+Schema: `{timestamp, type, intent, source, source_author, domain_tags, claims_extracted, techniques_extracted, positions_seeded, positions_reinforced, claims_created, positions_affected, absorption_state, absorption_history}`.
+Written by intake skills + `/digest` (endorsement updates). Read by `/drift`, `/boot`, `/briefing`.
+
+## Intake Intent
+All intake skills detect intent before extraction:
+- `intent: applied` — user seeks practical knowledge to use (tutorials, techniques, how-tos, "can we improve our system with this"). No claims extracted. Produces: reference note with techniques inline + inbox items for actionable patterns.
+- `intent: evaluative` — user assesses someone's thesis or encounters claims about the world. Produces: claim notes with author attribution, endorsement-gated.
+Default: evaluative (conservative — ensures claims get proper attribution).
+Detection: implicit from user's framing or explicit flag (e.g., `/youtube applied <url>`).
 
 ## Epistemic Ledger
-`knowledge/epistemic-ledger.jsonl` — canonical validated events (SUPPORTS, CONTRADICTS, ADVANCES, etc.). Written by `/digest`. Events may carry `needs_intent_verification: true`. `knowledge/event-candidates.jsonl` is the staging area.
+`knowledge/epistemic-ledger.jsonl` — canonical validated events (SUPPORTS, CONTRADICTS, ADVANCES, etc.). Written by `/digest`. Events may carry `needs_intent_verification: true`. Pre-tribunal triage (Phase 2b in `/digest`) serves as the quality gate — claims are auto-classified, flagged for tribunal, or auto-rejected before prosecution.
 
 ## Engines
 `.claude/agents/retrieval-engine.md` and `.claude/agents/inference-engine.md` — subagents spawned by `/digest`.

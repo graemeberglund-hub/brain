@@ -5,6 +5,7 @@ context: fork
 agent: vault-reader
 allowed-tools: Read, Grep, Glob
 argument-hint: "[topic to trace, e.g. 'mortality', 'deduplication']"
+effort: high
 ---
 
 input = $ARGUMENTS
@@ -20,6 +21,7 @@ Search for the topic across all note types:
 - `knowledge/graph-index.yml` — first, for routing and cross-subgraph relations
 - Project notes (`notes/projects/rla/*.md`, `notes/projects/brain/*.md`) — frontmatter and body
 - Position notes (`notes/positions/*.md` — includes all classifications: belief, question, decided, taste, goal)
+- Claim notes (`notes/claims/*.md`) — read `provenance`, `endorsed`, `source_authors`, `source_ref` fields
 - Concept notes (`notes/concepts/*.md`)
 - Reference notes (`notes/references/*.md`)
 - Daily notes (`notes/daily/*.md`)
@@ -72,6 +74,14 @@ YYYY-MM-DD  [type]  description
 - **Peak week:** {date} ({N} items)
 - **Most recent:** {date}
 - **Total weeks active:** {count}
+
+### Provenance Chain
+{If claims exist for this topic, show the full provenance path:}
+source → reference → claim (by {source_authors}, {provenance}) → endorsed: {status} → position (if promoted)
+{For each claim related to this topic:}
+- [[claim-slug]] — {provenance}, endorsed: {status}, source: [[source_ref]]
+  {If endorsed → which position did it feed? If not → still pending in pipeline}
+{Or "No claims found for this topic"}
 
 ### Connected Concepts
 {Concept or reference notes that matched, with their tags}

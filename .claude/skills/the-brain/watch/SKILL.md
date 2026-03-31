@@ -9,9 +9,9 @@ input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
-Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
-
-(At start of execution, use Read to check: whether .claude/automation/watches.yml exists and count watch entries in it.)
+Vault root: !`echo "$BRAIN_VAULT_PATH"`
+Config exists: !`test -f $BRAIN_VAULT_PATH/.claude/automation/watches.yml && echo "yes" || echo "no"`
+Watch count: !`grep -c "^  - target:" $BRAIN_VAULT_PATH/.claude/automation/watches.yml 2>/dev/null || echo "0"`
 
 # /watch — Event-Driven Intake Monitor
 

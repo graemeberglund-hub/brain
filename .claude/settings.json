@@ -1,4 +1,8 @@
 {
+  "statusLine": {
+    "type": "command",
+    "command": ".claude/statusline.sh"
+  },
   "permissions": {
     "allow": [
       "Bash(git status)",
@@ -11,20 +15,159 @@
       "Bash(git push*)",
       "Bash(ls *)",
       "Bash(wc *)",
+      "Bash(uv run python*)",
+      "Bash(cd * && uv run python*)",
       "Bash(date *)",
+      "Bash(git -C *)",
       "Bash(find *)",
       "Bash(mv *)",
       "Bash(test *)",
       "Bash(mkdir *)",
-      "Bash(echo *)",
-      "Bash(grep *)",
-      "Bash(head *)",
-      "Bash(tail *)",
-      "Bash(cat *)",
-      "Bash(tr *)",
-      "Bash(*$BRAIN_VAULT_PATH*)",
       "WebSearch"
     ]
   },
-  "hooks": {}
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/update-frontmatter-date.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/validate-note-schema-post.sh"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-tool-activity-log.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/careful.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/validate-note-schema.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/validate-prp-naming.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/validate-ledger-event.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/validate-operational-event.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/freeze.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-start-context.sh"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-compact-context.sh"
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/post-compact-context.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-end-cleanup.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-end-index.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/status-update.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-end-resume.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "tool_completed",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/notify-desktop.sh"
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -8,9 +8,10 @@ argument-hint: "'artifact-path' --to drive|clipboard|local [--open]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
-
-(At start of execution, use Glob to check: report count from artifacts/reports/*, briefing count from studio/briefing/*.html, and readable count from studio/readable/*.html.)
+Vault root: !`echo "$BRAIN_VAULT_PATH"`
+Report count: !`ls $BRAIN_VAULT_PATH/artifacts/reports/ 2>/dev/null | wc -l | tr -d ' '`
+Briefing count: !`ls $BRAIN_VAULT_PATH/studio/briefing/ 2>/dev/null | wc -l | tr -d ' '`
+Readable count: !`ls $BRAIN_VAULT_PATH/studio/readable/ 2>/dev/null | wc -l | tr -d ' '`
 
 # /publish — Share Vault Artifacts
 

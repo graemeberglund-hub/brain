@@ -54,15 +54,15 @@ The system is **file-based, git-tracked, Obsidian-compatible, and has zero exter
 │  │  ledger.jsonl                 (SUPPORTS, CONTRADICTS,   │   │
 │  │                               CHALLENGES, EXTENDS...)   │   │
 │  │                                                         │   │
-│  │  knowledge/event-             Staging area              │   │
-│  │  candidates.jsonl             (pre-validation)          │   │
+│  │  /tmp/digest-tribunal-        Run-scoped tribunal        │   │
+│  │  {run_id}.jsonl               staging (ephemeral)       │   │
 │  └─────────────────────────────────────────────────────────┘   │
 │                                                                 │
 │  ┌─────────────────────────────────────────────────────────┐   │
 │  │                  NOTE LAYER                              │   │
 │  │  notes/positions/  notes/concepts/   notes/areas/       │   │
-│  │  notes/references/ notes/projects/   notes/journal/     │   │
-│  │  notes/inbox/      notes/conversations/                 │   │
+│  │  notes/claims/     notes/references/ notes/projects/    │   │
+│  │  notes/journal/    notes/inbox/      notes/conversations/│  │
 │  └─────────────────────────────────────────────────────────┘   │
 │                                                                 │
 │  ┌─────────────────────────────────────────────────────────┐   │
@@ -285,8 +285,8 @@ Append-only JSONL event log. Each line is one validated epistemic event.
 | By mode | llm: 30, devil-advocate: 2 |
 | By target | position: 27, question: 5 |
 
-### Event Candidates (`knowledge/event-candidates.jsonl`)
-Staging area for LLM-proposed events. Cleared at start of each `/digest` run. Currently **empty**.
+### Tribunal Staging (run-scoped)
+Prosecution/defense events staged in `/tmp/digest-tribunal-{run_id}.jsonl` during each `/digest` run. Ephemeral — cleaned up after judge phase. Pre-tribunal triage (Phase 2b) gates which claims reach the tribunal.
 
 ---
 
@@ -336,7 +336,7 @@ Three abstraction layers for positions, with independent health tracking:
 
 | Skill | Purpose | Writes To |
 |-------|---------|-----------|
-| `/digest` | Epistemic metabolism: process intake against positions | event-candidates, ledger, positions, graph-epistemic, daily note |
+| `/digest` | Epistemic metabolism: process intake against positions | tribunal staging (run-scoped), ledger, positions, graph-epistemic, daily note |
 | `/resolve-feedback` | Flow PH prediction resolutions back to Brain positions via staged interpretation | ledger, positions, graph-epistemic (via next digest) |
 | `/triage` | Move inbox notes to canonical destinations | moves files, updates frontmatter and references |
 | `/sync` | Transform git commits into work narratives + knowledge graph entities | daily note, graph-dev, graph-projects |
@@ -367,9 +367,10 @@ The central orchestrator of epistemic metabolism.
 
 | Phase | Name | What Happens |
 |-------|------|-------------|
-| 0 | Staging clear | Clear `event-candidates.jsonl`; warn if inbox has pending notes |
+| 0 | Setup | Generate run_id, clear tribunal staging; warn if inbox has pending notes |
 | 1 | Identify intake | Find new/updated notes since last digest (references, inbox, conversations, concepts) |
 | 2 | Retrieval | Spawn `retrieval-engine` agent → candidate pairs (source intake × target positions/questions) |
+| 2b | Triage | Classify claim pairs: auto-classify / flag for tribunal / auto-reject. Only flagged go to full tribunal |
 | 3 | Inference | Spawn `inference-engine` agent → event candidates with verbs, confidence, reasoning |
 | 3b | Devil's advocate | **Mandatory** counterevidence pass — attempt CONTRADICTS/CHALLENGES for every SUPPORTS |
 | 4 | Validation | Run validate-ledger-event.sh hook; promote passing candidates to ledger |
@@ -386,7 +387,7 @@ The central orchestrator of epistemic metabolism.
 | Agent | Spawned By | Role | Output |
 |-------|-----------|------|--------|
 | `retrieval-engine` | `/digest` Phase 2 | Find candidate pairs between intake and positions/questions using symbolic, structural, and keyword strategies | JSON array of candidate pairs |
-| `inference-engine` | `/digest` Phase 3 | Evaluate pairs, classify epistemic verbs, emit events with confidence caps by source tier | Appends to `event-candidates.jsonl` |
+| `inference-engine` | `/digest` Phase 3 | Evaluate pairs, classify epistemic verbs, emit events with confidence caps by source tier | Appends to run-scoped tribunal staging file |
 | `vault-reader` | `/trace`, `/connect`, `/drift` Phase 1 | Read-only vault scanner (no Write/Edit/Agent tools). Budget ~40 files, max 2 wikilink hops | Structured analysis sections |
 
 ---
@@ -499,9 +500,9 @@ Agent Router (CLAUDE.md) ──▶ Skill dispatch
     │                    ▼
     │                  inference-engine (agent)
     │                    │
-    │                    ├──▶ event-candidates.jsonl (staging)
+    │                    ├──▶ triage (Phase 2b: classify claims)
     │                    │         │
-    │                    │         ▼ (validation hook)
+    │                    │         ▼ (tribunal staging, run-scoped)
     │                    │    epistemic-ledger.jsonl (promoted)
     │                    │         │
     │                    │         ▼

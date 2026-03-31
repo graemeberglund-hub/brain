@@ -8,9 +8,10 @@ argument-hint: "[position-slug] [--all] [--write]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
-
-(At start of execution, use Glob and Grep to check: position count from notes/positions/*.md, held positions by grepping for "status: held", and high-confidence positions by grepping for "confidence: high" or "confidence: convicted".)
+Vault root: !`echo "$BRAIN_VAULT_PATH"`
+Position count: !`ls $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
+Held positions: !`grep -rl "status: held" $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
+High confidence: !`grep -rl "confidence: high\|confidence: convicted" $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
 
 # /challenge — Epistemic Immune System
 
@@ -63,6 +64,11 @@ Use the Explore agent to search the vault for content that contradicts or compli
 - Decisions that went against this position
 - Questions that undermine the thesis
 - Other positions that create tension
+- **Claim notes** (`notes/claims/*.md`) — read `provenance` and `endorsed` fields:
+  - `endorsed: yes` claims that contradict → **strong** counter-evidence (source-verified argument against)
+  - `endorsed: null` or `partial` claims that contradict → **weak** counter-evidence (unreviewed source argument)
+  - `provenance: agent-synthesized` claims → flag as interpretive, note the agent's reasoning vs. the source
+  - `endorsed: rejected` claims → skip (already dismissed)
 
 Also consider common counter-arguments from general knowledge (but clearly label these as "general counter-arguments" vs. "vault-sourced counter-evidence").
 
@@ -79,6 +85,13 @@ For each position, produce:
 
 **The case against:**
 {2-4 paragraphs arguing against this position. Be specific. Use vault evidence where available. Don't strawman — make the strongest possible counter-argument.}
+
+**Counter-evidence by provenance:**
+- Endorsed claims against: {N} (strong — source-verified arguments)
+- Unendorsed claims against: {N} (weak — awaiting review)
+- Agent-synthesized claims against: {N} (interpretive — check reasoning)
+- Other vault sources: {N}
+- General knowledge: {N}
 
 **Untested assumptions:**
 - {List assumptions baked into this position that haven't been validated}
@@ -116,7 +129,7 @@ Append one JSONL line to `knowledge/challenge-ledger.jsonl` for each challenged 
 If the file doesn't exist, create it with a comment header:
 ```
 // challenge-ledger.jsonl — structured adversarial epistemic pressure record
-// Schema: {timestamp, date, run_id, position_slug, position_title, status, confidence, evidence_for, evidence_against, counter_arguments_vault, counter_arguments_general, untested_assumptions, challenge_outcome, suggested_adjustment, summary}
+// Schema: {timestamp, date, run_id, position_slug, position_title, status, confidence, evidence_for, evidence_against, counter_arguments_vault, counter_arguments_general, counter_claims_endorsed, counter_claims_unendorsed, counter_claims_agent_synthesized, untested_assumptions, challenge_outcome, suggested_adjustment, summary}
 // Written by: /challenge
 ```
 
@@ -129,10 +142,29 @@ Determine `suggested_adjustment`: `higher` (position is stronger than confidence
 
 Each JSONL line:
 ```json
-{"timestamp": "{ISO 8601}", "date": "{YYYY-MM-DD}", "run_id": "{daily-cycle run_id or 'manual'}", "position_slug": "{position filename without .md}", "position_title": "{from frontmatter}", "status": "{position status at time of challenge}", "confidence": "{position confidence at time of challenge}", "evidence_for": {count}, "evidence_against": {count}, "counter_arguments_vault": {count}, "counter_arguments_general": {count}, "untested_assumptions": {count}, "challenge_outcome": "{robust|weakened|urgent}", "suggested_adjustment": "{higher|lower|hold}", "summary": "{one-sentence summary of the strongest counter-argument}"}
+{"timestamp": "{ISO 8601}", "date": "{YYYY-MM-DD}", "run_id": "{daily-cycle run_id or 'manual'}", "position_slug": "{position filename without .md}", "position_title": "{from frontmatter}", "status": "{position status at time of challenge}", "confidence": "{position confidence at time of challenge}", "evidence_for": {count}, "evidence_against": {count}, "counter_arguments_vault": {count}, "counter_arguments_general": {count}, "counter_claims_endorsed": {count}, "counter_claims_unendorsed": {count}, "counter_claims_agent_synthesized": {count}, "untested_assumptions": {count}, "challenge_outcome": "{robust|weakened|urgent}", "suggested_adjustment": "{higher|lower|hold}", "summary": "{one-sentence summary of the strongest counter-argument}"}
 ```
 
 If invoked from `/daily-cycle`, use the daily-cycle `run_id`. If invoked manually, use `"manual"`.
+
+## Step 3c: Convergence Guard
+
+If this challenge targets a position that was challenged in a previous run (check `knowledge/challenge-convergence.jsonl`), apply the convergence protocol from `.claude/reference/convergence-protocol.md`:
+
+1. Normalize each counter-argument to its structural core (strip phrasing, keep the claim)
+2. Compare against counter-arguments from the most recent prior challenge of this same position slug
+3. Log to `knowledge/challenge-convergence.jsonl`:
+   ```jsonl
+   {"run_id": "manual", "position_slug": "slug", "iteration": 2, "timestamp": "ISO8601", "findings_count": 4, "finding_hashes": ["..."], "matched_previous": 3, "match_ratio": 0.75, "converged": true}
+   ```
+4. If >50% match → STOP and report:
+   ```
+   Convergence: {matched}/{total} counter-arguments match previous challenge of this position.
+   This position's weak points are well-mapped. No new pressure to apply.
+   New counter-arguments (if any): {list}
+   ```
+
+First challenge of a position never triggers convergence.
 
 ## Step 4: Summary
 

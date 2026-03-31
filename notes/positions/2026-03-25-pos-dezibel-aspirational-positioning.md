@@ -21,6 +21,7 @@ The anti-algorithm angle is real and supported by data (63% Gen Z planned social
 - Calm didn't launch as "anti-anxiety" — it launched as "calm"
 - Wordle wasn't "anti-infinite-scroll" — it was "one puzzle a day"
 - Research finding: "the framing should be aspirational, not oppositional"
+- [[kill-test-full-project]] — validates format as "genuinely new, not just new for publishing," supporting aspirational framing (2026-03-26)
 
 ## Evidence Against
 
@@ -31,3 +32,4 @@ The anti-algorithm angle is real and supported by data (63% Gen Z planned social
 ## Evolution
 
 - **2026-03-25** — Position formed from category creation marketing research. The data supports both framings; this is a judgment call about brand identity.
+- **2026-03-26** — SUPPORTS by [[kill-test-full-project]]: format novelty validated, supports aspirational over oppositional framing (via /digest)

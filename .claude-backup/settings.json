@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git branch*)",
+      "Bash(git checkout*)",
+      "Bash(git push*)",
+      "Bash(ls *)",
+      "Bash(wc *)",
+      "Bash(date *)",
+      "Bash(find *)",
+      "Bash(mv *)",
+      "Bash(test *)",
+      "Bash(mkdir *)",
+      "Bash(echo *)",
+      "Bash(grep *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(cat *)",
+      "Bash(tr *)",
+      "Bash(*$BRAIN_VAULT_PATH*)",
+      "WebSearch"
+    ]
+  },
+  "hooks": {}
+}

@@ -8,9 +8,14 @@ argument-hint: "[--reset]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
-
-(Use Glob and Read tools at the start of execution to gather: existing areas in notes/areas/, position count in notes/positions/, questions with "classification: question", whether knowledge/pre-seed.yml exists, whether my-profile.yml exists, whether knowledge/absorption-log.jsonl exists.)
+Existing areas: !`ls $BRAIN_VAULT_PATH/notes/areas/ 2>/dev/null | head -10`
+Existing positions: !`ls $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
+Existing questions: !`grep -l "classification: question" $BRAIN_VAULT_PATH/notes/positions/*.md 2>/dev/null | wc -l | tr -d ' '`
+Pre-seed exists: !`test -f $BRAIN_VAULT_PATH/knowledge/pre-seed.yml && echo "yes" || echo "no"`
+Pre-seed age days: (check manually if needed — read the file's date field)
+Profile at root: !`test -f $BRAIN_VAULT_PATH/my-profile.yml && echo "yes" || echo "no"`
+Absorption log exists: !`test -f $BRAIN_VAULT_PATH/knowledge/absorption-log.jsonl && echo "yes" || echo "no"`
+Vault root: !`echo "$BRAIN_VAULT_PATH"`
 
 # /onboard — Interactive First Contact + Vault Scaffolding
 

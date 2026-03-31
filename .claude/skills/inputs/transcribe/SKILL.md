@@ -232,5 +232,7 @@ Transcription complete:
 Append one JSONL line to `knowledge/absorption-log.jsonl`:
 
 ```json
-{"timestamp": "{ISO 8601 now}", "type": "conversation", "source": "notes/conversations/{slug}.md", "source_author": "{comma-separated participant names}", "domain_tags": [{tags from conversation note}], "claims_extracted": {count of threads extracted}, "positions_seeded": 0, "positions_reinforced": 0, "absorption_state": "seen"}
+{"timestamp": "{ISO 8601 now}", "type": "conversation", "intent": "evaluative", "source": "notes/conversations/{slug}.md", "source_author": "{comma-separated participant names}", "domain_tags": [{tags}], "claims_extracted": {count of threads}, "techniques_extracted": 0, "positions_seeded": 0, "positions_reinforced": 0, "claims_created": [], "positions_affected": [], "absorption_state": "seen", "absorption_history": [{"state": "seen", "date": "{ISO now}", "trigger": "transcribe"}]}
 ```
+
+Conversations are usually `evaluative` by default. Thread extraction is unchanged — threads map naturally to claims that `/digest` can process.

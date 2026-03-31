@@ -29,6 +29,7 @@ Dezibel is a serialized novel delivered over iMessage. No existing category. The
 - Gen Z appetite for digital detox: 63% planned social media detox (2024), 81% believe detoxes important
 - The Cheaper Show proved Graeme can create formats that draw audiences at scale (12,500 at finale)
 - Demo exists (Day 1 functional) but untested with real readers
+- [[kill-test-full-project]] — A5 identifies specific behavioral gap: literary fiction readers don't decode-and-share like horror fans, meaning clandestine campaign has no proven audience behavior mechanic (2026-03-26, via /digest)
 - Adrienne Matei (Guardian journalist, 1M+ readers/week) committed to write on traction
 - Web Summit Vancouver May 11-14, 2026 — high-priority showcase opportunity (local, tech audience)
 - 3-day SMS demo identified as cheapest validation test (see [[dezibel-marketing-validation]])

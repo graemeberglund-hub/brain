@@ -3,14 +3,15 @@ name: debrief
 description: Extract process insights, agent patterns, and learnings from a day's commits. Deeper than sync — reads full diffs and analyzes the shape of work. Use when user wants to reflect on how work happened, not just what.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git -C *), Bash(date *), Bash(ls *), Bash(cat *), Bash(wc *)
 argument-hint: "[optional repo-name] [optional date YYYY-MM-DD]"
+context: fork
 dashterm: true
+effort: medium
 ---
 
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-
-(At start of execution, use Glob to check: registered repos by listing repos/*.yml files.)
+Registered repos: !`ls repos/*.yml 2>/dev/null | xargs -I{} basename {} .yml || echo "none"`
 
 # /debrief — Process Insight Extraction from Git Commits
 

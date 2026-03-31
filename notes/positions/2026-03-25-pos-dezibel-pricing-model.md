@@ -18,6 +18,7 @@ Dezibel should price as an experience ($49-199), not as content ($5-15). The 42-
 
 ## Evidence For
 
+- [[kill-test-full-project]] — A1 finds peak writing "genuinely exceptional," conditionally supports experience pricing (2026-03-26)
 - Marketing research: experience pricing comparables support $50-200 range
 - Unit economics: 90%+ margins at all price points — floor is demand, not cost
 - Cohort-based delivery creates scarcity (limited starts, fixed dates) which supports premium pricing
@@ -26,6 +27,7 @@ Dezibel should price as an experience ($49-199), not as content ($5-15). The 42-
 
 ## Evidence Against
 
+- [[kill-test-full-project]] — A8 finds $49 UNVERIFIED: no A/B test, no WTP survey, no precedent for SMS fiction pricing (2026-03-26)
 - No market validation yet — 0 people have paid for dezibel at any price
 - SMS fiction precedents (Hooked, Kindle Vella) priced as content and still struggled
 - $49+ for a "book" may create sticker shock regardless of framing
@@ -34,3 +36,5 @@ Dezibel should price as an experience ($49-199), not as content ($5-15). The 42-
 ## Evolution
 
 - **2026-03-25** — Position formed from marketing research + budget analysis. The $100M goal requires experience pricing — content pricing makes the math impossible at any realistic subscriber count.
+- **2026-03-26** — SUPPORTS by [[kill-test-full-project]]: peak writing quality conditionally justifies $49 experience pricing (via /digest)
+- **2026-03-26** — CHALLENGES by [[kill-test-full-project]]: $49 price entirely unverified — no A/B test, no precedent (via /digest)

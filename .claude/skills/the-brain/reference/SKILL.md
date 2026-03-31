@@ -89,7 +89,7 @@ Report:
 Append one JSONL line to `knowledge/absorption-log.jsonl`:
 
 ```json
-{"timestamp": "{ISO 8601 now}", "type": "{source_type}", "source": "notes/references/{slug}.md", "source_author": "{author if determinable from content, otherwise null}", "domain_tags": [{tags from reference note}], "claims_extracted": 0, "positions_seeded": 0, "positions_reinforced": 0, "absorption_state": "seen"}
+{"timestamp": "{ISO 8601 now}", "type": "{source_type}", "intent": "evaluative", "source": "notes/references/{slug}.md", "source_author": "{author if determinable}", "domain_tags": [{tags}], "claims_extracted": 0, "techniques_extracted": 0, "positions_seeded": 0, "positions_reinforced": 0, "claims_created": [], "positions_affected": [], "absorption_state": "seen", "absorption_history": [{"state": "seen", "date": "{ISO now}", "trigger": "reference"}]}
 ```
 
-This is a lightweight entry — /reference doesn't extract claims. The `seen` state tracks consumption volume for `/drift` pattern detection.
+Intent is usually `evaluative` (default). For applied references (tutorials, how-tos), use `intent: "applied"` and add a `## Techniques` section to the reference note body. This is a lightweight entry — /reference doesn't extract claims. The `seen` state tracks consumption volume for `/drift` pattern detection.

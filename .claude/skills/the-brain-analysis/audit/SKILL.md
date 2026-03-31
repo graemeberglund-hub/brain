@@ -1,17 +1,23 @@
 ---
 name: audit
 description: Comprehensive weekly 1M reasoning pass across the full vault. Surfaces lifecycle candidates, coherence tensions, prediction monitoring, cognitive signature evolution, and self-audit metrics. Interactive — user validates each finding.
+context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(date *), Bash(wc *), Bash(git -C *), Bash(git log*), Bash(ls *)
 argument-hint: "[optional: 'deep' for advanced analyses]"
 dashterm: true
 timeout: 300
+effort: high
 ---
 
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-
-(At start of execution, use Glob, Grep, and Read to check: position count from notes/positions/*.md, question count by grepping for "classification: question", feature repos from activity/features/, and line counts of knowledge/epistemic-ledger.jsonl, knowledge/operational-ledger.jsonl, and knowledge/corrections-ledger.jsonl.)
+Position count: !`ls notes/positions/ 2>/dev/null | wc -l`
+Question count: !`grep -l "classification: question" notes/positions/*.md 2>/dev/null | wc -l`
+Feature repos: !`ls activity/features/ 2>/dev/null || echo "none"`
+Ledger size: !`wc -l < knowledge/epistemic-ledger.jsonl 2>/dev/null || echo 0`
+Op ledger size: !`wc -l < knowledge/operational-ledger.jsonl 2>/dev/null || echo 0`
+Corrections: !`wc -l < knowledge/corrections-ledger.jsonl 2>/dev/null || echo 0`
 
 # /audit — Comprehensive Weekly Reasoning Pass
 
@@ -111,6 +117,16 @@ Read `knowledge/graph-emergent.yml`. For each drift theme, weather signal, or bl
 - Has recent work addressed it?
 - Has the underlying condition changed?
 - Should the entity be archived, escalated, or left alone?
+
+### 13. Claim endorsement pipeline health
+
+Read `notes/claims/*.md` frontmatter. Tally:
+- `endorsed: null` (unreviewed) — flag any > 7 days old as endorsement backlog
+- `provenance: agent-synthesized` with `endorsed: null` — higher review priority (agent interpretation awaiting validation)
+- `endorsed: challenged` — check if newer evidence has arrived since challenge
+- `endorsed: yes` — count promoted claims, verify corresponding position exists
+
+Report: total claims, endorsement distribution, backlog age, stale challenges.
 
 ## Phase 2: Advanced analyses (when input contains 'deep' OR every 2-4 weeks)
 

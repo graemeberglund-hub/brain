@@ -25,6 +25,8 @@ Every successful category creator in the research (Serial, Wordle, Calm) validat
 - Day 1 demo already functional — cost of running 3-day test is near zero
 - 3-day demo gives real data for investor conversations (conversion rate, engagement metrics, qualitative feedback)
 - Budget audit: this test de-risks the entire $511k Stage 1 spend
+- [[kill-test-full-project]] — A3 finds retention UNVERIFIED, reinforcing urgency of running the demo test this position advocates (2026-03-26)
+- [[kill-test-full-project]] — A7 downgrades Guardian from 390 to 200-300 subscribers, making demo validation even more critical (2026-03-26)
 
 ## Evidence Against
 
@@ -35,3 +37,4 @@ Every successful category creator in the research (Serial, Wordle, Calm) validat
 ## Evolution
 
 - **2026-03-25** — Position formed from convergence of budget audit + category creation research. High confidence because the logic is simple: test before you spend.
+- **2026-03-26** — SUPPORTS by [[kill-test-full-project]]: retention unverified + Guardian underdelivers → demo validation is the gate (via /digest)

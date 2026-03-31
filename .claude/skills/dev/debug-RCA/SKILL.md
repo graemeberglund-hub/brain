@@ -13,6 +13,24 @@ Systematically debug and diagnose the reported problem.
 
 $ARGUMENTS
 
+## Step 0: Pattern Match (before forming hypotheses)
+
+Check the symptom description against known patterns:
+
+| Symptom | Likely Root Cause |
+|---------|-------------------|
+| "works after restart" | stale cache |
+| "intermittent" | race condition |
+| "works locally, fails in CI" | wrong environment |
+| "no error, just wrong output" | silent swallow |
+| "broke after update" | dependency mismatch |
+| "fails on first/last" | off-by-one |
+| "works for small input" | scaling / memory |
+| "fails silently" | swallowed exception |
+| "inconsistent results" | uninitialized state |
+
+If a pattern matches, test that hypothesis first before broader investigation.
+
 ## Debugging Process
 
 1. **Reproduce the Issue**
@@ -37,7 +55,33 @@ $ARGUMENTS
    - **Logging**: Add strategic log statements
    - **Debugger**: Set breakpoints if applicable
 
-4. **Common Debugging Strategies**
+4. **Hypothesis Tracking (3-Strike Rule)**
+
+   Track each hypothesis explicitly:
+
+   ```
+   Hypothesis 1: [description] → TESTED → [result]
+   Hypothesis 2: [description] → TESTED → [result]
+   Hypothesis 3: [description] → TESTED → [result]
+   → 3 STRIKES: STOP. Escalation required.
+   ```
+
+   After 3 failed hypotheses, do NOT continue guessing. Choose an escalation path:
+
+   - **A) Continue** — Reset strike count. Only if you have a genuinely new category of hypothesis (not a variation of a failed one).
+   - **B) Escalate** — Ask the user for architectural context. The bug may require domain knowledge you don't have.
+   - **C) Add logging** — Instrument the code path and wait for reproduction with better observability.
+
+5. **Scope Lock**
+
+   If your fix touches **>5 files**, STOP and ask before proceeding. A fix that requires changes across 5+ files is either:
+   - Addressing the wrong root cause (symptom-chasing)
+   - A legitimate cross-cutting issue that needs architectural review
+   - Both
+
+   Present the file list and rationale before making the changes.
+
+6. **Common Debugging Strategies**
 
    ### For Runtime Errors
    - Read the full stack trace
@@ -63,53 +107,52 @@ $ARGUMENTS
    - Validate request/response formats
    - Test with curl/Postman first
 
-5. **Root Cause Analysis**
+7. **Root Cause Analysis**
    - Why did this happen?
    - Why wasn't it caught earlier?
    - Are there similar issues elsewhere?
    - How can we prevent this class of bugs?
 
-6. **Implement Fix**
+8. **Implement Fix**
    - Fix the root cause, not just symptoms
-   - Add defensive programming if needed
-   - Consider edge cases
    - Keep fix minimal and focused, follow KISS
+   - Respect scope lock (>5 files → ask first)
 
-7. **Verify Resolution**
+9. **Verify Resolution**
    - Confirm original issue is fixed
    - Check for regression
    - Test related functionality
    - Add test to prevent recurrence
 
-8. **Document Findings**
+10. **Document Findings**
 
-   ```markdown
-   ## Debug Summary
+    ```markdown
+    ## Debug Summary
 
-   ### Issue
+    ### Issue
+    [What was broken]
 
-   [What was broken]
+    ### Hypotheses Tested
+    1. [hypothesis] → [result]
+    2. [hypothesis] → [result]
 
-   ### Root Cause
+    ### Root Cause
+    [Why it was broken]
 
-   [Why it was broken]
+    ### Fix
+    [What was changed — N files]
 
-   ### Fix
-
-   [What was changed]
-
-   ### Prevention
-
-   [How to avoid similar issues]
-   ```
+    ### Prevention
+    [How to avoid similar issues]
+    ```
 
 ## Debug Checklist
 
+- [ ] Pattern table checked against symptom
 - [ ] Issue reproduced locally
-- [ ] Root cause identified
+- [ ] Hypotheses tracked with strike count
+- [ ] Root cause identified (not symptom-chased)
+- [ ] Scope lock respected (<= 5 files, or user approved)
 - [ ] Fix implemented
 - [ ] Tests added/updated
 - [ ] No regressions introduced
-- [ ] Documentation updated if needed
-
-Remember: The goal is not just to fix the bug, but to understand why it happened and prevent similar issues in the future.

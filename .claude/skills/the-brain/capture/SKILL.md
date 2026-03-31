@@ -3,6 +3,7 @@ name: capture
 description: Capture a note, idea, or reference into the daily note and optionally inbox. Use when user shares a thought, idea, or observation worth remembering.
 allowed-tools: Read, Write, Edit, Glob, Bash(date *)
 argument-hint: "[content to capture]"
+effort: low
 ---
 
 input = $ARGUMENTS

@@ -116,6 +116,23 @@ GO: Zero FAILs. WARNs are cosmetic or non-blocking.
 NO-GO: Any FAIL exists. List what must be fixed before proceeding.
 ```
 
+## Step 7: Convergence Guard
+
+If this is a re-audit (iterative review after fixes), load `.claude/reference/convergence-protocol.md` and apply:
+
+1. Normalize each finding to its structural core (strip severity, keep the issue)
+2. Hash and compare against findings from the previous audit iteration
+3. Track in `PRPs/audit-history/{prp-slug}.jsonl` — create directory if needed
+4. If >50% of findings match the previous iteration → STOP:
+   ```
+   Convergence: {matched}/{total} findings match previous iteration. Stopping.
+   Recurring findings: {list}
+   New findings this iteration: {list}
+   Recommendation: Accept recurring items as known trade-offs, or reclassify as won't-fix.
+   ```
+
+First audit of a PRP never triggers convergence — you need at least two iterations to compare.
+
 ## Auditor stance
 
 - **Adversarial by default.** You are looking for gaps. A clean audit is earned, not assumed.

@@ -8,8 +8,9 @@ argument-hint: "[--fix] [--family family-name]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-
-(At start of execution, use Glob to check: skill count by listing .claude/skills/*/SKILL.md and .claude/skills/*/*/SKILL.md files, symlinks in ~/.claude/skills/ directory, and whether .claude/skill-index.yml exists.)
+Skill count: !`find .claude/skills -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' '`
+Symlink count: !`find ~/.claude/skills -maxdepth 1 -type l 2>/dev/null | wc -l | tr -d ' '`
+Index exists: !`test -f .claude/skill-index.yml && echo "yes" || echo "no"`
 
 # /skill-audit — Skill Infrastructure Health Check
 

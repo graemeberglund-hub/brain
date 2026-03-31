@@ -9,8 +9,7 @@ input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
-
-(At start of execution, use Glob to check: existing positions in notes/positions/ for dedup and linking.)
+Existing positions: !`ls notes/positions/ 2>/dev/null | head -20 || echo "(none)"`
 
 # /llm — LLM Conversation Knowledge Extraction
 
@@ -355,6 +354,14 @@ LLM ingestion complete:
 
 Append one JSONL line to `knowledge/absorption-log.jsonl`:
 
+**Evaluative (default):**
 ```json
-{"timestamp": "{ISO 8601 now}", "type": "llm", "source": "notes/references/{slug}.md", "source_author": "{model} via {app}", "domain_tags": [{tags from reference note}], "claims_extracted": {count of hypotheses + decisions + questions extracted}, "positions_seeded": {count of new position notes}, "positions_reinforced": 0, "absorption_state": "{committed if any positions created, otherwise seen}"}
+{"timestamp": "{ISO 8601 now}", "type": "llm", "intent": "evaluative", "source": "notes/references/{slug}.md", "source_author": "{model} via {app}", "domain_tags": [{tags}], "claims_extracted": {count}, "techniques_extracted": 0, "positions_seeded": 0, "positions_reinforced": 0, "claims_created": ["{slug1}"], "positions_affected": [], "absorption_state": "seen", "absorption_history": [{"state": "seen", "date": "{ISO now}", "trigger": "llm"}]}
 ```
+
+**Applied:**
+```json
+{"timestamp": "{ISO 8601 now}", "type": "llm", "intent": "applied", "source": "notes/references/{slug}.md", "source_author": "{model} via {app}", "domain_tags": [{tags}], "claims_extracted": 0, "techniques_extracted": {count}, "positions_seeded": 0, "positions_reinforced": 0, "claims_created": [], "positions_affected": [], "absorption_state": "seen", "absorption_history": [{"state": "seen", "date": "{ISO now}", "trigger": "llm"}]}
+```
+
+**Intent routing:** LLM conversations exploring tools/techniques/workflows are `applied`. Conversations where the model argues a thesis or the user assesses claims are `evaluative`. Default: evaluative. Evaluative hypotheses become `type: claim` with `provenance: agent-synthesized`. Applied techniques extracted inline + inbox items. **Do NOT create position notes directly** — endorsement happens through `/digest`.

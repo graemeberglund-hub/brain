@@ -25,6 +25,7 @@ Plan-to-launch says: "Get Ryan Holmes' input on this before choosing." Ryan Holm
 - Demo is functional for Day 1 (single session model)
 - No prototype exists for multi-day delivery
 - $60k tech budget assumes this decision is resolved before building
+- [[kill-test-full-project]] — A4 confirms architecture unresolved, adds Android/SMS degradation as urgency factor: 45% of market gets degraded experience without iMessage features (2026-03-26, via /digest)
 
 ## Resolution
 (empty until resolved)

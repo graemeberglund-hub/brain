@@ -1,17 +1,21 @@
 ---
 name: bridge
 description: Check belief-action alignment — compare positions against operational activity (git commits, project state) to detect misalignment.
+context: fork
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash(date *), Bash(wc *), Bash(git -C*), Bash(git log*), Agent, AskUserQuestion
 argument-hint: "[optional: specific position slug]"
 dashterm: true
 timeout: 0
+effort: high
 ---
 
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-
-(At start of execution, use Glob and Read to check: position files from notes/positions/*.md, registered repos from repos/*.yml, knowledge/graph-projects.yml contents, and whether knowledge/epistemic-ledger.jsonl exists and its size.)
+Positions: !`ls notes/positions/ 2>/dev/null | head -50`
+Repos: !`ls repos/*.yml 2>/dev/null`
+Graph projects: !`head -5 knowledge/graph-projects.yml 2>/dev/null`
+Ledger size: !`wc -l < knowledge/epistemic-ledger.jsonl 2>/dev/null || echo 0`
 
 # /bridge — Belief-Action Alignment Engine
 
@@ -40,10 +44,14 @@ For each position file in `notes/positions/`:
    - `derived_predictions:` → `repo:` field → match to `repos/*.yml`
 4. For each linked project, resolve the repo manifest name and repo path via `repos/*.yml` → `path:` field
 5. Skip positions with no project links (most career/personal positions — this is expected)
+6. **Claim grounding check:** For each position, scan its `## Evidence For` and `## Evidence Against` sections for claim references (`[[*-clm-*]]`). If found, read those claim notes and tally:
+   - `endorsed_claims`: count of linked claims with `endorsed: yes`
+   - `unendorsed_claims`: count of linked claims with `endorsed: null` or `partial`
+   - `challenged_claims`: count of linked claims with `endorsed: challenged`
 
 If `$ARGUMENTS` specifies a position slug, process only that position.
 
-**Output:** A map of `{position_file → [{project_name, repo_name, repo_path, position_status, position_confidence, position_created}]}`
+**Output:** A map of `{position_file → [{project_name, repo_name, repo_path, position_status, position_confidence, position_created, endorsed_claims, unendorsed_claims, challenged_claims}]}`
 
 ## Phase 2: Measure activity
 
@@ -150,7 +158,7 @@ For rule evaluation, keep both views visible:
 ### Rule 2b: INDIRECT_ALIGNS
 **Condition:** Position status = exploring AND `primary_14d < 5` AND `effective_14d >= 5` AND the threshold is satisfied by evidence-repo contribution and/or a domain marked as indirectly fed in operator state
 **Verb:** `INDIRECT_ALIGNS`
-**Operational-only:** Include it in the bridge report and daily note, but do **not** write it to `knowledge/event-candidates.jsonl` or `knowledge/epistemic-ledger.jsonl`, and do **not** update position `## Evolution`.
+**Operational-only:** Include it in the bridge report and daily note, but do **not** write it to `knowledge/epistemic-ledger.jsonl`, and do **not** update position `## Evolution`.
 **Reasoning template:** "Position '{title}' is being fed indirectly — {primary_14d} primary repo commits plus {evidence_contribution_14d} evidence-repo commits ({effective_14d} effective total) over {effective_window} days. Domain activity exists, but this exact thesis is not yet directly tested in the primary repo."
 
 ### Rule 3: MISALIGNED_WITH_ACTION
@@ -220,13 +228,13 @@ If running inside `/daily-cycle` (unattended), skip the AskUserQuestion. Instead
         - Keep **ALIGNS_WITH_ACTION** as a direct event
 3. If the file does not exist → keep direct verbs unchanged, but aggregated-only positive cases still remain operational-only `INDIRECT_ALIGNS`, not direct ledger events
 
-**Critical:** INDIRECT, INDIRECT_UNTESTED, and INDIRECT_ALIGNS are bridge-operational only. They appear in the bridge report and daily note but are **NOT** written to `knowledge/event-candidates.jsonl` or `knowledge/epistemic-ledger.jsonl`. They do not update position `## Evolution` sections. This keeps the epistemic layer clean.
+**Critical:** INDIRECT, INDIRECT_UNTESTED, and INDIRECT_ALIGNS are bridge-operational only. They appear in the bridge report and daily note but are **NOT** written to `knowledge/epistemic-ledger.jsonl`. They do not update position `## Evolution` sections. This keeps the epistemic layer clean.
 
 ## Phase 4: Emit events
 
 For each rule that fires:
 
-1. Write to `knowledge/event-candidates.jsonl` only for direct epistemic verbs (`UNTESTED_IN_ACTION`, `ALIGNS_WITH_ACTION`, `MISALIGNED_WITH_ACTION`):
+1. Append direct epistemic verbs to `knowledge/epistemic-ledger.jsonl` (the validation hook will enforce schema and dedup):
    ```json
    {
      "timestamp": "ISO 8601 (now)",
@@ -245,8 +253,6 @@ For each rule that fires:
    Notes:
    - confidence is always 1.0 for rule-based events — the rule either fires or it doesn't.
    - `observation_window` is the effective window in days (min of standard window, repo age, position age). Downstream consumers should treat short windows (< 7 days for UNTESTED, < 14 days for MISALIGNED) as low-weight signals.
-
-2. Validate by appending direct epistemic verbs to `knowledge/epistemic-ledger.jsonl` (the validation hook will enforce schema and dedup)
 
 3. If validated, update position's `## Evolution` section — **only for UNTESTED_IN_ACTION and MISALIGNED_WITH_ACTION** (the actionable direct verbs). Do NOT update Evolution for ALIGNS_WITH_ACTION, INDIRECT, INDIRECT_UNTESTED, or INDIRECT_ALIGNS:
    ```
@@ -292,6 +298,14 @@ Events:
     No direct rule-fired belief-action gaps among linked positions after evidence aggregation.
     Indirect/domain-fed activity may still be present and must be described as indirect, not as direct thesis testing.
 
+Claim grounding:
+  Positions with claim-backed evidence: {N}
+    Fully endorsed: {N} (all linked claims endorsed)
+    Partially grounded: {N} (mix of endorsed and unendorsed claims)
+    Ungrounded: {N} (evidence cites only unendorsed claims)
+  {For positions with unendorsed claim evidence at high confidence:}
+  Warning: '{title}' at {confidence} confidence — evidence includes {N} unendorsed claims. Run /digest to triage.
+
 Sustained flags: {list any positions with 2+ UNTESTED cycles, or "none yet"}
 ```
 
@@ -306,5 +320,5 @@ Sustained flags: {list any positions with 2+ UNTESTED cycles, or "none yet"}
 - **Activity index is context, not override.** Historical activity from the index enriches the report but does not change rule firing. Rules use git commit counts only. The index helps the human interpret whether low activity is a new pattern or continuation of historical behavior.
 - **Evidence repo aggregation is opt-in.** Only aggregate across `evidence_repos` when the primary repo manifest explicitly sets `bridges_all_domains: true`. Repos without that flag behave exactly as before.
 - **Aggregation stays auditable.** When aggregation is active, the report must show the primary count, each contributing evidence repo count, skipped evidence repos (if any), and the aggregated totals actually used for rule evaluation.
-- **INDIRECT verbs are bridge-operational only.** `INDIRECT`, `INDIRECT_UNTESTED`, and `INDIRECT_ALIGNS` are never written to `knowledge/event-candidates.jsonl` or `knowledge/epistemic-ledger.jsonl`. They appear only in the bridge report and daily note. This keeps the epistemic layer clean of operational assessments.
+- **INDIRECT verbs are bridge-operational only.** `INDIRECT`, `INDIRECT_UNTESTED`, and `INDIRECT_ALIGNS` are never written to `knowledge/epistemic-ledger.jsonl`. They appear only in the bridge report and daily note. This keeps the epistemic layer clean of operational assessments.
 - **Operator-state filtering is additive.** If `operator-state.md` does not exist, bridge degrades to pre-operator behavior — no filtering, no INDIRECT verbs, identical to previous runs.

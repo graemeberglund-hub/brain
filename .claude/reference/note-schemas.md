@@ -7,7 +7,7 @@ All notes in `notes/` use YAML frontmatter + markdown body. `[[wikilinks]]` conn
 ```yaml
 ---
 title: "Note Title"
-type: project | area | concept | reference | journal | daily | inbox | conversation | position | trace
+type: project | area | concept | claim | reference | journal | daily | inbox | conversation | position | trace
 tags: [tag1, tag2]
 created: 2026-02-27
 updated: 2026-02-27
@@ -166,6 +166,48 @@ decided + new information reopens           → spawn new question, don't edit t
 ```
 
 Stage and confidence are orthogonal — a position can be `held` at `low` confidence. The Evolution section is a chronological diary of shifts. `parent:` enables thesis hierarchies. Taste positions feed the design system at `studio/design-system/preference-index.yml`. Named styles in `~/.claude/styles/` compose from taste positions.
+
+## Claim Fields (type: claim — source-attributed arguments)
+
+Claims are what sources or agents argue — NOT operator beliefs. They enter the vault unendorsed and await `/digest` triage for potential promotion to positions.
+
+```yaml
+---
+title: "Claim title — what the source/agent actually argues"
+type: claim
+provenance: source-extracted | agent-synthesized
+source_authors: [Author Name, Organization]
+source_ref: "[[YYYY-MM-DD-ref-slug]]"
+endorsed: null | partial | yes | challenged | rejected
+endorsement_date: null
+tags: [domain-tags]
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+ai_generated: "YYYY-MM-DD"
+ai_model: "model-id"
+---
+
+## Claim
+
+What the source argues, in the source's terms. No operator interpretation.
+
+## Source Context
+
+Where in the source this claim appears. Direct quotes where possible.
+
+## Agent Notes
+
+(Only for provenance: agent-synthesized) What interpretive leap the agent made
+and why. What evidence supports the synthesis. What alternative interpretations exist.
+```
+
+### Key rules
+- Claims are NOT beliefs. They are what sources/agents argue.
+- `endorsed: null` is the default — unreviewed, awaiting `/digest` triage.
+- `provenance` is mandatory. Every claim has an identifiable author that is not the operator.
+- `source_ref` links back to the reference/conversation note the claim was extracted from.
+- `source_authors` can be an array when multiple sources contribute to an agent-synthesized claim.
+- Claim-to-position promotion happens only through `/digest` endorsement gate. `positions_seeded` increments at endorsement, never at intake.
 
 ## Reference-Specific Fields (type: reference only)
 

@@ -9,9 +9,9 @@ input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
-Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
-
-(At start of execution, use Glob to check: whether .claude/automation/playbooks/ directory exists and count playbook .yml files in it.)
+Vault root: !`echo "$BRAIN_VAULT_PATH"`
+Playbook dir exists: !`test -d $BRAIN_VAULT_PATH/.claude/automation/playbooks && echo "yes" || echo "no"`
+Playbook count: !`ls $BRAIN_VAULT_PATH/.claude/automation/playbooks/*.yml 2>/dev/null | wc -l | tr -d ' '`
 
 # /playbook — Named Workflow Orchestration
 

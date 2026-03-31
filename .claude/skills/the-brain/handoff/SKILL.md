@@ -1,15 +1,15 @@
 ---
 name: handoff
 description: Session end ritual — record decisions, flag unresolved questions, surface inbox depth, emit operational events. Writes to daily note and operational-ledger.jsonl.
-allowed-tools: Read, Write, Edit, Glob, Bash(date *), Bash(find *), Bash(wc *)
+allowed-tools: Read, Write, Edit, Glob, Bash(date *), Bash(find *), Bash(wc *), Bash(git *)
 dashterm: true
+effort: medium
 ---
 
 TODAY=!`date +%Y-%m-%d`
 NOW=!`date +%H:%M`
-BRAIN_DIR=/Users/graeme/Desktop/DEVELOPMENT/brain
-
-(At start of execution, use Glob to check: inbox count by listing notes/inbox/*.md files excluding .gitkeep.)
+BRAIN_DIR=!`echo "$BRAIN_VAULT_PATH"`
+INBOX_COUNT=!`find "$BRAIN_DIR/notes/inbox" -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
 
 # /handoff — Session End
 
@@ -132,7 +132,42 @@ If no STATUS.md exists in the repo, skip silently.
 
 Add to close report: `STATUS.md: updated ({repo-name}) | skipped (no STATUS.md)`
 
-## Step 5: Close report
+## Step 5: Resume file
+
+Write `knowledge/last-handoff.md` (overwrite, not append). This is what `/resume` reads next session.
+
+```markdown
+---
+session_end: "{TODAY}T{NOW}"
+repo: "{repo or brain}"
+---
+
+# Resume — {TODAY} at {NOW}
+
+## What happened
+{2-3 sentences: what was accomplished this session, synthesized from conversation}
+
+## Decisions made
+{bulleted list of decisions from Step 1, or "None"}
+
+## Next actions
+{bulleted list: what to do next, ordered by priority}
+
+## Active workstream
+{if a workstream was active: name, which phases completed, which are next}
+{if no workstream: "None"}
+
+## Files to read for context
+{list of 3-5 key files that would reconstruct working context — PRPs, skills modified, notes created}
+```
+
+Also append one line to `knowledge/handoff-log.jsonl`:
+
+```json
+{"timestamp": "{ISO8601}", "repo": "{repo}", "decisions": {N}, "next_actions": ["{action1}", "{action2}"], "workstream": "{name or null}", "workstream_phases_completed": [], "session_summary": "{one sentence}"}
+```
+
+## Step 6: Close report
 
 ```
 SESSION END — {TODAY} at {NOW}
@@ -144,4 +179,20 @@ Unresolved questions flagged: {N}
 Inbox: {INBOX_COUNT} items {| ⚠ at cap if >= 15}
 Profile: {updated (fields changed) | unchanged | n/a (no profile.yml)}
 STATUS.md: {updated ({repo}) | skipped (no STATUS.md)}
+Resume: written (knowledge/last-handoff.md)
 ```
+
+## Step 7: Commit
+
+After all handoff artifacts are written, commit everything to git:
+
+1. Stage all changes: `git add -A`
+2. Commit with message format:
+   ```
+   handoff: {one-line session summary}
+   ```
+   Include the Co-Authored-By trailer.
+3. Do NOT push (brain is local-only, backup remote is handled by post-commit hook).
+4. Report the commit hash in the close report.
+
+If `git status` shows no changes (everything was already committed), skip and note "Commit: nothing to commit" in the close report.

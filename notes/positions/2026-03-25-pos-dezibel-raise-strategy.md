@@ -26,6 +26,7 @@ Key tension: a single raise is simpler operationally but commits $725k+ before a
 - SAFE notes support staged raises mechanically (each round is a new SAFE)
 - Category creation research shows every successful precedent validated demand cheaply before spending marketing budget
 - 15,000 subscribers needed to break even on $725k; staged raise reduces breakeven to ~10,000 on $511k
+- [[kill-test-full-project]] — A9 confirms raise UNVERIFIED/CRITICAL PATH: no lawyer, no meetings, no term sheet, $7K bridge only funds story work (2026-03-26, via /digest)
 
 ## Resolution
 (empty until resolved)

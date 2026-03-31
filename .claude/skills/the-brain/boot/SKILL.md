@@ -4,14 +4,20 @@ description: Session start ritual — insight-forward surface of what changed, w
 allowed-tools: Read, Glob, Grep, Bash(date *), Bash(find *), Bash(ls *), Bash(test *), Bash(wc *), Bash(grep *), Bash(python3 *), AskUserQuestion
 dashterm: true
 argument-hint: "[optional: 'portfolio' for per-project drill-down]"
+effort: low
 ---
 
 input = $ARGUMENTS
 
 TODAY=!`date +%Y-%m-%d`
-BRAIN_DIR=/Users/graeme/Desktop/DEVELOPMENT/brain
-
-(At start of execution, use Glob, Grep, and Read to gather: inbox count from notes/inbox/ excluding .gitkeep, active project count from notes/projects/, modes count from knowledge/modes/*.md, whether knowledge/inbox-pending.flag exists, position count from notes/positions/, question count by grepping notes/positions/ for classification: question, and unverified event count by grepping knowledge/epistemic-ledger.jsonl for needs_intent_verification.)
+BRAIN_DIR=!`echo "$BRAIN_VAULT_PATH"`
+INBOX_COUNT=!`find "$BRAIN_DIR/notes/inbox" -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
+ACTIVE_PROJECTS=!`find "$BRAIN_DIR/notes/projects" -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
+MODES_COUNT=!`ls "$BRAIN_DIR/knowledge/modes/"*.md 2>/dev/null | wc -l | tr -d ' '`
+FLAG_EXISTS=!`test -f "$BRAIN_DIR/knowledge/inbox-pending.flag" && echo "yes" || echo "no"`
+POSITION_COUNT=!`ls "$BRAIN_DIR/notes/positions/" 2>/dev/null | wc -l | tr -d ' '`
+QUESTION_COUNT=!`grep -l "classification: question" "$BRAIN_DIR/notes/positions/"*.md 2>/dev/null | wc -l | tr -d ' '`
+UNVERIFIED_COUNT=!`grep -c "needs_intent_verification" "$BRAIN_DIR/knowledge/epistemic-ledger.jsonl" 2>/dev/null || echo 0`
 
 # /boot — Session Start
 
@@ -74,8 +80,9 @@ YOUR LANDSCAPE:
 {IF knowledge/absorption-log.jsonl has entries:}
 ABSORPTION:
 [Read knowledge/absorption-log.jsonl — group by domain_tags]
+[Entries now have `intent` (applied|evaluative) and `absorption_history` fields. Show intent distribution if mixed.]
 [For domains with 3+ items consumed and NO corresponding position in notes/positions/ with that tag:]
-- {domain}: {N} items consumed, no position formed. Forming a view?
+- {domain}: {N} items consumed ({N} evaluative, {N} applied), no position formed. Forming a view?
 [If no consumption clusters found: skip this section]
 
 ACTIVE THREADS (from daily notes):

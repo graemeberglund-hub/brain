@@ -9,8 +9,7 @@ input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
-
-(At start of execution, use Glob to check: existing positions in notes/positions/ for matching during claim extraction.)
+Existing positions: !`ls notes/positions/ 2>/dev/null | head -20 || echo "(none)"`
 
 # /youtube — YouTube Knowledge Extraction Pipeline
 
@@ -83,6 +82,19 @@ For each claim, determine:
 
 Prioritize: specific data points, causal arguments, predictions with timeframes, named frameworks, contrarian takes.
 
+## Phase 3b: Intent detection
+
+Determine intake intent from context:
+- **applied**: User framing suggests technique-seeking ("can we use this", "how do they do X", "tutorial", "walkthrough", "improve our system"). Also: explicit `/youtube applied <url>`.
+- **evaluative**: User framing suggests thesis assessment ("what do you think of this", "interesting take on X", opinion/analysis content). Also: explicit flag or default.
+
+If ambiguous, default to evaluative (conservative — ensures claims get attribution).
+
+Report: "Intent: {applied|evaluative} — {one-line reasoning}"
+
+**If applied → skip to Phase 6-alt below.**
+**If evaluative → continue to Phase 5.**
+
 ## Phase 5: Match claims to vault positions
 
 For each significant claim (high or medium significance):
@@ -102,69 +114,53 @@ If `notes/positions/` is empty (cold start), all significant claims become SEEDS
 - Relevant to the user's interests (check existing tags, areas, projects)
 - Specific enough to track over time
 
-## Phase 6: Update/create positions
+## Phase 6: Create claim notes (evaluative only)
 
-### REINFORCES
-- Read the matching position note
-- Add a bullet to `## Evidence For`:
-  ```
-  - [[{reference-slug}]] — {claim with context} (YYYY-MM-DD)
-  ```
-- If the evidence is particularly strong, add an Evolution entry:
-  ```
-  - **YYYY-MM-DD** — Reinforced by {video title}: {brief context}
-  ```
-
-### CHALLENGES
-- Read the matching position note
-- Add a bullet to `## Evidence Against`:
-  ```
-  - [[{reference-slug}]] — {claim with context} (YYYY-MM-DD)
-  ```
-- Add Evolution entry:
-  ```
-  - **YYYY-MM-DD** — Challenged by {video title}: {brief context}
-  ```
-- If the challenge is strong and position was `held`, consider changing status to `challenged`
-
-### SEEDS
-- Before creating, run Stage 1 dedup: grep `notes/positions/` for 2-3 key terms from the proposed title. Apply the ≥70% title-overlap threshold. If flagged, surface the existing note and ask: "Similar position exists: [[{slug}]]. Update it, or create new?" If "update", add Evidence For instead. If "new", proceed.
-- Create a new position note in `notes/positions/YYYY-MM-DD-pos-{slug}.md`:
+For each significant claim (high or medium significance), create `notes/claims/YYYY-MM-DD-clm-{slug}.md`:
 
 ```yaml
 ---
-title: "YYYY-MM-DD {thesis derived from claim}"
-type: position
+title: "{claim title — what the source argues}"
+type: claim
+provenance: source-extracted
+source_authors: [{channel name}]
+source_ref: "[[YYYY-MM-DD-ref-{video-slug}]]"
+endorsed: null
+endorsement_date: null
+relationship: {REINFORCES|CHALLENGES|SEEDS|INFORMS}
+relationship_target: "{[[position-slug]] or null if SEEDS/INFORMS}"
 tags: [{relevant tags}]
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
-status: exploring
-confidence: exploring
 ai_generated: "YYYY-MM-DD"
-ai_model: "{your model ID, e.g. claude-opus-4-6, claude-sonnet-4-6}"
+ai_model: "{model ID}"
 ---
 
-## Thesis
+## Claim
 
-{One paragraph expanding the claim into a trackable position.}
+{What the source argues, in the source's terms. No operator interpretation.}
 
-## Evidence For
+## Source Context
 
-- [[{reference-slug}]] — {original claim} (YYYY-MM-DD)
-
-## Evidence Against
-
-- (none yet)
-
-## Evolution
-
-- **YYYY-MM-DD** — Seeded from "{video title}" ({channel}). Starting at exploring/exploring.
+{Timestamp range in video. Direct quotes where possible.}
 ```
 
-Use judgment on how many positions to seed. 1-5 is typical. Don't create positions for every claim.
+Use judgment on how many claims to create. 1-5 is typical for a significant video.
 
-### INFORMS
-- Skip unless the claim is highly actionable, in which case create an inbox note.
+**Do NOT create position notes.** SEEDS means "novel claim, no matching position exists" — it's a property of the claim, not an action. Position creation happens only through `/digest` endorsement.
+
+**Do NOT update position Evidence For/Against sections.** That's `/digest`'s job after tribunal review.
+
+## Phase 6-alt: Extract techniques (applied only)
+
+Do NOT create claim notes. Instead:
+
+1. Extract techniques/patterns into the reference note body under `## Techniques`:
+   - {technique name} — {what it does, how to apply it}
+2. Create inbox items for actionable patterns:
+   `notes/inbox/YYYY-MM-DD-in-try-{slug}.md` with `type: inbox, source_ref: "[[ref-slug]]", intent: applied`
+   Body: one-line actionable item ("Try: {technique} for {problem}")
+3. Skip claim extraction, position matching, and endorsement pipeline entirely.
 
 ## Phase 7: Create reference note
 
@@ -242,8 +238,14 @@ YouTube extraction complete:
 
 Append one JSONL line to `knowledge/absorption-log.jsonl`:
 
+**Evaluative:**
 ```json
-{"timestamp": "{ISO 8601 now}", "type": "youtube", "source": "notes/references/{slug}.md", "source_author": "{channel name}", "domain_tags": [{tags from reference note}], "claims_extracted": {n}, "positions_seeded": {count of SEEDS}, "positions_reinforced": {count of REINFORCES}, "absorption_state": "{committed if any positions seeded/reinforced, otherwise seen}"}
+{"timestamp": "{ISO 8601 now}", "type": "youtube", "intent": "evaluative", "source": "notes/references/{slug}.md", "source_author": "{channel name}", "domain_tags": [{tags}], "claims_extracted": {n}, "techniques_extracted": 0, "positions_seeded": 0, "positions_reinforced": 0, "claims_created": ["{slug1}", "{slug2}"], "positions_affected": [], "absorption_state": "seen", "absorption_history": [{"state": "seen", "date": "{ISO now}", "trigger": "youtube"}]}
+```
+
+**Applied:**
+```json
+{"timestamp": "{ISO 8601 now}", "type": "youtube", "intent": "applied", "source": "notes/references/{slug}.md", "source_author": "{channel name}", "domain_tags": [{tags}], "claims_extracted": 0, "techniques_extracted": {n}, "positions_seeded": 0, "positions_reinforced": 0, "claims_created": [], "positions_affected": [], "absorption_state": "seen", "absorption_history": [{"state": "seen", "date": "{ISO now}", "trigger": "youtube"}]}
 ```
 
 Skip this step for COMMENTS MODE — comments extraction is not content absorption.

@@ -26,6 +26,7 @@ This is a budget-critical and quality-critical decision. Jodi brings credibility
 - Budget: $30k line item for female lead (may be low for Jodi)
 - Kaylah Zander explicitly removed from consideration
 - Trailer budget separately estimates $8-12k for Jodi (trailer only, separate from full 42-day voice role)
+- [[kill-test-full-project]] — Jodi + Abbi Jacobson married IRL is a press story that "travels on its own," favoring Jodi for marketing value (2026-03-26, via /digest)
 
 ## Resolution
 (empty until resolved)

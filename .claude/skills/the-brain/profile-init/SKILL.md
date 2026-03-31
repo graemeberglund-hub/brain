@@ -8,9 +8,10 @@ argument-hint: "[--reset]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
-
-(At start of execution, use Glob and Grep to gather: existing areas in notes/areas/, position count in notes/positions/, and question count by grepping notes/positions/ for classification: question.)
+Existing areas: !`ls $BRAIN_VAULT_PATH/notes/areas/ 2>/dev/null | head -10`
+Existing positions: !`ls $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
+Existing questions: !`grep -rl 'classification: question' $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | wc -l | tr -d ' '`
+Vault root: !`echo "$BRAIN_VAULT_PATH"`
 
 # /profile-init — First-Run User Interview
 

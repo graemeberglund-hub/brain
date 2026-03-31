@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo '' >> ~/.bash_profile && echo 'export BRAIN_VAULT_PATH=/Users/graeme/Desktop/DEVELOPMENT/brain' >> ~/.bash_profile)",
+      "Bash(export BRAIN_VAULT_PATH=/Users/graeme/Desktop/DEVELOPMENT/brain)",
+      "Bash(find /Users/graeme -type f \\\\\\( -name \"*.md\" -o -name \"*.txt\" \\\\\\) -path \"*dezibel*\" 2>/dev/null | head -30)",
+      "Bash(find /Users/graeme/Desktop/DEVELOPMENT/brain -type f \\\\\\( -name \"*.md\" -o -name \"*.yml\" \\\\\\) 2>/dev/null | xargs grep -l \"dezibel\" 2>/dev/null | head -20)",
+      "Bash(grep -r \"beat\\\\|Beat\\\\|BEAT\" \"/Users/graeme/Development /dezibel/story/\" --include=\"*.md\" -c | grep -v \":0$\" | sort -t: -k2 -rn)",
+      "Bash(find \"/Users/graeme/Development /dezibel\" -type f -name \"*.md\" -exec grep -l \"movement\" {} \\\\; 2>/dev/null | head -20)",
+      "Skill(digest)",
+      "Bash(git commit -m \"$\\(cat <<'EOF'\nresearch: category creation strategies for unfounded markets\n\nAnalyzes precedents \\(Kindle, Peloton, Headspace, Serial, Bandersnatch\\),\nextracts playbook for creating demand in markets that don't exist yet.\nMaps dezibel-specific application across 5 strategy pillars.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\"2)",
+      "Bash(git commit -m \"research: category creation strategies for unfounded markets\n\nAnalyzes precedents \\(Kindle, Peloton, Headspace, Serial, Bandersnatch\\),\nextracts playbook for creating demand in markets that do not exist yet.\nMaps dezibel-specific application across 5 strategy pillars.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\")",
+      "Bash(git add knowledge/pre-seed.yml notes/areas/ notes/inbox/ notes/journal/2026-03-24.md notes/positions/2026-03-24-pos-accessibility-to-art-and-culture.md notes/positions/2026-03-24-pos-claude-organizes-not-writes.md notes/positions/2026-03-24-pos-division-of-labor-dezibel.md notes/positions/2026-03-25-pos-storytelling-as-positive-example.md repos/dezibel-legal.yml repos/dezibel-marketing.yml repos/dezibel.yml .claude/settings.json .claude/skills/ && git commit -m \"dezibel strategic command layer: project note, 10 positions, area wiring\n\nBuilt brain as strategic oversight for dezibel across 4 repos.\nProject note tracks all 11 tracks, team, revenue model, critical path.\nPositions track every open decision: raise strategy, casting, architecture,\nTwilio compliance, pricing, validation, brand positioning.\nAlso includes onboarding content, SKILL.md permission fixes, and repo registrations.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\")",
+      "Bash(mkdir -p /Users/graeme/Desktop/DEVELOPMENT/brain/.vscode && mkdir -p \"/Users/graeme/Development /dezibel/.vscode\")",
+      "Skill(research-sprint)",
+      "Bash(uuidgen | tr '[:upper:]' '[:lower:]'2)",
+      "Skill(position)",
+      "WebFetch(domain:www.hollywoodreporter.com)",
+      "WebFetch(domain:www.indiewire.com)",
+      "WebFetch(domain:www.screendaily.com)",
+      "WebFetch(domain:www.avclub.com)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:theseahawk.org)",
+      "WebFetch(domain:www.futureparty.com)",
+      "WebFetch(domain:news.northeastern.edu)",
+      "WebFetch(domain:consumedmagazine.com)",
+      "WebFetch(domain:aperturecinema.com)",
+      "WebFetch(domain:thenav.ca)",
+      "WebFetch(domain:influence.digital)",
+      "WebFetch(domain:dmnews.com)",
+      "WebFetch(domain:clios.com)",
+      "WebFetch(domain:screenrant.com)",
+      "Skill(capture)",
+      "Bash(chmod +x \"/Users/graeme/Development /dezibel/tools/provenance-audit.sh\")",
+      "Bash(cd \"/Users/graeme/Development /dezibel\" && bash tools/provenance-audit.sh)"
+    ]
+  }
+}

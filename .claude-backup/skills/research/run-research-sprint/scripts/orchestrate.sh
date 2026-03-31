@@ -1,0 +1,262 @@
+#!/usr/bin/env bash
+# orchestrate.sh — Autonomous research sprint sequencer
+# Usage: orchestrate.sh <repo_root> <sprint_dir_relative> [focus]
+set -euo pipefail
+
+REPO_ROOT="$1"
+SPRINT_REL="$2"
+FOCUS="${3:-}"
+SKILL_DIR="$(cd "$(dirname "$(dirname "$(realpath "$0")")")" && pwd)"
+OUTDIR="$REPO_ROOT/$SPRINT_REL"
+
+export REPO_ROOT OUTDIR SKILL_DIR
+
+source "$SKILL_DIR/scripts/lib.sh"
+
+REPO_NAME=$(basename "$REPO_ROOT")
+
+mkdir -p "$OUTDIR"
+init_manifest "$REPO_NAME" "$SPRINT_REL" "$FOCUS" "$(date +%Y-%m-%d)"
+
+log "START" "Sprint starting: $REPO_NAME | focus: ${FOCUS:-[none]} | dir: $SPRINT_REL"
+
+TOTAL_PHASES=5
+CURRENT_PHASE=0
+FAILED=false
+
+# ═══════════════════════════════════════════════
+# Phase 1: ORIENT
+# ═══════════════════════════════════════════════
+CURRENT_PHASE=1
+PHASE_NAME="orient"
+PHASE_OUTPUT="$OUTDIR/01-orientation.md"
+log_phase "$PHASE_NAME" "starting" "Reading repo context, understanding the business"
+
+# Compose prompt — inject repo root and focus
+PROMPT_FILE=$(mktemp)
+composed=$(compose_prompt "$SKILL_DIR/prompts/orient.md" \
+  "REPO_ROOT=$REPO_ROOT" \
+  "FOCUS=$OUTDIR/.focus.tmp")
+
+# Write focus to temp file for injection
+echo "${FOCUS:-No specific focus provided. Analyze the full business opportunity.}" > "$OUTDIR/.focus.tmp"
+composed=$(compose_prompt "$SKILL_DIR/prompts/orient.md" \
+  "REPO_ROOT=$REPO_ROOT" \
+  "FOCUS=$OUTDIR/.focus.tmp")
+echo "$composed" > "$PROMPT_FILE"
+
+COST=$(run_claude "$PROMPT_FILE" "$PHASE_OUTPUT" \
+  "Read,Glob,Grep,Bash" "3" \
+  "--add-dir $REPO_ROOT") || FAILED=true
+rm -f "$PROMPT_FILE" "$OUTDIR/.focus.tmp"
+
+VALIDATION=$(validate_output "$PHASE_OUTPUT" 200)
+if [ "$FAILED" = true ] || [ "$VALIDATION" != "OK" ]; then
+  log_phase "$PHASE_NAME" "failed" "Orient phase failed — output validation: $VALIDATION"
+  update_manifest "$PHASE_NAME" "failed" "${COST:-0}" "false" "01-orientation.md"
+  finalize_manifest "failed"
+  exit 1
+fi
+
+AUDIT_PASS=$(run_audit "$PHASE_OUTPUT" "$PHASE_NAME")
+SHA=$(auto_commit "[sprint] phase 1/5 orient — $(basename "$SPRINT_REL")")
+update_manifest "$PHASE_NAME" "completed" "$COST" "$AUDIT_PASS" "01-orientation.md" "$SHA"
+log_phase "$PHASE_NAME" "completed" "Orientation complete (cost: \$$COST)"
+
+
+# ═══════════════════════════════════════════════
+# Phase 2: RECON
+# ═══════════════════════════════════════════════
+CURRENT_PHASE=2
+PHASE_NAME="recon"
+PHASE_OUTPUT="$OUTDIR/02-recon.md"
+log_phase "$PHASE_NAME" "starting" "Web research: business, founder, market, competitors"
+
+PROMPT_FILE=$(mktemp)
+composed=$(compose_prompt "$SKILL_DIR/prompts/recon.md" \
+  "ORIENTATION=$OUTDIR/01-orientation.md")
+echo "$composed" > "$PROMPT_FILE"
+
+COST=$(run_claude "$PROMPT_FILE" "$PHASE_OUTPUT" \
+  "Read,Glob,Grep,WebSearch,WebFetch" "8" \
+  "--add-dir $REPO_ROOT") || FAILED=true
+rm -f "$PROMPT_FILE"
+
+VALIDATION=$(validate_output "$PHASE_OUTPUT" 500)
+if [ "$FAILED" = true ] || [ "$VALIDATION" != "OK" ]; then
+  log_phase "$PHASE_NAME" "failed" "Recon phase failed — output validation: $VALIDATION"
+  update_manifest "$PHASE_NAME" "failed" "${COST:-0}" "false" "02-recon.md"
+  finalize_manifest "partial"
+  exit 1
+fi
+
+AUDIT_PASS=$(run_audit "$PHASE_OUTPUT" "$PHASE_NAME")
+SHA=$(auto_commit "[sprint] phase 2/5 recon — $(basename "$SPRINT_REL")")
+update_manifest "$PHASE_NAME" "completed" "$COST" "$AUDIT_PASS" "02-recon.md" "$SHA"
+log_phase "$PHASE_NAME" "completed" "Recon complete (cost: \$$COST)"
+
+
+# ═══════════════════════════════════════════════
+# Phase 3: DESIGN
+# ═══════════════════════════════════════════════
+CURRENT_PHASE=3
+PHASE_NAME="design"
+PHASE_OUTPUT="$OUTDIR/03-design.md"
+log_phase "$PHASE_NAME" "starting" "Generating domain-tuned research prompts"
+
+PROMPT_FILE=$(mktemp)
+composed=$(compose_prompt "$SKILL_DIR/prompts/design.md" \
+  "ORIENTATION=$OUTDIR/01-orientation.md" \
+  "RECON=$OUTDIR/02-recon.md" \
+  "STRATEGY_DIR=$REPO_ROOT/prompts/strategy")
+echo "$composed" > "$PROMPT_FILE"
+
+COST=$(run_claude "$PROMPT_FILE" "$PHASE_OUTPUT" \
+  "Read,Glob,Grep,Write" "3" \
+  "--add-dir $REPO_ROOT") || FAILED=true
+rm -f "$PROMPT_FILE"
+
+VALIDATION=$(validate_output "$PHASE_OUTPUT" 200)
+if [ "$FAILED" = true ] || [ "$VALIDATION" != "OK" ]; then
+  log_phase "$PHASE_NAME" "failed" "Design phase failed — output validation: $VALIDATION"
+  update_manifest "$PHASE_NAME" "failed" "${COST:-0}" "false" "03-design.md"
+  finalize_manifest "partial"
+  exit 1
+fi
+
+AUDIT_PASS=$(run_audit "$PHASE_OUTPUT" "$PHASE_NAME")
+SHA=$(auto_commit "[sprint] phase 3/5 design — $(basename "$SPRINT_REL")")
+update_manifest "$PHASE_NAME" "completed" "$COST" "$AUDIT_PASS" "03-design.md" "$SHA"
+log_phase "$PHASE_NAME" "completed" "Design complete (cost: \$$COST)"
+
+
+# ═══════════════════════════════════════════════
+# Phase 4: EXECUTE
+# ═══════════════════════════════════════════════
+CURRENT_PHASE=4
+PHASE_NAME="execute"
+log_phase "$PHASE_NAME" "starting" "Executing generated research prompts"
+
+# Find all prompts generated by design phase
+STRATEGY_DIR="$REPO_ROOT/prompts/strategy"
+PROMPT_COUNT=0
+EXECUTE_TOTAL_COST=0
+
+if [ -d "$STRATEGY_DIR" ]; then
+  for prompt_path in "$STRATEGY_DIR"/*.md; do
+    [ -f "$prompt_path" ] || continue
+    prompt_basename=$(basename "$prompt_path" .md)
+    PROMPT_COUNT=$((PROMPT_COUNT + 1))
+    EXEC_OUTPUT="$OUTDIR/04-execute-$(printf '%02d' $PROMPT_COUNT)-${prompt_basename}.md"
+
+    log_phase "$PHASE_NAME" "running" "Executing prompt $PROMPT_COUNT: $prompt_basename"
+
+    # Compose execute prompt with context
+    EXEC_PROMPT_FILE=$(mktemp)
+    composed=$(compose_prompt "$SKILL_DIR/prompts/execute.md" \
+      "ORIENTATION=$OUTDIR/01-orientation.md" \
+      "RECON=$OUTDIR/02-recon.md" \
+      "PROMPT_CONTENT=$prompt_path")
+    echo "$composed" > "$EXEC_PROMPT_FILE"
+
+    EXEC_COST=$(run_claude "$EXEC_PROMPT_FILE" "$EXEC_OUTPUT" \
+      "Read,Glob,Grep,WebSearch,WebFetch" "20" \
+      "--add-dir $REPO_ROOT") || true
+    rm -f "$EXEC_PROMPT_FILE"
+
+    EXEC_VALIDATION=$(validate_output "$EXEC_OUTPUT" 500)
+    if [ "$EXEC_VALIDATION" = "OK" ]; then
+      EXEC_AUDIT=$(run_audit "$EXEC_OUTPUT" "execute-$prompt_basename")
+      SHA=$(auto_commit "[sprint] phase 4 execute: $prompt_basename — $(basename "$SPRINT_REL")")
+      update_manifest "execute-$prompt_basename" "completed" "$EXEC_COST" "$EXEC_AUDIT" \
+        "04-execute-$(printf '%02d' $PROMPT_COUNT)-${prompt_basename}.md" "$SHA"
+      EXECUTE_TOTAL_COST=$(python3 -c "print(round($EXECUTE_TOTAL_COST + ${EXEC_COST:-0}, 4))")
+    else
+      log_phase "$PHASE_NAME" "failed" "Execute failed for $prompt_basename — output validation: $EXEC_VALIDATION"
+      update_manifest "execute-$prompt_basename" "failed" "${EXEC_COST:-0}" "false" \
+        "04-execute-$(printf '%02d' $PROMPT_COUNT)-${prompt_basename}.md"
+    fi
+  done
+fi
+
+if [ "$PROMPT_COUNT" -eq 0 ]; then
+  log_phase "$PHASE_NAME" "skipped" "No prompts found in $STRATEGY_DIR"
+fi
+
+log_phase "$PHASE_NAME" "completed" "Executed $PROMPT_COUNT prompts (total cost: \$$EXECUTE_TOTAL_COST)"
+
+
+# ═══════════════════════════════════════════════
+# Phase 5: SYNTHESIZE
+# ═══════════════════════════════════════════════
+CURRENT_PHASE=5
+PHASE_NAME="synthesize"
+PHASE_OUTPUT="$OUTDIR/05-synthesis.md"
+SUMMARY_OUTPUT="$OUTDIR/run-summary.md"
+log_phase "$PHASE_NAME" "starting" "Synthesizing all findings"
+
+# Collect all outputs and audits for injection
+ALL_OUTPUTS=""
+ALL_AUDITS=""
+
+for f in "$OUTDIR"/0[1-4]*.md; do
+  [ -f "$f" ] || continue
+  [[ "$f" == *-audit* ]] && continue
+  [[ "$f" == *stderr ]] && continue
+  [[ "$f" == *error ]] && continue
+  ALL_OUTPUTS+="
+--- $(basename "$f") ---
+$(cat "$f")
+"
+done
+
+for f in "$OUTDIR"/*-audit.json; do
+  [ -f "$f" ] || continue
+  ALL_AUDITS+="
+--- $(basename "$f") ---
+$(cat "$f")
+"
+done
+
+# Write collected content to temp files (avoid shell variable limits)
+OUTPUTS_TMP=$(mktemp)
+AUDITS_TMP=$(mktemp)
+echo "$ALL_OUTPUTS" > "$OUTPUTS_TMP"
+echo "$ALL_AUDITS" > "$AUDITS_TMP"
+
+PROMPT_FILE=$(mktemp)
+composed=$(compose_prompt "$SKILL_DIR/prompts/synthesize.md" \
+  "ALL_OUTPUTS=$OUTPUTS_TMP" \
+  "ALL_AUDITS=$AUDITS_TMP" \
+  "MANIFEST=$OUTDIR/run-manifest.json")
+echo "$composed" > "$PROMPT_FILE"
+
+COST=$(run_claude "$PROMPT_FILE" "$PHASE_OUTPUT" \
+  "Read,Glob,Grep" "10" \
+  "--add-dir $REPO_ROOT") || true
+rm -f "$PROMPT_FILE" "$OUTPUTS_TMP" "$AUDITS_TMP"
+
+# Generate run-summary.md from synthesis
+if [ -f "$PHASE_OUTPUT" ]; then
+  cp "$PHASE_OUTPUT" "$SUMMARY_OUTPUT"
+fi
+
+AUDIT_PASS=$(run_audit "$PHASE_OUTPUT" "$PHASE_NAME" 2>/dev/null) || AUDIT_PASS="true"
+SHA=$(auto_commit "[sprint] phase 5/5 synthesize — $(basename "$SPRINT_REL")")
+update_manifest "$PHASE_NAME" "completed" "${COST:-0}" "$AUDIT_PASS" "05-synthesis.md" "$SHA"
+log_phase "$PHASE_NAME" "completed" "Synthesis complete (cost: \$$COST)"
+
+
+# ═══════════════════════════════════════════════
+# Finalize
+# ═══════════════════════════════════════════════
+finalize_manifest "completed"
+auto_commit "[sprint] complete — $(basename "$SPRINT_REL")"
+
+log "DONE" "Sprint complete. Total cost: $(python3 -c "
+import json
+with open('$OUTDIR/run-manifest.json') as f:
+    m = json.load(f)
+print(f\"\${m['total_cost_usd']:.2f}\")
+")"
+log "DONE" "Results: $SPRINT_REL/run-summary.md"

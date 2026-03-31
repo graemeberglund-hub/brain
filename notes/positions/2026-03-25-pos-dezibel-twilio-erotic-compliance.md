@@ -26,6 +26,7 @@ This is a potential launch blocker. The iMessage-first strategy mitigates it (iM
 - Dedicated short code is the compliant path for regulated content ($500-1000/month)
 - iMessage delivery is free and unregulated by carriers (Apple-to-Apple)
 - No confirmation from Twilio on whether literary erotic fiction triggers SHAFT enforcement
+- [[kill-test-full-project]] — A4 notes Android SMS path lacks iMessage narrative tools (read receipts, typing indicators), compounding compliance channel with quality degradation (2026-03-26, via /digest)
 
 ## Resolution
 (empty until resolved)

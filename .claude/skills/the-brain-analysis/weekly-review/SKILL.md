@@ -9,8 +9,8 @@ timeout: 180
 
 args = $ARGUMENTS
 
-
-(At start of execution, use Glob to check: recent daily notes from notes/daily/*.md and recent week files from activity/weeks/*.yml.)
+Recent daily notes: !`ls notes/daily/*.md 2>/dev/null | sort | tail -7 | xargs -I{} basename {} .md | tr '\n' ', ' | sed 's/,$//'`
+Recent week files: !`ls activity/weeks/*.yml 2>/dev/null | sort | tail -3 | xargs -I{} basename {} .yml | tr '\n' ', ' | sed 's/,$//'`
 
 # /weekly-review — Daily Notes -> Canonical Weekly YAML
 

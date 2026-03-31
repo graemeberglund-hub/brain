@@ -8,10 +8,9 @@ argument-hint: "[repo-slug] [date-range, e.g. 2026-03-17:2026-03-23] [--skip-exp
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
-Session parser: /Users/graeme/Desktop/DEVELOPMENT/brain/tools/session_parser.py
-
-(At start of execution, use Glob to check: registered repos by listing repos/*.yml files in the vault root.)
+Vault root: !`echo "$BRAIN_VAULT_PATH"`
+Session parser: !`echo "$BRAIN_VAULT_PATH/tools/session_parser.py"`
+Registered repos: !`ls $BRAIN_VAULT_PATH/repos/*.yml 2>/dev/null | xargs -I{} basename {} .yml | tr '\n' ', '`
 
 # /postmortem — Cross-Session Failure Analysis
 

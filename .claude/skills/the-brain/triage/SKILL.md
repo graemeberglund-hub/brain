@@ -4,11 +4,12 @@ description: Triage inbox notes into their proper destinations. Use when user wa
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash(ls *), Bash(mv *), Bash(date *), Bash(sed *)
 argument-hint: "[optional filter text]"
 dashterm: true
+effort: low
 ---
 
 filter = $ARGUMENTS
 
-(At start of execution, use Glob to check: inbox count by listing notes/inbox/*.md files excluding .gitkeep.)
+Inbox count: !`find notes/inbox -name "*.md" -not -name ".gitkeep" 2>/dev/null | wc -l | tr -d ' '`
 
 # /triage — Inbox Conveyor Belt
 
@@ -153,7 +154,7 @@ For each confirmed move (including `create new distinct note` resolutions):
 4. **Update downstream references** — after moving each file, fix any references that pointed to the old inbox path:
    - **Epistemic ledger**: Grep `knowledge/epistemic-ledger.jsonl` for the old path. If found, use the Edit tool (not sed) to replace old path with new path. This avoids regex special character issues and preserves the audit trail.
    - **Wikilinks in other notes**: Grep `notes/` for `[[old-slug]]` wikilinks (using the old filename without extension). If the slug changed (e.g., date prefix stripped), use the Edit tool with `replace_all: true` to update wikilinks.
-   - **Event candidates**: Grep `knowledge/event-candidates.jsonl` for the old path. If found, use the Edit tool to replace with the new path.
+   - **Epistemic ledger (promoted events)**: Grep `knowledge/epistemic-ledger.jsonl` for the old path. If found, use the Edit tool to replace with the new path.
    - **Knowledge graph**: Grep `knowledge/graph-dev.yml`, `knowledge/graph-projects.yml`, and `knowledge/graph-epistemic.yml` for the old path/slug. If found, use the Edit tool to replace with the new slug/path.
 5. For `delete` action: remove the file
 

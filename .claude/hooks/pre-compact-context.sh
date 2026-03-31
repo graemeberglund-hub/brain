@@ -23,7 +23,8 @@ NOTE LOCATIONS:
 - notes/inbox/ — uncategorized captures
 - notes/conversations/ — transcribed conversations
 - activity/weeks/ — weekly activity YAML
-- knowledge/ — epistemic-ledger.jsonl, event-candidates.jsonl, graph-index.yml, graph-dev.yml, graph-projects.yml, graph-epistemic.yml
+- notes/claims/ — source-attributed arguments (type: claim, provenance, endorsed status)
+- knowledge/ — epistemic-ledger.jsonl, graph-index.yml, graph-dev.yml, graph-projects.yml, graph-epistemic.yml
 
 CONVENTIONS:
 - Wikilinks: [[note-filename]] without extension

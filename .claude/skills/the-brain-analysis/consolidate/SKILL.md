@@ -1,17 +1,23 @@
 ---
 name: consolidate
 description: Scan all subgraphs for cross-domain patterns, promote to cross-cutting layer. Run weekly/biweekly.
+context: fork
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash(date *), Bash(wc *), Agent
 argument-hint: "[optional: 'dry-run' to preview without writing]"
 dashterm: true
 timeout: 180
+effort: high
 ---
 
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-
-(At start of execution, use Read and Glob to check: knowledge/graph-index.yml contents, whether knowledge/graph-cross-cutting.yml exists, and entity counts in knowledge/graph-dev.yml, knowledge/graph-projects.yml, knowledge/graph-epistemic.yml, and knowledge/graph-emergent.yml by reading each and counting top-level entities.)
+Graph index: !`cat knowledge/graph-index.yml 2>/dev/null | head -20`
+Cross-cutting exists: !`test -f knowledge/graph-cross-cutting.yml && echo "yes" || echo "no"`
+Dev entity count: !`grep -c "^  [a-z]" knowledge/graph-dev.yml 2>/dev/null || echo 0`
+Projects entity count: !`grep -c "^  [a-z]" knowledge/graph-projects.yml 2>/dev/null || echo 0`
+Epistemic entity count: !`grep -c "^  [a-z]" knowledge/graph-epistemic.yml 2>/dev/null || echo 0`
+Emergent entity count: !`grep -c "^  [a-z]" knowledge/graph-emergent.yml 2>/dev/null || echo 0`
 
 # /consolidate — Cross-Domain Pattern Synthesis
 

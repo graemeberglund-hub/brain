@@ -8,9 +8,9 @@ argument-hint: "'domain description' [--depth light|full]"
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
-
-(At start of execution, use Glob to check: existing areas in notes/areas/, and whether artifacts/domain-templates/ directory exists.)
+Vault root: !`echo "$BRAIN_VAULT_PATH"`
+Existing areas: !`ls $BRAIN_VAULT_PATH/notes/areas/ 2>/dev/null | head -10`
+Template dir exists: !`test -d $BRAIN_VAULT_PATH/artifacts/domain-templates && echo "yes" || echo "no"`
 
 # /domain-seed — Domain Pre-Contextualization
 

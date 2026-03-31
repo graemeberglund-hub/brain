@@ -58,9 +58,9 @@ fi
 # Validate type is one of the allowed values
 TYPE=$(echo "$FRONTMATTER" | grep '^type:' | sed 's/type: *//' | tr -d '"' | tr -d ' ')
 case "$TYPE" in
-  project|area|concept|reference|journal|daily|decision|inbox|conversation|position|question|preference) ;;
+  project|area|concept|claim|reference|journal|daily|decision|inbox|conversation|position|question|preference) ;;
   *)
-    echo "BLOCKED: Invalid note type '$TYPE'. Must be one of: project, area, concept, reference, journal, daily, decision, inbox, conversation, position, question" >&2
+    echo "BLOCKED: Invalid note type '$TYPE'. Must be one of: project, area, concept, claim, reference, journal, daily, decision, inbox, conversation, position, question" >&2
     exit 2
     ;;
 esac

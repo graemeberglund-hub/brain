@@ -7,12 +7,12 @@ argument-hint: "{image-path} [image-path ...] [--style-name 'Name'] [--board-nam
 
 input = $ARGUMENTS
 Today's date: !`date +%Y-%m-%d`
-Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
-Preference index: studio/design-system/preference-index.yml
-Design system dir: studio/design-system/
+Existing taste positions: !`grep -rl 'classification: taste' $BRAIN_VAULT_PATH/notes/positions/ 2>/dev/null | head -20`
+Existing styles: !`ls ~/.claude/styles/ 2>/dev/null`
+Preference index: !`echo "$BRAIN_VAULT_PATH/studio/design-system/preference-index.yml"`
+Design system dir: !`echo "$BRAIN_VAULT_PATH/studio/design-system/"`
 Styles dir: ~/.claude/styles/
-
-(At start of execution, use Glob and Grep to check: existing taste positions in notes/positions/ with classification: taste, and existing styles in ~/.claude/styles/.)
+Vault root: !`echo "$BRAIN_VAULT_PATH"`
 
 # /pinterest — Board Analysis → Design System
 

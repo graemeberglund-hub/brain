@@ -25,6 +25,7 @@ Dezibel is ~70% through content writing as of 2026-03-24, with a target launch w
 - Platform build depends on unresolved multi-day architecture decision
 - Web Summit Vancouver May 11-14, 2026 is a high-priority marketing window — launch timing may anchor to this
 - Budget audit recommends staged raise ($511k Stage 1) which reduces scope and may accelerate timeline
+- [[kill-test-full-project]] — A11 finds 6-month timeline OPTIMISTIC: 8-10 months realistic, editor search alone 5-6 months, zero vendor contracts signed (2026-03-26, via /digest)
 
 ## Resolution
 (empty until resolved)

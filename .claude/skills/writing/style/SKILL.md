@@ -17,18 +17,19 @@ Each style composes from atomic taste positions cataloged in `studio/design-syst
 **`/style <name>`** — Apply a named style to the current project:
 
 1. Read `~/.claude/styles/<name>.md` to load the full design system
-2. Detect the frontend framework in use (scan for package.json, tailwind config, vite config, Jinja templates, Remotion config, plain HTML, etc.)
-3. Apply using the appropriate translation from the style file:
+2. **Slop scan** — before applying, scan the target HTML/CSS/JSX for AI slop patterns (see Slop Detection below). If 2+ patterns detected, warn and ask whether to clean up first or apply anyway.
+3. Detect the frontend framework in use (scan for package.json, tailwind config, vite config, Jinja templates, Remotion config, plain HTML, etc.)
+4. Apply using the appropriate translation from the style file:
    - **Tailwind v4**: Use the `@theme` translation block
    - **Tailwind v3**: Map tokens to `tailwind.config.js` `extend.colors`
    - **React + CSS Modules / vanilla CSS**: Use the CSS Custom Properties block
    - **Remotion / inline styles**: Use the JS Style Objects block
    - **Jinja2 / Python templates**: Use the Python Template block
    - **Single-file HTML**: Embed CSS Custom Properties in a `<style>` block
-4. Include the Google Fonts import appropriate to the medium (CSS `@import`, HTML `<link>`, or JS font loader)
-5. Apply typography, controls, and surface rules from the style
-6. Verify output against the Anti-Patterns section — fix any violations before presenting
-7. Report what was applied and flag any manual steps needed
+5. Include the Google Fonts import appropriate to the medium (CSS `@import`, HTML `<link>`, or JS font loader)
+6. Apply typography, controls, and surface rules from the style
+7. Verify output against the Anti-Patterns section — fix any violations before presenting
+8. Report what was applied and flag any manual steps needed
 
 **`/style validate [name]`** — Check a style's preference coverage:
 
@@ -82,3 +83,25 @@ Each style composes from atomic taste positions cataloged in `studio/design-syst
 - Reference the "Decision Heuristic" for tie-breaking
 - Every style MUST have a `**Preferences:**` line after its intro paragraph listing the preference slugs it composes from
 - The preference-index.yml is bidirectional: preferences list their styles, styles list their preferences. Keep both in sync.
+
+## Slop Detection
+
+Before applying any style, scan the target files for these 6 AI slop anti-patterns. These are signatures of AI-generated UI that signal "nobody designed this."
+
+| # | Anti-Pattern | Detection Signal | Why It's Slop |
+|---|-------------|-----------------|---------------|
+| 1 | Purple gradients | `linear-gradient` with purple/violet/indigo values | Default AI aesthetic — the tell that screams generated |
+| 2 | 3-column icon grids | Exactly 3 cards with centered icons in a row | Every AI landing page looks identical |
+| 3 | Icons in colored circles | `border-radius: 50%` + background color on icon wrappers | Generic feature section filler |
+| 4 | Centered everything | `text-align: center` on >60% of sections | Avoids making layout decisions |
+| 5 | Uniform bubbly radius | `border-radius` >12px on most containers | "Friendly" default that reads as undesigned |
+| 6 | Generic hero copy | "Revolutionize", "Unleash", "Transform your workflow", "Seamlessly" | Zero-information headlines |
+
+**Behavior:**
+- Count how many of the 6 patterns are present in the target files
+- If 0-1: proceed silently
+- If 2+: warn before applying: "This file has {N} AI slop patterns: {list}. Clean these up before styling, or apply anyway?"
+- Log each detection to `knowledge/style-slop-detections.jsonl`:
+  ```jsonl
+  {"timestamp": "ISO8601", "file": "path", "patterns_found": ["purple-gradients", "centered-everything"], "count": 2, "action": "warned|cleaned|bypassed"}
+  ```

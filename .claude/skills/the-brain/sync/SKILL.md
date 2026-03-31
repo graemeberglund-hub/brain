@@ -4,13 +4,13 @@ description: Sync git commits from registered repos into today's daily note with
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git -C *), Bash(date *), Bash(python3 *)
 argument-hint: "[optional date YYYY-MM-DD to backfill]"
 dashterm: true
+effort: low
 ---
 
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-
-(At start of execution, use Glob to check: registered repos by listing repos/*.yml files.)
+Registered repos: !`ls repos/*.yml 2>/dev/null | xargs -I{} basename {} .yml || echo "none"`
 
 # /sync — Synthesized Git Commits → Daily Note + Knowledge Graph
 

@@ -6,14 +6,14 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash(date *), Bash(wc *), Agent
 argument-hint: "[optional focus area, e.g. 'mortality', 'infrastructure']"
 dashterm: true
 timeout: 0
+effort: high
 ---
 
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
-
-(At start of execution, use Read to check: emergent entity count by reading knowledge/graph-emergent.yml and counting top-level entities.)
+Emergent entity count: !`grep -c "^  [a-z]" knowledge/graph-emergent.yml 2>/dev/null || echo 0`
 
 # /drift — Emergent Layer Synthesizer
 
@@ -42,6 +42,8 @@ Read:
 ## Phase 1: Analyze via `vault-reader`
 
 Spawn the `vault-reader` agent to perform the full read-only scan. Give it the optional focus area from `input` if present.
+
+The vault-reader should scan all standard note directories including `notes/claims/` — reading `provenance`, `endorsed`, `source_authors`, and `tags` fields from claim frontmatter.
 
 Ask it to return a report with these sections:
 
@@ -94,18 +96,41 @@ Ask it to return a report with these sections:
 **Advancing questions**: {questions with ADVANCES events}
 **Echo chamber risk**: {positions with only SUPPORTS and no challenges — if any}
 
+### Claim Endorsement Pipeline
+
+Scan `notes/claims/*.md` for endorsement status and provenance. This section detects gaps in the claim-to-position promotion pipeline — claims that have been sitting unreviewed.
+
+**Endorsement status:**
+- Total claims: {N}
+- `endorsed: null` (unreviewed): {N}
+- `endorsed: partial`: {N}
+- `endorsed: yes` (promoted or promotable): {N}
+- `endorsed: challenged`: {N}
+- `endorsed: rejected`: {N}
+
+**By provenance:**
+- `source-extracted`: {N} ({M} unreviewed)
+- `agent-synthesized`: {N} ({M} unreviewed) — higher priority for tribunal review
+
+**Stale claims (unreviewed > 7 days):**
+- {claim-slug} — {domain tags}, created {date}, {source_authors}
+
+If 3+ claims share domain tags and remain `endorsed: null`, this is a stronger drift signal than consumption clusters — it means evaluative material entered but was never processed.
+
 ### Consumption Clusters
 
-Scan `knowledge/absorption-log.jsonl` for consumption patterns:
+Scan `knowledge/absorption-log.jsonl` for consumption patterns.
+Entries now have `intent` (applied|evaluative) and `absorption_history` (state transition log). Factor intent into cluster analysis — evaluative clusters without positions are stronger drift signals than applied clusters.
 
 **By domain:** Group entries by overlapping `domain_tags`. If 3+ entries share the same tag and NO corresponding position exists in `notes/positions/` with that tag:
-- **{domain_tag}**: {N} items consumed, no position formed
+- **{domain_tag}**: {N} items consumed ({N} evaluative, {N} applied), no position formed
   - Sources: {list source_author values}
-  - Suggested action: "form position?"
+  - Suggested action: "form position?" (evaluative only — applied items don't need positions)
 
 **By author:** Group by `source_author`. If 3+ entries from the same author:
 - **{author}**: {N} items consumed
   - Absorption states: {count by state}
+  - Intent split: {N} evaluative, {N} applied
   - Domains: {list domain_tags}
 
 If absorption-log.jsonl is empty or missing, output: "No consumption data yet — absorption tracking starts with next /youtube, /reference, /llm, or /transcribe run."

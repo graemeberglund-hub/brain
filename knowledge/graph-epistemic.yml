@@ -2,4 +2,157 @@
 # Belief-states, question-states, thesis-layer-states.
 # Written by /digest, /resolve-feedback.
 
-entities: {}
+entities:
+  dezibel-pricing-model:
+    type: belief-state
+    domain: epistemic
+    position: "[[2026-03-25-pos-dezibel-pricing-model]]"
+    stage: exploring
+    confidence: medium
+    supports: 1
+    contradicts: 0
+    challenges: 1
+    extends: 0
+    total_events: 2
+    independent_sources: 1
+    evidence_diversity: 0.5
+    effective_evidence: 1.0
+    trajectory: contested
+    pressure: low
+    last_event: "2026-03-26"
+    summary: "Experience pricing ($49-199) is structurally necessary for $100M target but entirely unvalidated — writing quality conditionally supports it, zero price testing done."
+
+  dezibel-marketing-validation:
+    type: belief-state
+    domain: epistemic
+    position: "[[2026-03-25-pos-dezibel-marketing-validation]]"
+    stage: exploring
+    confidence: high
+    supports: 2
+    contradicts: 0
+    challenges: 0
+    extends: 0
+    total_events: 2
+    independent_sources: 1
+    evidence_diversity: 0.5
+    effective_evidence: 1.0
+    trajectory: strengthening
+    pressure: none
+    last_event: "2026-03-26"
+    summary: "Demo-first validation is the cheapest test and becomes more critical as Guardian estimates drop from 390 to 200-300 subscribers."
+
+  dezibel-multi-day-architecture:
+    type: question-state
+    domain: epistemic
+    question: "[[2026-03-25-pos-dezibel-multi-day-architecture]]"
+    stage: open
+    advances: 1
+    complicates: 0
+    total_events: 1
+    trajectory: advancing
+    resolution_proximity: far
+    last_event: "2026-03-26"
+    summary: "Architecture decision more urgent than previously understood — Android/SMS degradation means it determines experience quality for 45% of market."
+
+  dezibel-twilio-erotic-compliance:
+    type: question-state
+    domain: epistemic
+    question: "[[2026-03-25-pos-dezibel-twilio-erotic-compliance]]"
+    stage: open
+    advances: 0
+    complicates: 1
+    total_events: 1
+    trajectory: complicated
+    resolution_proximity: far
+    last_event: "2026-03-26"
+    summary: "SHAFT compliance risk now compounds with Android quality degradation on the same SMS channel."
+
+  market-entry-strategy:
+    type: question-state
+    domain: epistemic
+    question: "[[2026-03-25-pos-market-entry-strategy]]"
+    stage: open
+    advances: 1
+    complicates: 0
+    total_events: 1
+    trajectory: advancing
+    resolution_proximity: far
+    last_event: "2026-03-26"
+    summary: "Kill test identifies the core behavioral gap: literary fiction readers don't decode-and-share like horror fans. Clandestine campaign has no proven audience mechanic."
+
+  dezibel-raise-strategy:
+    type: question-state
+    domain: epistemic
+    question: "[[2026-03-25-pos-dezibel-raise-strategy]]"
+    stage: active
+    advances: 1
+    complicates: 0
+    total_events: 1
+    trajectory: advancing
+    resolution_proximity: far
+    last_event: "2026-03-26"
+    summary: "Raise is CRITICAL PATH with zero execution: no lawyer, no meetings, no term sheet. $7K bridge only funds story work."
+
+  dezibel-100m-goal:
+    type: belief-state
+    domain: epistemic
+    position: "[[2026-03-24-pos-dezibel-100m-goal]]"
+    stage: exploring
+    confidence: high
+    supports: 1
+    contradicts: 0
+    challenges: 1
+    extends: 0
+    total_events: 2
+    independent_sources: 1
+    evidence_diversity: 0.5
+    effective_evidence: 1.0
+    trajectory: contested
+    pressure: low
+    last_event: "2026-03-26"
+    summary: "Ecosystem architecture validated as structurally sound but unfunded in Phase 1 budget — the revenue diversification path exists but has no money."
+
+  dezibel-launch-timeline:
+    type: question-state
+    domain: epistemic
+    question: "[[2026-03-24-pos-dezibel-launch-timeline]]"
+    stage: open
+    advances: 0
+    complicates: 1
+    total_events: 1
+    trajectory: complicated
+    resolution_proximity: far
+    last_event: "2026-03-26"
+    summary: "6-month timeline optimistic. Kill test says 8-10 months realistic — editor search alone 5-6 months, zero vendor contracts."
+
+  dezibel-aspirational-positioning:
+    type: belief-state
+    domain: epistemic
+    position: "[[2026-03-25-pos-dezibel-aspirational-positioning]]"
+    stage: exploring
+    confidence: medium
+    supports: 1
+    contradicts: 0
+    challenges: 0
+    extends: 0
+    total_events: 1
+    independent_sources: 1
+    evidence_diversity: 1.0
+    effective_evidence: 1.0
+    trajectory: strengthening
+    pressure: none
+    last_event: "2026-03-26"
+    summary: "Format novelty validated by kill test — supports aspirational framing over oppositional."
+
+  dezibel-casting-emma:
+    type: question-state
+    domain: epistemic
+    question: "[[2026-03-25-pos-dezibel-casting-emma]]"
+    stage: active
+    advances: 1
+    complicates: 0
+    total_events: 1
+    trajectory: advancing
+    resolution_proximity: far
+    last_event: "2026-03-26"
+    summary: "Jodi Balfour + Abbi Jacobson married IRL is a press story that travels — evidence favors Jodi for marketing value."

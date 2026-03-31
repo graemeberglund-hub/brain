@@ -1,10 +1,12 @@
 ---
 name: digest
 description: Run epistemic metabolism — process new intake against existing positions and questions, emit events to the ledger. Use when user wants to digest recent captures, or periodically to keep the knowledge system current.
+context: fork
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash(date *), Bash(wc *), Bash(git diff*), Bash(git log*), Bash(python tools/retrieval*), Agent, AskUserQuestion
 argument-hint: "[optional: specific note path or 'all']"
 dashterm: true
 timeout: 180
+effort: high
 ---
 
 input = $ARGUMENTS
@@ -12,7 +14,12 @@ input = $ARGUMENTS
 Today's date: !`date +%Y-%m-%d`
 Current time: !`date +%H:%M`
 
-(At start of execution, use Glob, Grep, and Read to gather: positions in notes/positions/, questions by grepping notes/positions/ for classification: question, recent intake notes from notes/inbox/ notes/references/ notes/conversations/ notes/concepts/, ledger size from knowledge/epistemic-ledger.jsonl, and last few lines of knowledge/event-candidates.jsonl.)
+Positions (all): !`ls notes/positions/ 2>/dev/null | head -30`
+Questions (classification: question): !`grep -l "classification: question" notes/positions/*.md 2>/dev/null | xargs -I{} basename {} | head -30`
+Claims: !`ls notes/claims/ 2>/dev/null | head -30`
+Recent intake (last 5 commits): !`git diff --name-only HEAD~5 -- notes/inbox/ notes/references/ notes/conversations/ notes/concepts/ notes/claims/ 2>/dev/null | grep '\.md$' | head -30`
+Ledger size: !`wc -l < knowledge/epistemic-ledger.jsonl 2>/dev/null || echo 0`
+Last tribunal convergence: !`tail -3 knowledge/tribunal-convergence.jsonl 2>/dev/null || echo "(no runs yet)"`
 
 # /digest — Epistemic Metabolism Orchestrator
 
@@ -23,12 +30,12 @@ You are running a digest cycle for the brain vault's epistemic metabolism system
 Check `input` for `--phase` argument. If present, skip directly to that phase:
 
 - `--phase prosecution` → Read `knowledge/digest-pairs.json` for candidate pairs and `knowledge/digest-run-id.txt` for run_id. Skip to **Phase 3** (prosecution only). Do NOT run defense or judge. Exit after writing candidates.
-- `--phase defense` → Read `knowledge/digest-run-id.txt` for run_id. Skip to **Phase 3b** (defense only). Read prosecution events from `knowledge/event-candidates.jsonl`. Exit after writing defense assessments.
+- `--phase defense` → Read `knowledge/digest-run-id.txt` for run_id. Skip to **Phase 3b** (defense only). Read prosecution events from `/tmp/digest-tribunal-{run_id}.jsonl`. Exit after writing defense assessments.
 - `--phase judge` → Read `knowledge/digest-run-id.txt` for run_id. Skip to **Phase 4** (judge deliberation → promote → update notes → crystallize → DECAYS sweep). This is the full resolution phase.
 
 **When running in phase mode:**
 - Do NOT generate a new run_id — read from `knowledge/digest-run-id.txt`
-- Do NOT clear `event-candidates.jsonl` — each phase appends to it
+- Do NOT clear the tribunal staging file — each phase appends to it
 - Do NOT run phases outside your scope
 - Report only on the phase you ran
 
@@ -45,7 +52,7 @@ Generate a UUID for this digest run. This `run_id` will be included in every eve
 run_id=$(uuidgen | tr '[:upper:]' '[:lower:]')
 ```
 
-**Clear `knowledge/event-candidates.jsonl`** before starting — write an empty file. This prevents stale candidates from a crashed prior run from contaminating this cycle. The clear happens here (not Phase 4) so that a mid-run crash leaves a clean staging area.
+**Clear `/tmp/digest-tribunal-{run_id}.jsonl`** before starting — write an empty file. This run-scoped staging file holds tribunal events (prosecution findings + defense assessments) for the current run only. The clear happens here so that a mid-run crash leaves clean state.
 
 Pass this `run_id` to the inference engine in Phase 3.
 
@@ -63,6 +70,7 @@ Determine which notes to process:
 - If `$ARGUMENTS` is "all", process all positions and questions against all intake
 - Otherwise, use the "Recent intake" list from dynamic context above
 - Filter out notes that are themselves positions (those are targets, not sources) — all epistemic notes (beliefs, questions, decisions, tastes) live in `notes/positions/` with `type: position` and a `classification` field
+- Include `notes/claims/` as valid intake sources. Claims are source-attributed arguments, NOT operator beliefs — treat them as evidence entering the tribunal, not as positions to defend
 
 **Exception — explicit position input:** If the user explicitly passes position note paths as `$ARGUMENTS`, do NOT silently skip them. Instead:
 1. Warn: "Input files are position notes (targets, not sources). Running in cross-position linkage mode."
@@ -122,6 +130,54 @@ Read the output JSON to get the candidate pairs for Phase 3.
 
 **Note:** The code engine handles symbolic (tags, wikilinks, area), semantic (TF-IDF), and interaction effects. It does NOT do emergent-theme matching or LLM reasoning — those happen in prosecution (Phase 3). ~12% of code-retrieved pairs are superficial connections that prosecution should skip after reading both notes. This is by design — cheaper to over-retrieve and let prosecution filter than to under-retrieve and miss connections.
 
+## Phase 2b: Pre-tribunal triage (claim quality gate)
+
+Before sending pairs to the tribunal, classify each candidate pair involving a `type: claim` note. This is the fix-first heuristic — most claims don't need adversarial review.
+
+For each candidate pair where the source or target is a claim note (`notes/claims/*.md`), read the claim and classify:
+
+### AUTO-CLASSIFY (no tribunal needed)
+- Direct quotes with clear attribution → `endorsed: null` (queued for review, not flagged)
+- Factual references with verifiable sources → `endorsed: null`
+- System documentation concepts → skip (not a claim)
+
+These pairs proceed to prosecution but are marked `triage: auto-classified`. Prosecution evaluates the epistemic relationship but skips adversarial scrutiny.
+
+### FLAG FOR TRIBUNAL (full adversarial review)
+- `provenance: agent-synthesized` → always flag
+- Claim contradicts an existing position (check candidate pair target) → always flag
+- Source from a novel domain (no existing positions in `notes/positions/` with overlapping tags) → flag
+- Ambiguous attribution (multiple possible interpretations in the claim body) → flag
+
+These pairs proceed to full prosecution + defense + judge.
+
+### AUTO-REJECT (skip entirely)
+- Source doesn't support the attributed argument (verifiable from source context)
+- Circular reasoning (claim restates its own premise)
+- Duplicate of an existing claim (check `notes/claims/` for another claim with substantially the same core argument)
+
+These pairs are dropped from the candidate set. Log the rejection reason in the Phase 7 report.
+
+### Triage output
+
+After classification, report:
+```
+Triage: {N} auto-classified, {M} flagged for tribunal, {K} auto-rejected
+```
+
+Pass only flagged pairs to full tribunal (Phase 3 + 3b + 4). Auto-classified pairs skip defense (Phase 3b) and go directly to judge (Phase 4) with `triage: auto-classified` annotation.
+
+Non-claim pairs (position-to-position, reference-to-position, etc.) bypass triage entirely and proceed to full tribunal as before.
+
+### Convergence guard
+
+If the tribunal runs iteratively (re-prosecution after defense), apply the convergence protocol. Load `.claude/reference/convergence-protocol.md`. After each tribunal iteration:
+
+1. Normalize each finding to its structural core
+2. Hash and compare against the previous iteration
+3. If >50% match → stop, report convergence
+4. Log each iteration to `knowledge/tribunal-convergence.jsonl`
+
 ## Phase 3: Prosecution — inference engine evaluates pairs
 
 **In `--phase prosecution` mode:** Read candidate pairs from `knowledge/digest-pairs.json` and run_id from `knowledge/digest-run-id.txt`. Do NOT run retrieval — pairs are already prepared by daily-cycle.
@@ -131,7 +187,7 @@ Read the output JSON to get the candidate pairs for Phase 3.
 Spawn the **inference-engine** agent (prosecution) with:
 1. The candidate pairs JSON (from file or Phase 2)
 2. The `run_id` (from file or Phase 0)
-3. Instructions to evaluate each pair, characterize the epistemic relationship, determine provenance, and write event candidates to `knowledge/event-candidates.jsonl`
+3. Instructions to evaluate each pair, characterize the epistemic relationship, determine provenance, and write event candidates to `/tmp/digest-tribunal-{run_id}.jsonl`
 
 The prosecution agent no longer does adversarial analysis — that's the defense's job. It focuses on finding genuine relationships and characterizing them accurately with provenance tracking.
 
@@ -139,23 +195,23 @@ The prosecution agent no longer does adversarial analysis — that's the defense
 
 ## Phase 3b: Defense — devil's advocate attacks and hunts
 
-**In `--phase defense` mode:** Read run_id from `knowledge/digest-run-id.txt`. Prosecution events are already in `knowledge/event-candidates.jsonl`.
+**In `--phase defense` mode:** Read run_id from `knowledge/digest-run-id.txt`. Prosecution events are already in `/tmp/digest-tribunal-{run_id}.jsonl`.
 
 **In `--phase defense` mode:** After writing assessments and hunt discoveries, report the tally and exit. Do not proceed to judge.
 
 Spawn the **devil-advocate** agent (defense) with:
 1. The `run_id` (from file or Phase 0)
 2. Instructions to:
-   - **Attack**: Read all prosecution events from `knowledge/event-candidates.jsonl`, assess each as CONFIRMED/OVERSTATED/REVERSED/IRRELEVANT, check citation accuracy and evidence independence
+   - **Attack**: Read all prosecution events from `/tmp/digest-tribunal-{run_id}.jsonl`, assess each as CONFIRMED/OVERSTATED/REVERSED/IRRELEVANT, check citation accuracy and evidence independence
    - **Hunt**: Read each target position's thesis, search the vault for counter-evidence prosecution missed
 
-The defense writes its assessments and hunt discoveries to `knowledge/event-candidates.jsonl` with `inference_mode: "devil-advocate"`.
+The defense writes its assessments and hunt discoveries to `/tmp/digest-tribunal-{run_id}.jsonl` with `inference_mode: "devil-advocate"`.
 
 This phase is **mandatory** and runs every cycle.
 
 ## Phase 4: Judge deliberation — weigh prosecution and defense
 
-You (the orchestrator) are the judge. Read all events from `knowledge/event-candidates.jsonl` for this run_id. Separate prosecution events from defense assessments and hunt discoveries.
+You (the orchestrator) are the judge. Read all events from `/tmp/digest-tribunal-{run_id}.jsonl` for this run_id. Separate prosecution events from defense assessments and hunt discoveries.
 
 ### 4a. Deliberation per prosecution event
 
@@ -247,7 +303,10 @@ For each promoted event:
    **Also update Evidence For / Evidence Against sections:**
    - SUPPORTS or EXTENDS → add to `## Evidence For` (replace "(none yet)" if present)
    - CONTRADICTS or CHALLENGES → add to `## Evidence Against` (replace "(none yet)" if present)
-   - Format: `- [[source-slug]] — {one-line reasoning} (YYYY-MM-DD)`
+   - Format depends on source type:
+     - **Claim source** (`type: claim`): `- [[claim-slug]] (claim by {source_authors}, {endorsed status}) — {one-line reasoning} (YYYY-MM-DD)`
+     - **Other sources**: `- [[source-slug]] — {one-line reasoning} (YYYY-MM-DD)`
+   - Claims are evidence from external sources, NOT operator beliefs. The attribution makes this distinction visible in the position note.
 
 2. **Question targets** (positions with `classification: question`): Append to the question's `## Evidence So Far` section:
    ```
@@ -448,11 +507,29 @@ Append a digest summary to today's daily note under `## Work`:
 - HH:MM — /digest: processed {N} intake notes, {M} candidate pairs, {K} events promoted. {brief highlights}
 ```
 
+## Phase 6b: Eureka Detection
+
+After promoting events, scan the tribunal output for eureka moments — cases where first-principles reasoning contradicts conventional wisdom.
+
+**Detection criteria:**
+- A promoted event involves a claim where the source argues X
+- Conventional approach or established wisdom assumes Y (the opposite or a different conclusion)
+- The tribunal evidence shows X is correct and Y is wrong (or vice versa)
+- The contradiction is non-trivial (not just terminology or framing differences)
+
+For each eureka moment found, append to `knowledge/eureka.jsonl`:
+```jsonl
+{"timestamp": "ISO8601", "claim_ref": "[[slug]]", "conventional_wisdom": "What the standard approach assumes", "first_principles_finding": "What the evidence actually shows", "significance": "Why this matters — what changes if true", "confidence": 0.7, "source": "tribunal-prosecution|tribunal-defense-hunt", "run_id": "uuid"}
+```
+
+Create the file if it doesn't exist. This is a high-signal, low-volume log — aim for >50% genuinely surprising entries. If most entries are routine findings, tighten the detection criteria.
+
 ## Phase 7: Report
 
 Tell the user:
-- How many intake notes were processed
+- How many intake notes were processed (with breakdown: {N} claims, {M} references, {K} other)
 - How many candidate pairs were found (inline retrieval)
+- **Claim triage:** {N} auto-classified, {M} flagged for tribunal, {K} auto-rejected (from Phase 2b)
 - **Tribunal results:**
   - Prosecution events: {N}
   - Defense assessments: CONFIRMED {n}, OVERSTATED {n}, REVERSED {n}, IRRELEVANT {n}

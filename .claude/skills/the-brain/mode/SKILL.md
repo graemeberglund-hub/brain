@@ -9,10 +9,8 @@ dashterm: true
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Modes directory: knowledge/modes
-Vault root: /Users/graeme/Desktop/DEVELOPMENT/brain
-
-(At start of execution, use Glob to check: available modes by listing knowledge/modes/*.md files.)
+Modes directory: !`echo "$BRAIN_VAULT_PATH/knowledge/modes"`
+Modes available: !`ls $BRAIN_VAULT_PATH/knowledge/modes/*.md 2>/dev/null | wc -l | tr -d ' '`
 
 # /mode — Crystallized Working Context
 

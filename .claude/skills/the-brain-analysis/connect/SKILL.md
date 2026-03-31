@@ -5,6 +5,7 @@ context: fork
 agent: vault-reader
 allowed-tools: Read, Grep, Glob
 argument-hint: "[two topics, e.g. 'mortality, evidence' or 'mortality and evidence']"
+effort: high
 ---
 
 input = $ARGUMENTS
@@ -28,6 +29,7 @@ Read notes related to both topics:
 - `knowledge/graph-index.yml`
 - Project notes in `notes/projects/rla/*.md` and `notes/projects/brain/*.md`
 - Position notes in `notes/positions/*.md` (includes all classifications: belief, question, decided, taste, goal)
+- Claim notes in `notes/claims/*.md` — read `provenance`, `endorsed`, `source_authors` fields
 - Concept notes in `notes/concepts/*.md`
 - Reference notes in `notes/references/*.md`
 - Daily notes in `notes/daily/*.md` and journal notes in `notes/journal/*.md`
@@ -68,6 +70,11 @@ Understand how the two topics relate. Consider:
 
 ### Structural Connections
 {Cluster co-membership, enables/spawned_by chains, wikilink paths — or "None found"}
+
+### Claim-Mediated Bridges
+{Claims that reference both topics, with provenance and endorsement status:}
+- [[claim-slug]] (by {source_authors}, {provenance}, endorsed: {status}) — {how it bridges}
+{Or "No claim bridges found"}
 
 ### Thematic Overlaps
 {Shared tags, similar arcs — or "None found"}

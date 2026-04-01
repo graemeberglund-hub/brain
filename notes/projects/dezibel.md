@@ -19,8 +19,8 @@ enables:
 value_note: "First-of-kind iMessage-delivered serialized fiction. No category exists."
 parked_reason: null
 repo_paths:
-  - path: "/Users/graeme/Development /dezibel/"
-    label: Main repo (story, app, strategy)
+  - path: "/Users/graeme/Development/dezibel-editor/"
+    label: Main repo (story, editor tooling, strategy)
   - path: /Users/graeme/Desktop/DEVELOPMENT/dezibel-legal/
     label: Legal requirements + research
   - path: /Users/graeme/Desktop/DEVELOPMENT/dezibel-marketing/

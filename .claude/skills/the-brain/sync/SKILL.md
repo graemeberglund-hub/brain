@@ -10,7 +10,7 @@ effort: low
 input = $ARGUMENTS
 
 Today's date: !`date +%Y-%m-%d`
-Registered repos: !`ls repos/*.yml 2>/dev/null | xargs -I{} basename {} .yml || echo "none"`
+Registered repos: (read from repos/*.yml at runtime)
 
 # /sync — Synthesized Git Commits → Daily Note + Knowledge Graph
 

@@ -4,11 +4,13 @@ subgraphs:
     description: Software development knowledge — solutions, patterns, dead-ends, tools
     entity_types: [solution, pattern, dead-end, tool]
     updated_by: [sync]
+    count: 2
   projects:
     file: graph-projects.yml
     description: Project state snapshots
     entity_types: [project]
     updated_by: [sync]
+    count: 2
   epistemic:
     file: graph-epistemic.yml
     description: Belief and question states

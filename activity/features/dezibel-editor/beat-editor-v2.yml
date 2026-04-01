@@ -1,0 +1,24 @@
+name: beat-editor-v2
+repo: dezibel-editor
+status: active
+started: 2026-03-31
+last_activity: 2026-03-31
+description: "Beat sheet editor with drag-reorder, speaker attribution, view toggle, and 5-layer backup"
+commits:
+  - hash: 3bb2118272b38c74cba9de08e1d8cc139a50b6fa
+    date: 2026-03-31
+    message: "Beat editor: drag-reorder days, speaker attribution (Emma/Hasta/P/F), full draft pre-loaded"
+  - hash: 0ec9c75e3480d107bfabdb8d01bd7ef53a13749d
+    date: 2026-03-31
+    message: "Harden beat editor: 5-layer backup, tab locking, speaker roundtrip, storage monitoring"
+  - hash: cdff66b8c1e010bbdaa897c9217d5736278522d5
+    date: 2026-03-31
+    message: "Add Beat Sheet / Master Doc view toggle to editor"
+files:
+  - editor/beat-editor-loaded.html
+  - editor/beat-editor.html
+  - editor/launch.sh
+  - tools/auto-backup.sh
+  - tools/build-master-v2.py
+  - tools/bundle-editor.py
+  - story/drafts/master-doc-v2.md

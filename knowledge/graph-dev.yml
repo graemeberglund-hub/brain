@@ -2,4 +2,22 @@
 # Solutions, dead-ends, patterns, tools from software development.
 # Written by /sync. Read for context restoration and debugging.
 
-entities: {}
+entities:
+  beat-editor-backup-system:
+    type: solution
+    repo: dezibel-editor
+    date: 2026-03-31
+    problem: "Browser-based editor risked data loss from accidental navigation, storage limits, or crashes"
+    solution: "5-layer backup (localStorage, sessionStorage, auto-save, tab-lock beforeunload, storage monitoring) with launch script for consistent startup"
+    files:
+      - editor/beat-editor-loaded.html
+      - tools/auto-backup.sh
+      - editor/launch.sh
+  sync-skill-sandbox-fix:
+    type: dead-end
+    repo: brain
+    date: 2026-03-31
+    problem: "Sync skill used piped shell commands that fail in Claude Code sandbox"
+    resolution: "Removed piped command; sandbox does not support arbitrary shell piping in skill scripts"
+    files:
+      - .claude/skills/the-brain/sync/SKILL.md

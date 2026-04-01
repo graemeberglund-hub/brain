@@ -2,4 +2,25 @@
 # Project state snapshots.
 # Written by /sync.
 
-entities: {}
+entities:
+  dezibel-editor:
+    type: project
+    repo: dezibel-editor
+    path: /Users/graeme/Development/dezibel-editor
+    status: active
+    last_synced: 2026-03-31
+    summary: "Beat editor gained drag-reorder, speaker attribution, view toggle, and 5-layer backup hardening."
+    active_areas:
+      - editor/beat-editor-loaded.html
+      - tools/auto-backup.sh
+      - editor/launch.sh
+  brain:
+    type: project
+    repo: brain
+    path: /Users/graeme/Desktop/DEVELOPMENT/brain
+    status: active
+    last_synced: 2026-03-31
+    summary: "Sync skill sandbox fix, dezibel repo path correction, exploratory session handoff."
+    active_areas:
+      - .claude/skills/the-brain/sync/SKILL.md
+      - repos/dezibel.yml

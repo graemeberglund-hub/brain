@@ -1,0 +1,17 @@
+name: sync-skill-fixes
+repo: brain
+status: complete
+started: 2026-03-31
+last_activity: 2026-03-31
+description: "Fixed sync skill sandbox compatibility and corrected stale repo paths"
+commits:
+  - hash: 668c6673091384fee2b6649688a6328e7fbb1aeb
+    date: 2026-03-31
+    message: "fix: remove piped shell command from sync skill that blocked sandbox"
+  - hash: 74b3b6d2eb3b23ae0d89fe821562d643709d324d
+    date: 2026-03-31
+    message: "fix: update dezibel repo path to dezibel-editor, correct stale path with space"
+files:
+  - .claude/skills/the-brain/sync/SKILL.md
+  - repos/dezibel.yml
+  - notes/projects/dezibel.md

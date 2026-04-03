@@ -1,0 +1,19 @@
+feature: family-business-overview
+project: dezibel-editor
+display_name: "Family Business Overview"
+status: completed
+created: 2026-04-01
+updated: 2026-04-01
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: bf7d26b
+    date: 2026-04-01
+    message: "Add Dezibel business overview for family — market thesis, global vision, team"
+    files_touched: 3
+    classification: content
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [fundraising, family, overview]

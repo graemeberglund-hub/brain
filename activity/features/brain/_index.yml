@@ -1,4 +1,18 @@
 repo: brain
+last_synced: 2026-04-02
 features:
-  - sync-skill-fixes
-last_updated: 2026-03-31
+  - slug: sync-skill-fixes
+    display_name: "Sync Skill Fixes"
+    status: completed
+    initiative: null
+    commit_count: 1
+    date_range: [2026-03-31, 2026-03-31]
+    inference_confidence: 0.9
+  - slug: dezibel-strategy-positions
+    display_name: "Dezibel Strategy Positions + Market Research"
+    status: completed
+    initiative: null
+    commit_count: 5
+    date_range: [2026-04-01, 2026-04-01]
+    inference_confidence: 0.9
+initiatives: []

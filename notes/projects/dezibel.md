@@ -3,12 +3,12 @@ title: "Dezibel"
 type: project
 tags: [dezibel, serialized-fiction, imessage, sms, launch, fundraising]
 created: 2026-03-25
-updated: 2026-03-29
+updated: 2026-04-03
 name: "Dezibel"
 areas: [writing-and-film]
 arc: deliverable
 repo: dezibel
-origin: "42-day serialized novel delivered over iMessage — multi-product literary experience targeting $100M global sales"
+origin: "42-day multimedia literary experience — serialized fiction, video, audio, and haptics delivered via app, targeting $100M global sales"
 spawned_by: null
 enables:
   - Dezibel Sequel — That Night (film, Oddfellows Pictures)
@@ -31,9 +31,9 @@ repo_paths:
 
 ## About
 
-Dezibel is a serialized novel delivered over iMessage across 42 days (6 weeks, Sunday to Sunday). Readers receive daily text conversations between Hasta and Emma (100+ messages/day), with an embedded erotic novella (Poppi Devours Fanzo) delivered through a companion app, audio elements, and an optional Lovense haptic tier. The governing phrase is "ascent as collapse" — direction upward, form falling apart.
+Dezibel is a multimedia literary experience delivered across 42 days (6 weeks, Sunday to Sunday). Readers receive daily text conversations between Hasta and Emma (100+ messages/day), video content featuring the lead cast performing as their characters, an embedded erotic novella (Poppi Devours Fanzo) delivered through a companion app, audio elements, and an optional Lovense haptic tier. The governing phrase is "ascent as collapse" — direction upward, form falling apart.
 
-**Current state:** 70% through writing. Functional Day 1 demo (Next.js/Firebase/Twilio/Vercel). No raise completed. No lawyer. Cast identified via relationships, not contracts. Leda confirmed ($1,500). Comprehensive strategy research complete across 4 repos (~7,700 lines). Zero kill tests run.
+**Current state (2026-04-03):** 70% through writing. Days 1-23 have prose injected into the story map editor; Days 24-42 need prose. Repo corrected to 5-act structure (54 files). Story map editor is the canonical writing tool (horizontal kanban, 363 beats, bulletproofing, search, prose view). Old beat editor retired. Functional Day 1 demo (Next.js/Firebase/Twilio/Vercel). No raise completed. No lawyer. Cast: Leda confirmed ($1,500), Edo confirmed, Jodi target (LA meeting planned), Madison confirmed. 14 kill tests passed/resolved, 7 obsolete, 19 remaining. Comprehensive strategy research complete across 4 repos. Pitch deck structure researched. Rolling SAFE at $8M cap, $300K green light. Three new strategic positions: label/platform vision, global delivery, graveyard thesis.
 
 ## Delivery Architecture (2026-03-29, revised)
 
@@ -77,14 +77,14 @@ Steps 5-6 can run NOW without money. Step 2 costs under $500. Everything after 4
 
 | Track | Owner | Status | Blocker |
 |-------|-------|--------|---------|
-| Writing (Acts I-V) | Graeme | 70% — Act I tight, Act II mixed, Act III thin. 8 critical scenes unwritten. | Time + focus |
+| Writing (Acts I-V) | Graeme | 70% — Days 1-23 have prose in story map editor. Days 24-42 need injection. 8 critical scenes unwritten. Story map editor is canonical tool (363 beats, kanban view). | Time + focus |
 | Legal | Lawyer (TBD) | Research complete (3,000+ lines across 15 files), no counsel engaged | Need referral (Ryan Holmes / Tippett) — CALL THIS WEEK |
 | Fundraising | Graeme | Budget audited ($700-850K staged recommended), no meetings booked | Needs locked demo + lawyer |
 | Delivery Architecture | TBD | **RESOLVED**: Native app (React Native + Stream Chat) + SMS triggers. DIY iMessage dead. 10-path research complete. Split infra pattern defined. | App Store content review (submit test app) |
 | Casting | Graeme | Leda confirmed ($1,500). Edo confirmed. Jodi target (LA meeting planned). Madison confirmed. | Legal + raise for contracts |
 | Sound Design | Eugenio | Attached, waiting on raise | Raise |
 | Brand + Web | TBD | Alex Nelson OUT (2026-03-25). No replacement identified. | Vendor search needed |
-| Tech/Platform | TBD | Demo functional. Architecture finalized: React Native + Stream Chat + direct BLE. $53-84K, 12-16 weeks. | Raise + App Store approval |
+| Tech/Platform | TBD | Demo functional. Architecture finalized: React Native + Stream Chat + direct BLE. $53-84K, 12-16 weeks. Story map editor is production writing tool (13,000+ lines, kanban view, prose injection, bulletproofing). | Raise + App Store approval |
 | Editor | TBD | No candidate identified. Tier 2 (Liz Johnston) most accessible. | Writing 80%+ complete |
 | oBitchuary | Natasha | Ready, email drafted. URGENT: needs 6-8 months lead time before Day 1. | Launch NOW — only costs $6K (budgeted) |
 | Trailer | Graeme directs | Shot list exists, no production. $55-65K. | Raise + cast |
@@ -95,8 +95,8 @@ Steps 5-6 can run NOW without money. Step 2 costs under $500. Everything after 4
 
 | Person | Role | Status | Budget |
 |--------|------|--------|--------|
-| Jodi Balfour | Emma (lead voice) | Target — LA meeting planned. Apple TV+ connection. | $30k (may be low) |
-| Edo Van Breemen | Hasta (lead voice + music) | Confirmed | $20k |
+| Jodi Balfour | Emma (lead voice + video) | Target — LA meeting planned. Apple TV+ connection. Performing Emma on film. | $30k (may be low) |
+| Edo Van Breemen | Hasta (lead voice + music + video) | Confirmed. Performing Hasta on film. | $20k |
 | Madison Isolina | Fanciulla | Friend, confirmed | TBD |
 | Leda Paige | Leda (Day 7 vibrator monologue) | **CONFIRMED** (2026-03-27). $1,500. Her home. Acting background. | $1,500 |
 | Abbi Jacobson | Jane (photos + audio only) | Warm reconnect. Married to Jodi IRL — press story. | TBD |
@@ -109,6 +109,18 @@ Steps 5-6 can run NOW without money. Step 2 costs under $500. Everything after 4
 | Ryan Holmes | Tech advisor + lawyer referral | Haven't spoken in a year | $0 |
 | Michael Tippett | Business advisor | Multiple exits, active | $0 |
 | Adrienne Matei | Guardian journalist + editor referral | 1M+ readers/week, close friend | $0 (article on traction) |
+
+## Market Position
+
+**TAM $12.2B** (web fiction + audio erotica) → **SAM $1.6B** (English-language romance/erotica digital) → **SOM $15-45M** (Year 1-2, 100-300K subs at $49-159 blended).
+
+The category dezibel enters is littered with failures — Radish ($440M acquisition, shut down Dec 2025), Kindle Vella (shut down Feb 2025), Wattpad (MAU declining 10.5% YoY). The failure mode is micropayment/ad-supported libraries. The outlier is Quinn: $11M ARR on $3.2M raised, 440% YoY growth, premium subscription, female-gaze, audio-first. Dezibel's model aligns with what's working (premium, single-title experience, multi-sensory) not what's dying (library, micropayment, volume).
+
+**Gaps dezibel fills:** No premium single-title serialized experience exists. No one delivers fiction via SMS triggers. No content-to-haptic pipeline. No product targets the 25-45 female-gaze literary reader with disposable income (Quinn skews 18-24). Post-library market for serialized fiction is wide open.
+
+**Capital context:** AI narrative ($200M+ deployed 2023-2024), sextech convergence ($42.6B market, 16.7% CAGR), SMS infrastructure ($7B+ cumulative funding). The pipes are proven and funded — dezibel is the consumer product that uses them for content delivery instead of marketing.
+
+See [[dezibel-market-analysis]] for full sizing, competitive landscape, and sourcing.
 
 ## Revenue Model
 
@@ -136,6 +148,7 @@ Delivery COGS: $1-1.50/subscriber for 42 days (push notifications free, SMS resc
 - [[dezibel-aspirational-positioning]] — Aspirational framing, not oppositional
 - [[dezibel-marketing-validation]] — 3-day demo as cheapest demand validation
 - [[clandestine-marketing-dezibel]] — Ecosystem breadcrumbs as marketing (UNVERIFIED)
+- [[dezibel-funnel-architecture]] — Free Day 1 preview → nurture → purchase. Direct purchase funnel fails K16 (88 subs base case, need 500). (2026-03-30)
 
 ### Open Questions
 - [[dezibel-launch-timeline]] — 6 months optimistic, 8-10 realistic
@@ -171,25 +184,40 @@ Delivery COGS: $1-1.50/subscriber for 42 days (push notifications free, SMS resc
 - App tech architecture: `brain/notes/references/2026-03-29-ref-app-technical-architecture-research.md`
 - Push notification engagement: `brain/notes/references/2026-03-29-ref-push-notification-engagement-research.md`
 - Linq iMessage API: `brain/notes/references/2026-03-29-ref-linq-imessage-api-research.md`
+- Market analysis: `brain/notes/references/2026-04-01-ref-dezibel-market-analysis.md`
+- Subscriber funnel model: `brain/notes/references/2026-03-30-ref-subscriber-funnel-model.md`
+- Onboarding flow: `brain/notes/references/2026-03-29-ref-onboarding-flow-research.md`
+- Typing indicator UX: `brain/notes/references/2026-03-29-ref-typing-indicator-ux-research.md`
+- 10DLC registration: `brain/notes/references/2026-03-29-ref-10dlc-registration-research.md`
+- Vibrator wholesale: `brain/notes/references/2026-03-30-ref-vibrator-wholesale-research.md`
+- Ecosystem product costs: `brain/notes/references/2026-03-30-ref-ecosystem-product-costs.md`
+- BookTok activation: `brain/notes/references/2026-03-30-ref-booktok-activation-research.md`
+- Age verification: `brain/notes/references/2026-03-29-ref-age-verification-post-paxton.md`
+- Adult payment processors: `brain/notes/references/2026-03-29-ref-adult-payment-processors.md`
+- Pitch deck structure: `brain/notes/references/2026-04-01-ref-pitch-deck-structure.md`
+- Family business overview: `dezibel/strategy/dezibel-overview.html`
 
 ## Immediate Actions (under $500, no raise required)
 
-### This week
-1. Call Ryan Holmes + Michael Tippett for lawyer referral ($0)
-2. Launch oBitchuary — brief Natasha, start writing ($0, she's on flat fee) — **MOST TIME-CONSTRAINED ELEMENT**
-3. Email Linq sales — describe exact use case, get pricing + content policy answer ($0, 30 min)
-4. Email Stripe pre-sales — describe product, ask about text-only tier pre-clearance ($0)
-5. Order Hot Ghost samples from 3 manufacturers ($100-300)
+**Last reviewed: 2026-04-03.** Status tracked per item. Next review: weekly.
 
-### This month
-6. Submit test app to App Store with sample erotic literary content ($0, validates or kills native app)
-7. Register 10DLC for clean SMS triggers ($14/mo)
-8. Finish Days 1-7 to production quality ($0)
-9. Run beta test: 5-7 readers with push notification instrumentation ($0)
-10. Select mix engineer for Shit Eyes ($0)
-11. Contact Lovense developer relations ($0)
-12. Contact Wade Papin at Pyrrha ($0)
-13. Build A/B landing page for price test ($0)
+### This week (April 3-9)
+1. Call Ryan Holmes + Michael Tippett for lawyer referral ($0) — **NOT DONE. Originally due March 29. This is blocking the entire critical path.**
+2. Launch oBitchuary — brief Natasha, start writing ($0) — **NOT DONE. Most time-constrained element (6-8mo lead time). Every week of delay compresses the launch window.**
+3. Email Linq sales ($0, 30 min) — **NOT DONE.**
+4. Email Stripe pre-sales ($0) — **NOT DONE.**
+5. Order Hot Ghost samples ($100-300) — **NOT DONE.**
+6. Build A/B landing page for price test ($0) — **NOT DONE. Most testable assumption in the project. $49 is UNVERIFIED after 9+ days.**
+
+### This month (April)
+7. Submit test app to App Store with sample erotic literary content ($0)
+8. Register 10DLC for clean SMS triggers ($14/mo)
+9. Inject prose for Days 24-42 into story map editor ($0)
+10. Finish Days 1-7 to production quality ($0)
+11. Run beta test: 5-7 readers with push notification instrumentation ($0)
+12. Select mix engineer for Shit Eyes ($0)
+13. Contact Lovense developer relations ($0)
+14. Contact Wade Papin at Pyrrha ($0)
 
 ### Completed research (2026-03-29)
 - ~~Review Firebase AUP~~ → SAFE (GCP permits adult content, metadata-only architecture)

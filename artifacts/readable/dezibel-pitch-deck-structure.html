@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dezibel Pitch Deck — Recommended Structure</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f0e8; --bg-2: #ede8df; --bg-panel: #faf7f2;
+  --bg-warm: rgba(158,124,58,0.04); --bg-cool: rgba(74,111,165,0.04);
+  --text: #1a1a18; --muted: rgba(26,26,24,.65); --faint: rgba(26,26,24,.40);
+  --ink-red: #a85656; --ink-amber: #9e7c3a; --ink-green: #4d8a74;
+  --ink-violet: #7b6bab; --ink-blue: #4a6fa5; --ink-gold: #b8960c;
+  --ink-stone: #8a7d6b; --ink-teal: #3a8a8a;
+  --border: rgba(26,26,24,.10); --border-strong: rgba(26,26,24,.18);
+  --shadow-soft: 0 2px 12px rgba(26,26,24,.06);
+  --shadow-panel: 0 1px 2px rgba(26,26,24,0.04), 0 4px 16px rgba(26,26,24,0.06);
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+[data-theme="dark"] {
+  --bg: #0d0d0d; --bg-2: #131311; --bg-panel: #161616;
+  --bg-warm: rgba(196,163,90,0.04); --bg-cool: rgba(106,144,192,0.04);
+  --text: #d4d0c8; --muted: #9a9690; --faint: #4a4840;
+  --ink-red: #c47070; --ink-amber: #c4a35a; --ink-green: #6aaa90;
+  --ink-violet: #9a8ac8; --ink-blue: #6a90c0; --ink-gold: #d4b030;
+  --ink-stone: #a09585; --ink-teal: #5aadad;
+  --border: #2a2826; --border-strong: #3a3836;
+  --shadow-soft: 0 2px 12px rgba(0,0,0,.20);
+  --shadow-panel: 0 1px 2px rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.20);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain overlay */
+.grain {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 9999; opacity: 0.024;
+}
+
+header {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  background: rgba(13,13,13,0.85);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  cursor: pointer;
+  user-select: none;
+}
+[data-theme="light"] header { background: rgba(245,240,232,0.85); }
+
+header .label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--faint);
+}
+header .title {
+  font-family: var(--font-serif); font-size: 20px; color: var(--text);
+  margin-top: 2px;
+}
+header .meta {
+  font-size: 11px; color: var(--faint); margin-top: 4px;
+}
+
+main {
+  max-width: 680px; margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+h2 {
+  font-family: var(--font-serif); font-size: 22px; font-weight: 600;
+  color: var(--text); margin: 48px 0 16px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+h2:first-of-type { margin-top: 0; }
+
+h3 {
+  font-size: 13px; font-weight: 600; color: var(--text);
+  margin: 28px 0 8px; text-transform: uppercase; letter-spacing: 0.06em;
+}
+
+p { margin: 8px 0; }
+
+strong { color: var(--text); font-weight: 600; }
+
+ul, ol { padding-left: 20px; margin: 8px 0; }
+li { margin: 4px 0; }
+
+.slide-card {
+  padding: 20px 24px; background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: 6px; margin: 20px 0;
+}
+.slide-number {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--faint); margin-bottom: 4px;
+}
+.slide-title {
+  font-family: var(--font-serif); font-size: 18px; color: var(--text);
+  margin-bottom: 12px;
+}
+.slide-label {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--ink-stone); margin: 12px 0 4px;
+}
+.slide-card ul { padding-left: 16px; }
+.slide-card li { font-size: 13px; margin: 3px 0; }
+
+.emotional-job {
+  margin-top: 12px; padding: 8px 12px;
+  border-left: 3px solid var(--ink-violet);
+  font-size: 13px; color: var(--muted);
+}
+.emotional-job strong { color: var(--ink-violet); }
+
+.key-line {
+  margin-top: 12px; padding: 10px 14px;
+  background: var(--bg-warm); border-radius: 4px;
+  font-family: var(--font-serif); font-size: 15px;
+  color: var(--text); font-style: italic;
+}
+
+.callout {
+  padding: 12px 16px; border-left: 3px solid var(--ink-red);
+  background: var(--bg-2); margin: 16px 0; border-radius: 0 4px 4px 0;
+}
+.callout-title { font-size: 12px; font-weight: 600; color: var(--ink-red); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+.callout-amber { border-left-color: var(--ink-amber); }
+.callout-amber .callout-title { color: var(--ink-amber); }
+
+.callout-green { border-left-color: var(--ink-green); }
+.callout-green .callout-title { color: var(--ink-green); }
+
+.stat-strip { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+.stat-card {
+  flex: 1; min-width: 100px; padding: 14px 16px; background: var(--bg-2);
+  border: 1px solid var(--border); border-radius: 6px; text-align: center;
+}
+.stat-card .sc-value { font-family: var(--font-serif); font-size: 28px; color: var(--text); line-height: 1.1; }
+.stat-card .sc-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin-top: 4px; }
+
+.concern-card {
+  padding: 14px 16px; background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: 6px; margin-bottom: 10px;
+}
+.concern-card h4 {
+  font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px;
+}
+.concern-card p { font-size: 13px; margin: 4px 0; }
+
+.checklist { list-style: none; padding-left: 0; }
+.checklist li { padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.checklist li::before { content: '\25A1  '; color: var(--faint); }
+
+.ref-list { list-style: none; padding-left: 0; }
+.ref-list li { padding: 4px 0; font-size: 12px; }
+.ref-list li::before { content: '\2014  '; color: var(--faint); }
+
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 3px;
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; vertical-align: middle;
+}
+.badge-red { background: var(--ink-red); color: #0d0d0d; }
+.badge-amber { background: var(--ink-amber); color: #0d0d0d; }
+.badge-green { background: var(--ink-green); color: #0d0d0d; }
+.badge-violet { background: var(--ink-violet); color: #0d0d0d; }
+
+hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+.section-intro {
+  font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+  main { padding: 24px 16px 60px; }
+  .stat-strip { flex-direction: column; }
+  header .title { font-size: 18px; }
+}
+
+@media print {
+  header { position: static; backdrop-filter: none; }
+  .grain { display: none; }
+  .slide-card { break-inside: avoid; }
+  .concern-card { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<svg class="grain" xmlns="http://www.w3.org/2000/svg"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+
+<header onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'">
+  <div class="label">Dezibel &mdash; Investor Meetings Week of April 7</div>
+  <div class="title">Pitch Deck Structure</div>
+  <div class="meta">Research compiled 2026-04-01 &middot; YC, angel, sextech fundraising patterns, pre-revenue SAFE best practices</div>
+</header>
+
+<main>
+
+<h2>Meta-Decisions</h2>
+
+<div class="stat-strip">
+  <div class="stat-card"><div class="sc-value">12</div><div class="sc-label">Slides</div></div>
+  <div class="stat-card"><div class="sc-value">10-15</div><div class="sc-label">Minutes talking</div></div>
+  <div class="stat-card"><div class="sc-value">2</div><div class="sc-label">Modes: present + leave-behind</div></div>
+</div>
+
+<p>Cultural products lead with <strong>vision &rarr; proof of craft &rarr; market opportunity</strong>. Not problem &rarr; solution &rarr; metrics. The emotional sequence: <strong>make them feel something &rarr; show them it's real &rarr; show them it's a business.</strong></p>
+
+<p>The deck should feel like the product: beautiful, confident, restrained. Art book layout, not McKinsey. The deck IS a taste test for the product's aesthetic.</p>
+
+<hr>
+
+<h2>The 12 Slides</h2>
+
+<!-- Slide 1 -->
+<div class="slide-card">
+  <div class="slide-number">Slide 1</div>
+  <div class="slide-title">Title / Hook</div>
+  <p>Title treatment. One-sentence descriptor. No logo soup, no team photo.</p>
+  <div class="key-line">"DEZIBEL &mdash; A novel that texts you back."</div>
+  <div class="emotional-job"><strong>Job:</strong> Intrigue. The investor leans forward. This sentence does the work of a problem slide and a solution slide simultaneously.</div>
+  <p style="font-size:12px; color:var(--faint); margin-top:8px;">Design: should look like a book cover or film poster. Set the tone immediately.</p>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide-card">
+  <div class="slide-number">Slide 2</div>
+  <div class="slide-title">The Experience</div>
+  <p>What the reader actually experiences. Present tense. Show the phone.</p>
+  <ul>
+    <li>You subscribe. The following Sunday at 12:08pm, a text arrives from an unknown number.</li>
+    <li>Over 42 days, a story unfolds &mdash; two writers reconnecting after seven years of silence.</li>
+    <li>The messages arrive like real texts. You read them on your phone, in your life, in real time.</li>
+    <li>Video pieces arrive &mdash; the actors playing these characters, on film. This is a multimedia literary experience: text, video, audio, haptics.</li>
+    <li>On Day 7, you're offered a wearable device that syncs to the erotic scenes.</li>
+    <li>On Day 36, something happens that changes everything.</li>
+  </ul>
+  <div class="emotional-job"><strong>Job:</strong> Desire. The investor should want to experience this. Not understand it &mdash; want it.</div>
+  <p style="font-size:12px; color:var(--faint); margin-top:8px;">Design: show an actual phone screen with a message thread. This slide is the product.</p>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide-card">
+  <div class="slide-number">Slide 3</div>
+  <div class="slide-title">Why Now</div>
+  <p>Three forces converging:</p>
+  <ol>
+    <li><strong>Attention fatigue is a health crisis.</strong> 63% of Gen Z planned a social media detox in 2024. Slow media is a movement: Norwegian Slow TV (3M viewers), Tortoise Media (85K members at &pound;80/year). People are paying for constraint.</li>
+    <li><strong>Audio erotica proved the market.</strong> Quinn: $12M+ ARR, 440% YoY growth, 75%+ women users. Dipsea: acquired at $6M ARR. Women will pay for intimate content framed as wellness, not porn.</li>
+    <li><strong>No one has combined literary fiction with phone-native delivery.</strong> Keitai shosetsu hit 20M readers in Japan's feature phone era. The format works. It just hasn't been done well, in English, with production value.</li>
+  </ol>
+  <div class="emotional-job"><strong>Job:</strong> Inevitability. This isn't a weird idea &mdash; it's an obvious idea whose time has come.</div>
+</div>
+
+<!-- Slide 4 -->
+<div class="slide-card">
+  <div class="slide-number">Slide 4</div>
+  <div class="slide-title">Market Opportunity</div>
+  <p>TAM/SAM/SOM &mdash; honest, not inflated.</p>
+  <div class="stat-strip">
+    <div class="stat-card"><div class="sc-value">$50B</div><div class="sc-label">Sextech market (2025)</div></div>
+    <div class="stat-card"><div class="sc-value">$1.6B</div><div class="sc-label">SAM (English digital erotica)</div></div>
+    <div class="stat-card"><div class="sc-value">$12M+</div><div class="sc-label">Quinn ARR on $3.2M raised</div></div>
+  </div>
+  <p>Target Year 1: $500K&ndash;$2M (10,000&ndash;40,000 subscribers at $49&ndash;159).</p>
+  <div class="emotional-job"><strong>Job:</strong> Credibility. Not "this is a trillion-dollar market" &mdash; but "this market is real, growing, and under-served by anything with production value."</div>
+  <p style="font-size:12px; color:var(--faint); margin-top:8px;">Lead with Quinn's numbers. A real company doing $12M ARR is worth more than any TAM circle.</p>
+</div>
+
+<!-- Slide 5 -->
+<div class="slide-card">
+  <div class="slide-number">Slide 5</div>
+  <div class="slide-title">Competitive Landscape</div>
+  <p>2&times;2 matrix. Axes: <strong>Production value</strong> (low &rarr; high) vs. <strong>Delivery intimacy</strong> (passive &rarr; phone-native).</p>
+  <ul>
+    <li><strong>Quinn / Dipsea:</strong> Medium production, passive delivery (app, press play)</li>
+    <li><strong>Kindle Vella / Radish:</strong> Low production, app-native but not intimate</li>
+    <li><strong>Immersive theatre (Sleep No More):</strong> High production, in-person only</li>
+    <li><strong>DEZIBEL:</strong> High production, phone-native. The only premium single-title experience delivered through the most intimate screen you own.</li>
+  </ul>
+  <div class="key-line">"Every library model in this space has died. The market is waiting for a single premium title done right."</div>
+  <div class="emotional-job"><strong>Job:</strong> Category clarity. Dezibel creates a new quadrant. Show the white space.</div>
+</div>
+
+<!-- Slide 6 -->
+<div class="slide-card" style="border-color: var(--ink-green);">
+  <div class="slide-number"><span class="badge badge-green">Most important</span> Slide 6</div>
+  <div class="slide-title">Traction / Proof of Craft</div>
+  <p>You don't have revenue. You have something better for this audience: proof that the thing exists and is good.</p>
+  <ul>
+    <li><strong>70% written</strong> (243 pages, 7,719 lines). This is not an idea &mdash; it's a manuscript.</li>
+    <li><strong>Functional demo exists.</strong> Day 1 works. Show it on your phone right now.</li>
+    <li><strong>Cast attached and performing on film:</strong> Jodi Balfour (Ted Lasso) as Emma, Edo Van Breemen (Brasstronaut) as Hasta &mdash; not just voices, but playing their characters in video content delivered within the experience. Abbi Jacobson (Broad City / A League of Their Own) as Jane.</li>
+    <li><strong>Production team confirmed:</strong> Sound design (Eugenio), trailer director (Kiddo Films).</li>
+    <li><strong>Adrienne Matei</strong> (Guardian, 1.3M weekly readers) committed to write the piece.</li>
+    <li><strong>12,500 attendance</strong> at The Cheaper Show finale &mdash; proof Graeme can build audiences for novel formats.</li>
+  </ul>
+  <div class="emotional-job"><strong>Job:</strong> Confidence. This founder executes. The hardest part (writing the thing) is 70% done. The team is real. The press is lined up.</div>
+  <div class="callout callout-green" style="margin-top:12px;">
+    <div class="callout-title">Critical</div>
+    <p style="font-size:13px;">"70% written + cast on film + demo functional" IS the traction. Own it directly. Do not spin.</p>
+  </div>
+</div>
+
+<!-- Slide 7 -->
+<div class="slide-card">
+  <div class="slide-number">Slide 7</div>
+  <div class="slide-title">Business Model</div>
+  <p>Revenue streams, unit economics, expansion path. One slide.</p>
+  <div class="stat-strip">
+    <div class="stat-card"><div class="sc-value">$49</div><div class="sc-label">Standard (42-day experience)</div></div>
+    <div class="stat-card"><div class="sc-value">$149</div><div class="sc-label">Haptic Edition (+ Lovense)</div></div>
+    <div class="stat-card"><div class="sc-value">90%+</div><div class="sc-label">Gross margin (digital)</div></div>
+  </div>
+  <p><strong>Additional revenue:</strong> oBitchuary Substack ($3/mo), ecosystem products (Hot Ghost incense $18-28, Pyrrha charm $85-150, t-shirts $70), reread at 30% discount.</p>
+  <p><strong>Expansion:</strong> Sequel film (That Night, via Oddfellows), format licensing to other authors, international markets, paperback with exclusive ending.</p>
+  <div class="emotional-job"><strong>Job:</strong> This is a real business, not a passion project. Multiple revenue streams. High margins. Clear path from $49 subscriptions to a larger IP play.</div>
+</div>
+
+<!-- Slide 8 -->
+<div class="slide-card">
+  <div class="slide-number">Slide 8</div>
+  <div class="slide-title">Go-to-Market</div>
+  <p>Specific sequence, not a vague marketing plan:</p>
+  <ol>
+    <li><strong>T-8 weeks:</strong> Ecosystem seeding &mdash; oBitchuary, Shit Eyes singles, Hot Ghost in stores. None announce dezibel.</li>
+    <li><strong>T-4 weeks:</strong> 25 beta readers receive Day 1 with no context. Kill test: do they share organically?</li>
+    <li><strong>T-2 weeks:</strong> Free Day 1 preview &rarr; email capture &rarr; nurture (15-25% conversion vs. 2-3% cold).</li>
+    <li><strong>T-1 week:</strong> Guardian piece (Adrienne Matei, 1.3M weekly). Embargo lifts Day 3-5.</li>
+    <li><strong>Day 1:</strong> Text arrives at 12:08pm PST. No announcement.</li>
+    <li><strong>Day 7:</strong> Haptic integration goes public. Second press wave.</li>
+    <li><strong>Day 36:</strong> Emma dies. Biggest organic moment.</li>
+  </ol>
+  <div class="emotional-job"><strong>Job:</strong> Sophistication. The launch sequence is designed. The same mind that wrote the novel is running the go-to-market.</div>
+</div>
+
+<!-- Slide 9 -->
+<div class="slide-card">
+  <div class="slide-number">Slide 9</div>
+  <div class="slide-title">Team + Advisors</div>
+  <p>Frame as a production &mdash; credits, not org chart.</p>
+  <ol>
+    <li><strong>Own the solo founder model:</strong> "I wrote it, I'm directing the trailer, I'm running the launch. This is an author-led project, not a startup looking for a CTO."</li>
+    <li><strong>Production team:</strong> Sound (Eugenio), trailer (Kiddo Films). All confirmed, all named.</li>
+    <li><strong>Advisors:</strong> Ryan Holmes (tech), Michael Tippett (business, multiple exits).</li>
+    <li><strong>First hire post-raise:</strong> Operations producer (Millardo or Elliat, both identified).</li>
+    <li><strong>Cast as credibility:</strong> Jodi Balfour and Abbi Jacobson lend more credibility than any CTO slide.</li>
+  </ol>
+  <div class="key-line">"This is structured like a film production, not a startup. The writer-director model works in film. It works here."</div>
+  <div class="emotional-job"><strong>Job:</strong> Trust. They're investing in Graeme. Show the judgment to surround yourself with the right people &mdash; and that those people already said yes.</div>
+</div>
+
+<!-- Slide 10 -->
+<div class="slide-card" style="border-color: var(--ink-amber);">
+  <div class="slide-number"><span class="badge badge-amber">The Ask</span> Slide 10</div>
+  <div class="slide-title">The Ask</div>
+  <div class="stat-strip">
+    <div class="stat-card"><div class="sc-value">$300K</div><div class="sc-label">Green light</div></div>
+    <div class="stat-card"><div class="sc-value">$500K</div><div class="sc-label">Full launch</div></div>
+    <div class="stat-card"><div class="sc-value">$8M</div><div class="sc-label">SAFE cap</div></div>
+  </div>
+  <p><strong>Structure:</strong> Rolling post-money SAFE at $8M cap. Checks from $10K. SAFE stays open.</p>
+  <p><strong>Use of funds:</strong></p>
+  <ul>
+    <li>Finish the product (editing, cast recording, video): ~30%</li>
+    <li>Build the platform (app, delivery at scale): ~25%</li>
+    <li>Launch (brand, trailer, marketing): ~25%</li>
+    <li>Operations (legal, producer, contingency): ~20%</li>
+  </ul>
+  <p><strong>Milestones this capital reaches:</strong></p>
+  <ol>
+    <li>Product complete and production-ready</li>
+    <li>Platform built and tested at scale</li>
+    <li>First cohort launched</li>
+    <li>Revenue data from first 42 days &mdash; the evidence for a larger raise</li>
+  </ol>
+  <div class="callout callout-amber" style="margin-top:12px;">
+    <div class="callout-title">Do not include</div>
+    <p style="font-size:13px;">5-year financial projections. Research is unanimous: at pre-seed, they signal naivety. Show milestones instead.</p>
+  </div>
+  <div class="emotional-job"><strong>Job:</strong> Clarity and confidence. "This is what I need, this is what it buys, this is what you'll see."</div>
+</div>
+
+<!-- Slide 11 -->
+<div class="slide-card">
+  <div class="slide-number">Slide 11</div>
+  <div class="slide-title">Vision / Where This Goes</div>
+  <p>The $100M picture. Not as a projection &mdash; as a vision.</p>
+  <ul>
+    <li><strong>Dezibel is Title 1.</strong> The format is the platform.</li>
+    <li><strong>Sequel:</strong> "That Night" &mdash; a film. Oddfellows Pictures ($200M+ global sales) are close friends and potential producers.</li>
+    <li><strong>Format licensing:</strong> Other authors publish through the dezibel delivery system. Dezibel becomes a label, not just a book.</li>
+    <li><strong>International:</strong> The format is language-agnostic. SMS works everywhere.</li>
+    <li><strong>Adjacent:</strong> A24, Neon &mdash; existing relationships. The IP has film, TV, and adaptation value.</li>
+  </ul>
+  <div class="emotional-job"><strong>Job:</strong> Ambition. "You're not investing in a book. You're investing in the first title of a new medium."</div>
+</div>
+
+<!-- Slide 12 -->
+<div class="slide-card">
+  <div class="slide-number">Slide 12</div>
+  <div class="slide-title">Closing</div>
+  <div class="key-line">"A novel that texts you back. Let me show you Day 1."</div>
+  <div class="emotional-job"><strong>Job:</strong> The offer to demo. Hand them your phone. Let them read the first few messages. The product sells itself.</div>
+</div>
+
+<hr>
+
+<h2>Handling Specific Concerns</h2>
+
+<div class="concern-card">
+  <h4>The erotic content angle</h4>
+  <p><strong>Do not lead with it. Do not hide it.</strong></p>
+  <p>"The story includes erotic content &mdash; it's literary fiction about desire and intimacy, not pornography. The haptic integration is an opt-in enhancement, not the core product. Quinn proved the market: $12M ARR, 75% women, positioned as sexual wellness."</p>
+  <p style="font-size:12px; color:var(--faint); margin-top:6px;">Language to use: "intimate content," "erotic scenes," "sexual wellness." Not: "porn," "adult content," "NSFW."</p>
+</div>
+
+<div class="concern-card">
+  <h4>Solo founder</h4>
+  <p>"This is a writer-director project. I wrote it, I'll direct the trailer, I'm designing the launch. That's not a gap &mdash; that's the point. The operations producer is the first hire post-raise, and I have two candidates."</p>
+</div>
+
+<div class="concern-card">
+  <h4>Financial projections</h4>
+  <p>Show unit economics at $49 and $149 (margins), break-even subscriber count (~10,000 on $500K), Quinn as revenue comp ($12M ARR on $3.2M raised &mdash; 3.75x return on capital in ARR alone).</p>
+</div>
+
+<div class="concern-card">
+  <h4>One-time purchase, not subscription</h4>
+  <p>"Every library model in serialized fiction has died &mdash; Kindle Vella, Radish, Hooked. Dezibel is an experience you buy once, like a concert ticket. $49 for 42 days. The scarcity is real &mdash; you were there or you weren't."</p>
+  <p style="margin-top:6px;">"Recurring revenue comes from new titles, new cohorts, the Substack, and ecosystem products."</p>
+</div>
+
+<hr>
+
+<h2>Pre-Meeting Checklist</h2>
+
+<ul class="checklist">
+  <li>Demo on your phone &mdash; charged, loaded, ready to hand over</li>
+  <li>Deck exported as PDF for forwarding after the meeting</li>
+  <li>Know the SAFE terms cold: $8M cap, rolling, checks from $10K</li>
+  <li>Prepare 2-minute verbal pitch (no slides) for informal settings</li>
+  <li>Quinn numbers memorized: $12M ARR, $3.2M raised, 75% women, 440% YoY</li>
+  <li>Budget breakdown ready if asked (not in the deck, but in your head)</li>
+  <li>Know your "what if this doesn't work" answer: "The novel gets published traditionally. The format research has value. The IP exists regardless."</li>
+</ul>
+
+<hr>
+
+<h2>UNVERIFIED Items</h2>
+
+<div class="callout">
+  <div class="callout-title">Unverified</div>
+  <p style="font-size:13px;"><strong>$49 price point</strong> &mdash; No A/B test, no WTP survey. If pushed: "Price is untested. First cohort is the test."</p>
+</div>
+
+<div class="callout">
+  <div class="callout-title">Unverified</div>
+  <p style="font-size:13px;"><strong>Lovense wholesale pricing</strong> &mdash; Haptic margins depend on wholesale cost (8-44% range). Say "margins depend on wholesale terms we're negotiating."</p>
+</div>
+
+<div class="callout">
+  <div class="callout-title">Unverified</div>
+  <p style="font-size:13px;"><strong>Subscriber targets</strong> &mdash; Funnel modeling shows 88 (base) to 377 (bull). Free preview funnel could push to 2,900+, but not built yet. Don't promise a number.</p>
+</div>
+
+<div class="callout callout-amber">
+  <div class="callout-title">Timing risk</div>
+  <p style="font-size:13px;"><strong>Guardian piece timing</strong> &mdash; Day 1 funnel depends on the piece running pre-launch or Day 3-5. Adrienne is committed but timing is not locked.</p>
+</div>
+
+<hr>
+
+<h2>Reference Decks to Study</h2>
+
+<ul class="ref-list">
+  <li><strong>MasterClass (Series A, 2015)</strong> &mdash; Led with talent and production value. Raised pre-revenue on vision + proof of craft.</li>
+  <li><strong>Calm (seed, 2012)</strong> &mdash; "Do Nothing for Two Minutes." Pitched the cultural moment, not the app.</li>
+  <li><strong>Quinn (seed, $3.2M, 2022)</strong> &mdash; Audio erotica framed as sexual wellness. "If I had gone in and simply pitched a sex angle then I don't think we would have got the funding."</li>
+  <li><strong>Airbnb (seed, 2008)</strong> &mdash; 10 slides. The magic was showing the actual product. The product sold itself.</li>
+  <li><strong>Legion M (2022, $11M)</strong> &mdash; Media/entertainment raises work when investors feel like participants.</li>
+</ul>
+
+<hr>
+
+<p style="font-size:11px; color:var(--faint); text-align:center; margin-top:40px;">
+  Sources: YC pitch deck guidance, SVB investor deck guide, Carta pre-seed data, DocSend research, Fortune/Fast Company (Quinn), Sifted (sextech fundraising). Full source list in vault.
+</p>
+
+</main>
+
+</body>
+</html>

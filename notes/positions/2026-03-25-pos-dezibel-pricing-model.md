@@ -3,11 +3,11 @@ title: "Dezibel pricing: experience pricing ($49-199) vs content pricing ($5-15)
 type: position
 classification: belief
 testable: true
-stage: exploring
-confidence: medium
+stage: held
+confidence: high
 tags: [dezibel, pricing, revenue, strategy]
 created: 2026-03-25
-updated: 2026-03-25
+updated: 2026-04-03
 area: "[[writing-and-film]]"
 parent: "[[dezibel-100m-goal]]"
 ---
@@ -38,3 +38,4 @@ Dezibel should price as an experience ($49-199), not as content ($5-15). The 42-
 - **2026-03-25** — Position formed from marketing research + budget analysis. The $100M goal requires experience pricing — content pricing makes the math impossible at any realistic subscriber count.
 - **2026-03-26** — SUPPORTS by [[kill-test-full-project]]: peak writing quality conditionally justifies $49 experience pricing (via /digest)
 - **2026-03-26** — CHALLENGES by [[kill-test-full-project]]: $49 price entirely unverified — no A/B test, no precedent (via /digest)
+- **2026-04-03** — Promoted from exploring/medium to held/high. "A dollar a day" framing crystallized conviction — $49 over 42 days. Still unverified by market, but this is now a taste call backed by Quinn comp ($12M ARR on premium positioning) and margin math (95%+ gross). First cohort will be the real test.

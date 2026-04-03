@@ -1,0 +1,74 @@
+feature: story-map-editor
+project: dezibel-editor
+display_name: "Story Map Editor"
+status: wip
+created: 2026-04-02
+updated: 2026-04-02
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: afba016
+    date: 2026-04-02
+    message: "Replace beat sheet with horizontal sidescrolling kanban view"
+    files_touched: 1
+    classification: feature
+  - hash: 58db42c
+    date: 2026-04-02
+    message: "Beat sheet: 363 structural beats from story map, horizontal sidescroll"
+    files_touched: 1
+    classification: feature
+  - hash: 864a60e
+    date: 2026-04-02
+    message: "Inject master doc prose into story map beats (Days 1-23)"
+    files_touched: 1
+    classification: content
+  - hash: 86805d9
+    date: 2026-04-02
+    message: "Bulletproof story map editor: 20 bug fixes, UI hardening, retire old editor"
+    files_touched: 2
+    classification: fix
+  - hash: c7ac9c8
+    date: 2026-04-02
+    message: "Add 4 bulletproofing systems: watchdog, export verify, toggle snapshots, enhanced self-test"
+    files_touched: 1
+    classification: feature
+  - hash: 87924cf
+    date: 2026-04-02
+    message: "Fix 3 bugs found in kill test: renderNav, CSS vars, speaker HTML"
+    files_touched: 1
+    classification: fix
+  - hash: 7f867fd
+    date: 2026-04-02
+    message: "Silence routine save notifications in status bar"
+    files_touched: 1
+    classification: fix
+  - hash: 85f4030
+    date: 2026-04-02
+    message: "Literary aesthetic overhaul + 5 new features, 23 bugs fixed"
+    files_touched: 1
+    classification: feature
+  - hash: b864ec8
+    date: 2026-04-02
+    message: "Harden editor: 14 bugs fixed across 11 kill test passes"
+    files_touched: 1
+    classification: fix
+  - hash: cb907bc
+    date: 2026-04-02
+    message: "Fix 3 bugs: parking export markers, watchdog bypass on tab reclaim, ME re-edit guard"
+    files_touched: 1
+    classification: fix
+  - hash: b86a11e
+    date: 2026-04-02
+    message: "Fix 5 more bugs: undo in ME, null guards, editor flush, dead code"
+    files_touched: 1
+    classification: fix
+  - hash: 831c39a
+    date: 2026-04-02
+    message: "Fix 3 break-test bugs: persistent save-fail banner, hide Open in ME for new beats, block undo behind modals"
+    files_touched: 1
+    classification: fix
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [editor, story-map, kanban, prose-injection]

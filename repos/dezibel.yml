@@ -1,9 +1,9 @@
 # Registered repo: dezibel
 name: dezibel
 path: "/Users/graeme/Development/dezibel-editor"
-description: "Serialized novel delivered over iMessage — story, editor tooling, strategy"
+description: "42-day multimedia literary experience — story, editor tooling, strategy, fundraising"
 status: active
 primary_area: writing-and-film
 registered: 2026-03-24
-updated: 2026-03-31
-notes: "70% through writing. React Native + SMS triggers architecture. Repo contains story content, 6 Python editor tools, beat sheet editor (HTML/JS), strategy docs, character sheets, theme tracking."
+updated: 2026-04-03
+notes: "70% through writing. React Native + SMS triggers architecture. Story map editor (kanban, 363 beats) replaced beat editor. Days 1-23 have prose injected. Repo contains story content, editor tools, strategy docs (pitch deck, financial leave-behind), character sheets, theme tracking. Rolling SAFE at $8M cap, raising $700-850K."

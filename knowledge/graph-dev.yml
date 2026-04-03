@@ -21,3 +21,29 @@ entities:
     resolution: "Removed piped command; sandbox does not support arbitrary shell piping in skill scripts"
     files:
       - .claude/skills/the-brain/sync/SKILL.md
+  three-act-to-five-act-correction:
+    type: solution
+    repo: dezibel-editor
+    date: 2026-04-01
+    problem: "Entire repo used 3-act structure but the narrative is actually 5 acts"
+    root_cause: "Original scaffolding assumed 3-act; story evolved beyond that"
+    fix: "Corrected 54 files across characters, themes, strategy, story docs to 5-act structure"
+    files:
+      - story/outline/act-outline.md
+      - strategy/plan-to-launch.md
+  story-map-editor-replaces-beat-editor:
+    type: dead-end
+    repo: dezibel-editor
+    date: 2026-04-02
+    tried: "beat-editor-loaded.html as the canonical editor (3,442 lines)"
+    failed_because: "Story map editor proved more capable — horizontal kanban view, prose injection, bulletproofing systems all built there. Maintaining two editors was unsustainable."
+    replaced_by: "artifacts/readable/dezibel-story-map.html as single canonical editor"
+  editor-prose-injection:
+    type: solution
+    repo: dezibel-editor
+    date: 2026-04-02
+    problem: "Story beats existed as structural outlines without actual prose — editor couldn't show writing progress"
+    root_cause: "Prose lived in master-doc, not in the beat-level editor"
+    fix: "Injected 7,236 lines of master doc prose into story map beats for Days 1-23. Editor now shows actual writing alongside structural beats."
+    files:
+      - artifacts/readable/dezibel-story-map.html

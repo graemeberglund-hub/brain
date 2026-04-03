@@ -8,19 +8,21 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-03-31
-    summary: "Beat editor gained drag-reorder, speaker attribution, view toggle, and 5-layer backup hardening."
+    last_synced: 2026-04-02
+    summary: "Story map editor replaced beat editor as canonical tool. Prose injected for Days 1-23. Horizontal kanban view, 4 bulletproofing systems, literary aesthetic overhaul. 45+ bugs fixed across multiple kill test passes. Repo corrected from 3-act to 5-act structure (54 files). Old editor retired."
     active_areas:
-      - editor/beat-editor-loaded.html
+      - artifacts/readable/dezibel-story-map.html
       - tools/auto-backup.sh
-      - editor/launch.sh
+    next_step: "Inject prose for Days 24-42. Continue writing critical scenes."
+    context_to_restore: "Story map editor is the single canonical editor now. beat-editor-loaded.html is retired. Days 1-23 have prose, Days 24-42 do not."
   brain:
     type: project
     repo: brain
     path: /Users/graeme/Desktop/DEVELOPMENT/brain
     status: active
-    last_synced: 2026-03-31
-    summary: "Sync skill sandbox fix, dezibel repo path correction, exploratory session handoff."
+    last_synced: 2026-04-02
+    summary: "Three new strategic positions (label/platform, global delivery, graveyard thesis). Market analysis integrated. Pitch deck structure researched. Project note updated with video content, rolling SAFE structure."
     active_areas:
-      - .claude/skills/the-brain/sync/SKILL.md
-      - repos/dezibel.yml
+      - notes/projects/dezibel.md
+      - notes/positions/
+      - notes/references/

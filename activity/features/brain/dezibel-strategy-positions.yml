@@ -1,0 +1,42 @@
+feature: dezibel-strategy-positions
+project: brain
+display_name: "Dezibel Strategy Positions + Market Research"
+status: completed
+created: 2026-04-01
+updated: 2026-04-01
+initiative: null
+inference_confidence: 0.9
+commits:
+  - hash: 0b4e0c8
+    date: 2026-04-01
+    message: "position: $1.55B graveyard thesis — library model dead, premium experience wins"
+    files_touched: 1
+    classification: content
+  - hash: 888c048
+    date: 2026-04-01
+    message: "position: multi-channel global delivery — WhatsApp/SMS/app + Spanish/Mandarin expansion"
+    files_touched: 1
+    classification: content
+  - hash: d969f61
+    date: 2026-04-01
+    message: "position: Dezibel as label/platform — A24 model for messaging-delivered fiction"
+    files_touched: 1
+    classification: content
+  - hash: 23f584a
+    date: 2026-04-01
+    message: "ref: Dezibel global label SOM — bottom-up 5-year model"
+    files_touched: 1
+    classification: content
+  - hash: d4e9e29
+    date: 2026-04-01
+    message: "ref: Dezibel market analysis — sizing, trends, gaps, capital flows"
+    files_touched: 1
+    classification: content
+learnings: []
+related_positions:
+  - dezibel-graveyard-thesis
+  - dezibel-label-platform
+  - dezibel-global-delivery
+applied_taste_positions: []
+cross_repo: []
+tags: [dezibel, strategy, market-analysis, positions]

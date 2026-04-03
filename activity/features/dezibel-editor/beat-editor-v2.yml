@@ -1,9 +1,10 @@
 name: beat-editor-v2
 repo: dezibel-editor
-status: active
+status: retired
 started: 2026-03-31
-last_activity: 2026-03-31
-description: "Beat sheet editor with drag-reorder, speaker attribution, view toggle, and 5-layer backup"
+last_activity: 2026-04-02
+description: "Beat sheet editor — superseded by story map editor on 2026-04-02. Old editor retired (3,474 lines removed)."
+replaced_by: story-map-editor
 commits:
   - hash: 3bb2118272b38c74cba9de08e1d8cc139a50b6fa
     date: 2026-03-31

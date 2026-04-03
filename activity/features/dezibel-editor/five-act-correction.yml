@@ -1,0 +1,20 @@
+feature: five-act-correction
+project: dezibel-editor
+display_name: "5-Act Structure Correction"
+status: completed
+created: 2026-04-01
+updated: 2026-04-01
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: 3b284dc
+    date: 2026-04-01
+    message: "Correct entire repo from 3-act to 5-act structure"
+    files_touched: 54
+    classification: refactor
+learnings:
+  - "Original scaffolding assumed 3-act; story evolved to 5 acts. 54 files needed correction."
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [narrative-structure, refactor]

@@ -1,0 +1,39 @@
+feature: editor-hardening-apr01
+project: dezibel-editor
+display_name: "Editor Hardening (April 1)"
+status: completed
+created: 2026-04-01
+updated: 2026-04-01
+initiative: null
+inference_confidence: 0.9
+commits:
+  - hash: 8027d62
+    date: 2026-04-01
+    message: "Fix editor: stop permission prompts, sync text, fix char count, preserve header"
+    files_touched: 1
+    classification: fix
+  - hash: 7f4f9d1
+    date: 2026-04-01
+    message: "Fix backup chain: sync Desktop FileLink state into repo, auto-commit"
+    files_touched: 1
+    classification: fix
+  - hash: 22e420b
+    date: 2026-04-01
+    message: "Fix critical issues found in kill test"
+    files_touched: 1
+    classification: fix
+  - hash: 8f62b45
+    date: 2026-04-01
+    message: "Add search (Cmd+F) to editor, cap undo stack at 30"
+    files_touched: 1
+    classification: feature
+  - hash: e481eae
+    date: 2026-04-01
+    message: "Fix 8 editor flaws found in deep adversarial audit"
+    files_touched: 1
+    classification: fix
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [editor, hardening, bugs]

@@ -1,0 +1,21 @@
+feature: investor-materials
+project: dezibel-editor
+display_name: "Investor Materials + Project Showcase"
+status: completed
+created: 2026-04-03
+updated: 2026-04-03
+initiative: null
+inference_confidence: 0.9
+commits:
+  - hash: de71b09
+    date: 2026-04-03
+    message: "investor deck fixes + financial leave-behind + pitch deck structure"
+    files_touched: 7
+    classification: content
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo:
+  - repo: brain
+    feature: dezibel-fundraising-prep
+tags: [fundraising, pitch-deck, investor, leave-behind]

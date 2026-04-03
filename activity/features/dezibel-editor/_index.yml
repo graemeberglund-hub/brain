@@ -1,5 +1,5 @@
 repo: dezibel-editor
-last_synced: 2026-04-02
+last_synced: 2026-04-03
 features:
   - slug: beat-editor-v2
     display_name: "Beat Editor v2"
@@ -35,5 +35,19 @@ features:
     initiative: null
     commit_count: 1
     date_range: [2026-04-01, 2026-04-01]
+    inference_confidence: 0.95
+  - slug: investor-materials
+    display_name: "Investor Materials + Project Showcase"
+    status: completed
+    initiative: null
+    commit_count: 1
+    date_range: [2026-04-03, 2026-04-03]
+    inference_confidence: 0.9
+  - slug: trailer-meeting-prep
+    display_name: "Trailer Meeting Prep (Milardo/Kiddo)"
+    status: completed
+    initiative: null
+    commit_count: 1
+    date_range: [2026-04-03, 2026-04-03]
     inference_confidence: 0.95
 initiatives: []

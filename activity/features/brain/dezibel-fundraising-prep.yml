@@ -1,0 +1,23 @@
+feature: dezibel-fundraising-prep
+project: brain
+display_name: "Dezibel Fundraising Prep"
+status: wip
+created: 2026-04-03
+updated: 2026-04-03
+initiative: null
+inference_confidence: 0.85
+commits:
+  - hash: ca85f00
+    date: 2026-04-03
+    message: "dezibel fundraising session: pitch deck, financial leave-behind, pricing conviction, execution tracking fix"
+    files_touched: 19
+    classification: content
+learnings: []
+related_positions:
+  - dezibel-pricing-model
+  - dezibel-raise-strategy
+applied_taste_positions: []
+cross_repo:
+  - repo: dezibel-editor
+    feature: investor-materials
+tags: [dezibel, fundraising, pitch-deck, safe]

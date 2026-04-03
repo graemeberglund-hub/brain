@@ -8,21 +8,22 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-04-02
-    summary: "Story map editor replaced beat editor as canonical tool. Prose injected for Days 1-23. Horizontal kanban view, 4 bulletproofing systems, literary aesthetic overhaul. 45+ bugs fixed across multiple kill test passes. Repo corrected from 3-act to 5-act structure (54 files). Old editor retired."
+    last_synced: 2026-04-03
+    summary: "Story map editor stable (13,000 lines, 45+ bugs fixed). Investor materials created: pitch deck structure, financial leave-behind, project showcase PDF. Trailer production meeting with Milardo/Kiddo prep'd. Days 1-23 have prose; Days 24-42 need injection."
     active_areas:
       - artifacts/readable/dezibel-story-map.html
-      - tools/auto-backup.sh
-    next_step: "Inject prose for Days 24-42. Continue writing critical scenes."
-    context_to_restore: "Story map editor is the single canonical editor now. beat-editor-loaded.html is retired. Days 1-23 have prose, Days 24-42 do not."
+      - strategy/fundraising/
+      - artifacts/readable/milardo-meeting-prep.html
+    next_step: "Inject prose for Days 24-42. Milardo trailer meeting within 2 weeks. Continue writing critical scenes."
+    context_to_restore: "Story map editor is canonical. Investor deck + leave-behind ready for meetings. Milardo meeting prep on Desktop as PDF."
   brain:
     type: project
     repo: brain
     path: /Users/graeme/Desktop/DEVELOPMENT/brain
     status: active
-    last_synced: 2026-04-02
-    summary: "Three new strategic positions (label/platform, global delivery, graveyard thesis). Market analysis integrated. Pitch deck structure researched. Project note updated with video content, rolling SAFE structure."
+    last_synced: 2026-04-03
+    summary: "Fundraising structure finalized (rolling SAFE $8M cap). Pitch deck researched. Execution tracking gaps identified and partially addressed. Self-audit revealed 6 stale 'This Week' actions from March 29."
     active_areas:
       - notes/projects/dezibel.md
       - notes/positions/
-      - notes/references/
+      - knowledge/graph-projects.yml

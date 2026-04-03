@@ -1,5 +1,5 @@
 repo: brain
-last_synced: 2026-04-02
+last_synced: 2026-04-03
 features:
   - slug: sync-skill-fixes
     display_name: "Sync Skill Fixes"
@@ -15,4 +15,11 @@ features:
     commit_count: 5
     date_range: [2026-04-01, 2026-04-01]
     inference_confidence: 0.9
+  - slug: dezibel-fundraising-prep
+    display_name: "Dezibel Fundraising Prep"
+    status: wip
+    initiative: null
+    commit_count: 1
+    date_range: [2026-04-03, 2026-04-03]
+    inference_confidence: 0.85
 initiatives: []

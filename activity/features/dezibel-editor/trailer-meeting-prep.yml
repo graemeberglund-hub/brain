@@ -1,0 +1,19 @@
+feature: trailer-meeting-prep
+project: dezibel-editor
+display_name: "Trailer Meeting Prep (Milardo/Kiddo)"
+status: completed
+created: 2026-04-03
+updated: 2026-04-03
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: ef0b30b
+    date: 2026-04-03
+    message: "Add Milardo/Kiddo trailer meeting prep document"
+    files_touched: 1
+    classification: content
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [trailer, production, kiddo, milardo]

@@ -38,6 +38,13 @@ entities:
     tried: "beat-editor-loaded.html as the canonical editor (3,442 lines)"
     failed_because: "Story map editor proved more capable — horizontal kanban view, prose injection, bulletproofing systems all built there. Maintaining two editors was unsustainable."
     replaced_by: "artifacts/readable/dezibel-story-map.html as single canonical editor"
+  sprint-orchestrator-nested-session:
+    type: dead-end
+    repo: dezibel-editor
+    date: 2026-04-04
+    tried: "run-research-sprint skill — bash orchestrator spawning nested claude CLI subprocesses for 5-phase research"
+    failed_because: "claude CLI can't spawn inside another Claude Code session (CLAUDECODE env var blocks nested sessions). Recon phase burned $8.68 but returned empty output."
+    replaced_by: "Direct Agent tool calls with parallel agents — achieved same research scope without nested sessions"
   editor-prose-injection:
     type: solution
     repo: dezibel-editor

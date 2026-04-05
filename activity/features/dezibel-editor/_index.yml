@@ -1,5 +1,5 @@
 repo: dezibel-editor
-last_synced: 2026-04-03
+last_synced: 2026-04-05
 features:
   - slug: beat-editor-v2
     display_name: "Beat Editor v2"
@@ -50,4 +50,18 @@ features:
     commit_count: 1
     date_range: [2026-04-03, 2026-04-03]
     inference_confidence: 0.95
+  - slug: live-iteration-system-v2
+    display_name: "Live Iteration System v2 (Research-Hardened)"
+    status: wip
+    initiative: null
+    commit_count: 3
+    date_range: [2026-04-04, 2026-04-05]
+    inference_confidence: 0.95
+  - slug: micro-participation-research
+    display_name: "Micro-Participation Research"
+    status: completed
+    initiative: null
+    commit_count: 1
+    date_range: [2026-04-05, 2026-04-05]
+    inference_confidence: 0.9
 initiatives: []

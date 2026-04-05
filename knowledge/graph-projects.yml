@@ -8,14 +8,15 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-04-03
-    summary: "Story map editor stable (13,000 lines, 45+ bugs fixed). Investor materials created: pitch deck structure, financial leave-behind, project showcase PDF. Trailer production meeting with Milardo/Kiddo prep'd. Days 1-23 have prose; Days 24-42 need injection."
+    last_synced: 2026-04-05
+    summary: "Live iteration system designed (v2, research-hardened, 11 parts). Kill-tested with 5 CRITICAL findings — needs Minimum Viable version. Deep research across 10 platforms + micro-participation mechanics. Parent-facing PDF explainer created. Days 1-23 have prose; Days 24-42 need injection."
     active_areas:
+      - strategy/operations/live-iteration-system.md
+      - analysis/litigation/
+      - analysis/micro-participation-research.md
       - artifacts/readable/dezibel-story-map.html
-      - strategy/fundraising/
-      - artifacts/readable/milardo-meeting-prep.html
-    next_step: "Inject prose for Days 24-42. Milardo trailer meeting within 2 weeks. Continue writing critical scenes."
-    context_to_restore: "Story map editor is canonical. Investor deck + leave-behind ready for meetings. Milardo meeting prep on Desktop as PDF."
+    next_step: "Write Minimum Viable Iteration System section. Decide on micro-participation (cosmetic choices vs. reflection prompts). Continue writing Days 24-42. Milardo trailer meeting within 2 weeks."
+    context_to_restore: "Live iteration system is comprehensive but operationally oversized for a one-person team. Kill test in analysis/litigation/. Research reports in analysis/. GitHub backup for 4 repos still pending."
   brain:
     type: project
     repo: brain

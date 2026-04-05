@@ -1,0 +1,24 @@
+feature: micro-participation-research
+project: dezibel-editor
+display_name: "Micro-Participation Research"
+status: completed
+created: 2026-04-05
+updated: 2026-04-05
+initiative: null
+inference_confidence: 0.9
+commits:
+  - hash: 18ce99e
+    date: 2026-04-05
+    message: "Deep research: kill test, cross-reference, micro-participation"
+    files_touched: 4
+    classification: exploration
+learnings:
+  - "Micro-participation works when it changes the reader, not the story"
+  - "Netflix abandoned full branching (Bandersnatch) — unsustainable for serialized content"
+  - "Strongest mechanic for Dezibel: reflection prompts in the gap between installments, not in-stream choices"
+  - "Spotify Wrapped (retroactive participation) reached 200M users in 24h — selection-as-participation scales better than branching"
+  - "7 design principles: optional, embedded, question-is-the-mechanic, selection-as-participation, retroactive, synchronized, gap-is-the-space"
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [gamification, reader-engagement, research, participation]

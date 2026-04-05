@@ -1,0 +1,37 @@
+feature: live-iteration-system-v2
+project: dezibel-editor
+display_name: "Live Iteration System v2 (Research-Hardened)"
+status: wip
+created: 2026-04-04
+updated: 2026-04-05
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: f8314f2
+    date: 2026-04-04
+    message: "[sprint] phase 1/5 orient — business context extraction"
+    files_touched: 1
+    classification: exploration
+  - hash: 010ca28
+    date: 2026-04-04
+    message: "Live iteration system v2: research-backed upgrades (Parts 10-11), cross-platform findings"
+    files_touched: 1
+    classification: feature
+  - hash: 18ce99e
+    date: 2026-04-05
+    message: "Deep research: kill test, cross-reference, micro-participation"
+    files_touched: 4
+    classification: exploration
+learnings:
+  - "Sprint orchestrator (run-research-sprint) can't spawn nested claude CLI sessions — CLAUDECODE env var blocks it"
+  - "Sequential testing reduces sample needs 20-80% but still unreliable at n=50-200 for detecting 5% changes"
+  - "Kill test found 5 CRITICAL issues — system is intellectually sound but operationally oversized for one person"
+  - "8 unsolved industry gaps identified — no existing platform has built within-installment engagement tracking for push-delivered text"
+related_positions:
+  - 2026-04-01-pos-serialized-fiction-graveyard-thesis
+applied_taste_positions:
+  - position: "serialized-fiction-graveyard-thesis"
+    date: 2026-04-05
+    reasoning: "Cross-reference research validated graveyard thesis — $1.55B library model failures vs Quinn premium model survival"
+cross_repo: []
+tags: [iteration, analytics, strategy, research, adversarial]

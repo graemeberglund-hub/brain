@@ -9,14 +9,15 @@ entities:
     path: /Users/graeme/Development/dezibel-editor
     status: active
     last_synced: 2026-04-05
-    summary: "Live iteration system designed (v2, research-hardened, 11 parts). Kill-tested with 5 CRITICAL findings — needs Minimum Viable version. Deep research across 10 platforms + micro-participation mechanics. Parent-facing PDF explainer created. Days 1-23 have prose; Days 24-42 need injection."
+    summary: "Cohort community ecology designed — 'The Living Room' with river-lock architecture, authored artifacts, free room alongside paid story, sequel-seeding mechanics. Kill-tested (character accounts removed as CRITICAL risk). Platform research across 25+ systems. Live iteration system v2 complete and kill-tested. Days 1-23 have prose; Days 24-42 need writing."
     active_areas:
+      - analysis/cohort-community-system.md
+      - analysis/litigation/ecology-kill-test-2026-04-05.md
+      - strategy/product/cohort-community-research.md
       - strategy/operations/live-iteration-system.md
       - analysis/litigation/
-      - analysis/micro-participation-research.md
-      - artifacts/readable/dezibel-story-map.html
-    next_step: "Write Minimum Viable Iteration System section. Decide on micro-participation (cosmetic choices vs. reflection prompts). Continue writing Days 24-42. Milardo trailer meeting within 2 weeks."
-    context_to_restore: "Live iteration system is comprehensive but operationally oversized for a one-person team. Kill test in analysis/litigation/. Research reports in analysis/. GitHub backup for 4 repos still pending."
+    next_step: "Validate community assumption with test readers. Write Minimum Viable Iteration System. Continue writing Days 24-42. Milardo trailer meeting within 2 weeks. Platform build when budget arrives."
+    context_to_restore: "Community ecology is designed but UNVERIFIED — need test reader feedback on whether they'd want a discussion space. Character accounts removed; artifacts are authored content only. Circle.so MVP at $219/month. Kill test at analysis/litigation/ecology-kill-test-2026-04-05.md. GitHub backup for 4 repos still pending."
   brain:
     type: project
     repo: brain

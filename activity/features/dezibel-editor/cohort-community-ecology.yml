@@ -1,0 +1,27 @@
+feature: cohort-community-ecology
+project: dezibel-editor
+display_name: "Cohort Community Ecology (The Living Room)"
+status: wip
+created: 2026-04-05
+updated: 2026-04-05
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: 78ab178
+    date: 2026-04-05
+    message: "Cohort community ecology: platform research, kill test, sprint prompts, synthesized design"
+    files_touched: 6
+    classification: exploration
+learnings:
+  - "Character accounts posing as real people: CRITICAL legal/parasocial risk — removed from design"
+  - "Believability of planted content has 1-3 cohort shelf life before internet documents it — design content that works after exposure"
+  - "Maven cohort courses show 96% Week 1-to-2 retention — validates cohort community model"
+  - "Circle.so Business plan ($219/month) is the MVP platform — cohort-native, API for automation, audience-appropriate mobile UX"
+  - "River lock architecture (rooms close behind you) eliminates spoiler problem structurally without moderation"
+  - "Optimal cohort size for creative discussion: 45-50 (research-backed)"
+  - "Room is free alongside paid story — becomes word-of-mouth engine and sequel demand builder"
+related_positions:
+  - 2026-04-01-pos-serialized-fiction-graveyard-thesis
+applied_taste_positions: []
+cross_repo: []
+tags: [community, product, research, moderation, ecology, sequel-seeding]

@@ -1,0 +1,19 @@
+feature: delivery-platform-research
+project: dezibel-editor
+display_name: "Delivery Platform Research (iMessage + Alternatives)"
+status: completed
+created: 2026-04-05
+updated: 2026-04-05
+initiative: null
+inference_confidence: 0.9
+commits:
+  - hash: 5b97e38
+    date: 2026-04-05
+    message: "Kill tests executed, delivery landscape mapped, scale-corrected strategy docs + PDFs"
+    files_touched: 9
+    classification: exploration
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [delivery, imessage, sendblue, native-app, platform]

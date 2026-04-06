@@ -12,6 +12,11 @@ commits:
     message: "Cohort community ecology: platform research, kill test, sprint prompts, synthesized design"
     files_touched: 6
     classification: exploration
+  - hash: 5b97e38
+    date: 2026-04-05
+    message: "Scale corrected: thousands/week with sub-room architecture, styled Vizibel PDF"
+    files_touched: 9
+    classification: refactor
 learnings:
   - "Character accounts posing as real people: CRITICAL legal/parasocial risk — removed from design"
   - "Believability of planted content has 1-3 cohort shelf life before internet documents it — design content that works after exposure"

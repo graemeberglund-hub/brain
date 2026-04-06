@@ -9,15 +9,15 @@ entities:
     path: /Users/graeme/Development/dezibel-editor
     status: active
     last_synced: 2026-04-05
-    summary: "Cohort community ecology designed — 'The Living Room' with river-lock architecture, authored artifacts, free room alongside paid story, sequel-seeding mechanics. Kill-tested (character accounts removed as CRITICAL risk). Platform research across 25+ systems. Live iteration system v2 complete and kill-tested. Days 1-23 have prose; Days 24-42 need writing."
+    summary: "Indivizibel label strategy complete (brand architecture, legal, catalogue, operations). Three kill tests executed: trademark HIGH risk (Chris Pratt's INDIVISIBLE marks), Sendblue VALIDATED (10 vendors mapped), domains CLEAR. Native iOS app identified as strongest delivery path — Communication Notifications look like texts. Scale corrected to $100M target, thousands of readers/week. Community ecology designed with sub-room architecture for massive scale. Days 1-23 have prose; Days 24-42 need writing."
     active_areas:
+      - strategy/indivizibel-label-strategy.md
+      - strategy/product/imessage-delivery-research.md
       - analysis/cohort-community-system.md
-      - analysis/litigation/ecology-kill-test-2026-04-05.md
-      - strategy/product/cohort-community-research.md
-      - strategy/operations/live-iteration-system.md
+      - strategy/operations/publishing-house-setup-guide.md
       - analysis/litigation/
-    next_step: "Validate community assumption with test readers. Write Minimum Viable Iteration System. Continue writing Days 24-42. Milardo trailer meeting within 2 weeks. Platform build when budget arrives."
-    context_to_restore: "Community ecology is designed but UNVERIFIED — need test reader feedback on whether they'd want a discussion space. Character accounts removed; artifacts are authored content only. Circle.so MVP at $219/month. Kill test at analysis/litigation/ecology-kill-test-2026-04-05.md. GitHub backup for 4 repos still pending."
+    next_step: "Trademark attorney consultation (INDIVIZIBEL vs INDIVISIBLE). Register domains immediately. Sendblue sandbox test. Begin native iOS app prototype (Communication Notifications). Continue writing Days 24-42. Milardo trailer meeting within 2 weeks."
+    context_to_restore: "Label strategy at strategy/indivizibel-label-strategy.md. Trademark prosecution strategy: file Class 9 first, narrow Class 41, design mark, DuPont brief, consent agreement with Pratt's team, INVIZIBEL fallback. 10 iMessage vendors at strategy/product/imessage-delivery-research.md. Native app is the A24 move — own the theater. Scale: $100M target, build for explosion not balance. $700K raise funds scaling hard/fast through word of mouth + media. GitHub backup for 4 repos still pending."
   brain:
     type: project
     repo: brain

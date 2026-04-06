@@ -1,0 +1,24 @@
+feature: indivizibel-label-strategy
+project: dezibel-editor
+display_name: "Indivizibel Label Strategy"
+status: wip
+created: 2026-04-05
+updated: 2026-04-05
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: 3ea9ad9
+    date: 2026-04-05
+    message: "Indivizibel label strategy: brand architecture, legal setup, operations, timeline"
+    files_touched: 2
+    classification: feature
+  - hash: 5b97e38
+    date: 2026-04-05
+    message: "Kill tests executed, delivery landscape mapped, scale-corrected strategy docs + PDFs"
+    files_touched: 9
+    classification: feature
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [label, brand, legal, trademark, strategy]

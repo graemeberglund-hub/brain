@@ -45,6 +45,20 @@ entities:
     tried: "run-research-sprint skill — bash orchestrator spawning nested claude CLI subprocesses for 5-phase research"
     failed_because: "claude CLI can't spawn inside another Claude Code session (CLAUDECODE env var blocks nested sessions). Recon phase burned $8.68 but returned empty output."
     replaced_by: "Direct Agent tool calls with parallel agents — achieved same research scope without nested sessions"
+  jargon-heavy-investor-docs:
+    type: dead-end
+    repo: dezibel-editor
+    date: 2026-04-05
+    tried: "Research-agent-generated copy in strategy docs — coined terms ('The Living Room', 'The Pulse', 'The Monument', 'temporal parallel-experience platform', 'ecology'), academic jargon ('collective effervescence', 'constrained expression'), hype framing ('the stadium is where the magic is')"
+    failed_because: "Investor-facing docs must be plain language. Overwrought copy undermines credibility. Research informs strategy — it doesn't become the copy. The community is not the product; the story is."
+    replaced_by: "Complete rewrite from scratch — plain language, function and quality, no coined terms. Both markdown and styled HTML/PDF regenerated."
+  vizibel-naming:
+    type: dead-end
+    repo: dezibel-editor
+    date: 2026-04-05
+    tried: "Using 'Vizibel' as the community space name"
+    failed_because: "Correct name is 'Invizibel' — consistent with the -IBEL naming family (Indivizibel, Dezibel, Invizibel)"
+    replaced_by: "Invizibel across all docs, HTML, and PDFs"
   editor-prose-injection:
     type: solution
     repo: dezibel-editor

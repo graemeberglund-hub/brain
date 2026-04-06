@@ -4,7 +4,7 @@ subgraphs:
     description: Software development knowledge — solutions, patterns, dead-ends, tools
     entity_types: [solution, pattern, dead-end, tool]
     updated_by: [sync]
-    count: 7
+    count: 9
   projects:
     file: graph-projects.yml
     description: Project state snapshots

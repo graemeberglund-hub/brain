@@ -1,6 +1,6 @@
 feature: cohort-community-ecology
 project: dezibel-editor
-display_name: "Cohort Community Ecology (The Living Room)"
+display_name: "Invizibel Community Design"
 status: wip
 created: 2026-04-05
 updated: 2026-04-05
@@ -14,7 +14,7 @@ commits:
     classification: exploration
   - hash: 5b97e38
     date: 2026-04-05
-    message: "Scale corrected: thousands/week with sub-room architecture, styled Vizibel PDF"
+    message: "Scale corrected: thousands/week, docs rewritten for investor readability, styled PDFs"
     files_touched: 9
     classification: refactor
 learnings:
@@ -25,8 +25,10 @@ learnings:
   - "River lock architecture (rooms close behind you) eliminates spoiler problem structurally without moderation"
   - "Optimal cohort size for creative discussion: 45-50 (research-backed)"
   - "Room is free alongside paid story — becomes word-of-mouth engine and sequel demand builder"
+  - "Invizibel doubles as real-time feedback loop — 52 cohorts/year is a continuous focus group on what lands and what doesn't"
+  - "Investor docs must be plain language. Research-agent jargon undermines credibility — complete rewrite required"
 related_positions:
   - 2026-04-01-pos-serialized-fiction-graveyard-thesis
 applied_taste_positions: []
 cross_repo: []
-tags: [community, product, research, moderation, ecology, sequel-seeding]
+tags: [community, product, research, moderation, feedback-loop, investor-docs]

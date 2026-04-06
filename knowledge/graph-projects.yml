@@ -9,15 +9,15 @@ entities:
     path: /Users/graeme/Development/dezibel-editor
     status: active
     last_synced: 2026-04-05
-    summary: "Indivizibel label strategy complete (brand architecture, legal, catalogue, operations). Three kill tests executed: trademark HIGH risk (Chris Pratt's INDIVISIBLE marks), Sendblue VALIDATED (10 vendors mapped), domains CLEAR. Native iOS app identified as strongest delivery path — Communication Notifications look like texts. Scale corrected to $100M target, thousands of readers/week. Community ecology designed with sub-room architecture for massive scale. Days 1-23 have prose; Days 24-42 need writing."
+    summary: "Both strategy docs (Indivizibel label + Invizibel community) rewritten for investor readability — plain language, no jargon, styled PDFs on Desktop. Kill tests executed: trademark HIGH (INDIVIZIBEL vs Pratt's INDIVISIBLE), MEDIUM (Dezibel), LOW (Invizibel). Delivery: Sendblue validated but fragile, native iOS app strongest long-term. Naming locked: Indivizibel (label), Dezibel (title), Invizibel (community). Key insight: Invizibel doubles as continuous real-time feedback loop — 52 cohorts/year = permanent focus group. Days 1-23 have prose; Days 24-42 need writing."
     active_areas:
       - strategy/indivizibel-label-strategy.md
-      - strategy/product/imessage-delivery-research.md
+      - strategy/indivizibel-label-strategy.html
       - analysis/cohort-community-system.md
-      - strategy/operations/publishing-house-setup-guide.md
-      - analysis/litigation/
-    next_step: "Trademark attorney consultation (INDIVIZIBEL vs INDIVISIBLE). Register domains immediately. Sendblue sandbox test. Begin native iOS app prototype (Communication Notifications). Continue writing Days 24-42. Milardo trailer meeting within 2 weeks."
-    context_to_restore: "Label strategy at strategy/indivizibel-label-strategy.md. Trademark prosecution strategy: file Class 9 first, narrow Class 41, design mark, DuPont brief, consent agreement with Pratt's team, INVIZIBEL fallback. 10 iMessage vendors at strategy/product/imessage-delivery-research.md. Native app is the A24 move — own the theater. Scale: $100M target, build for explosion not balance. $700K raise funds scaling hard/fast through word of mouth + media. GitHub backup for 4 repos still pending."
+      - strategy/invizibel-community-ecology.html
+      - strategy/product/imessage-delivery-research.md
+    next_step: "Trademark attorney consultation (INDIVIZIBEL vs INDIVISIBLE). Register domains. Sendblue sandbox test. Continue writing Days 24-42. Milardo trailer meeting within 2 weeks."
+    context_to_restore: "Label strategy at strategy/indivizibel-label-strategy.md, community design at analysis/cohort-community-system.md. Investor PDFs on Desktop. Naming: Indivizibel=label, Dezibel=title, Invizibel=community (never Vizibel). Trademark filing: Class 9 first, narrow Class 41, DuPont brief, INVIZIBEL fallback. Invizibel insight: community is a real-time feedback engine — readers discuss weekly topics, every cohort reveals what lands and what doesn't. Easter eggs and author artifacts create engagement while generating actionable signal. GitHub backup for 4 repos still pending."
   brain:
     type: project
     repo: brain

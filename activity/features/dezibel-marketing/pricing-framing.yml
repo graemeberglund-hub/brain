@@ -1,0 +1,20 @@
+feature: pricing-framing
+project: dezibel-marketing
+display_name: "Pricing Framing Ideas"
+status: wip
+created: 2026-04-07
+updated: 2026-04-07
+initiative: null
+inference_confidence: 0.85
+commits:
+  - hash: fe10e30
+    date: 2026-04-07
+    message: "file marketing idea: 'a dollar a day' pricing framing"
+    files_touched: 1
+    classification: content
+learnings: []
+related_positions:
+  - dezibel-pricing-model
+applied_taste_positions: []
+cross_repo: []
+tags: [dezibel, marketing, pricing, framing]

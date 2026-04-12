@@ -59,6 +59,13 @@ entities:
     tried: "Using 'Vizibel' as the community space name"
     failed_because: "Correct name is 'Invizibel' — consistent with the -IBEL naming family (Indivizibel, Dezibel, Invizibel)"
     replaced_by: "Invizibel across all docs, HTML, and PDFs"
+  delivery-narrowed-to-app-plus-sms:
+    type: dead-end
+    repo: brain
+    date: 2026-04-07
+    tried: "Narrowed delivery description from multi-channel (SMS/app/WhatsApp) to 'dedicated app with 1-3 SMS triggers' in investor docs"
+    failed_because: "Delivery channel is undecided research. Brain optimized for investor concreteness over accuracy and propagated the error across overview doc, financial leave-behind, and daily notes. The actual experience is dozens of messages per day, channel TBD."
+    replaced_by: "Restored multi-channel description. Delivery channel flagged as open research question."
   editor-prose-injection:
     type: solution
     repo: dezibel-editor

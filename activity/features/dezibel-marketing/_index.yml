@@ -1,0 +1,11 @@
+repo: dezibel-marketing
+last_synced: 2026-04-07
+features:
+  - slug: pricing-framing
+    display_name: "Pricing Framing Ideas"
+    status: wip
+    initiative: null
+    commit_count: 1
+    date_range: [2026-04-07, 2026-04-07]
+    inference_confidence: 0.85
+initiatives: []

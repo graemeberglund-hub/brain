@@ -1,9 +1,9 @@
 feature: trailer-meeting-prep
 project: dezibel-editor
 display_name: "Trailer Meeting Prep (Milardo/Kiddo)"
-status: completed
+status: wip
 created: 2026-04-03
-updated: 2026-04-03
+updated: 2026-04-12
 initiative: null
 inference_confidence: 0.95
 commits:
@@ -12,7 +12,14 @@ commits:
     message: "Add Milardo/Kiddo trailer meeting prep document"
     files_touched: 1
     classification: content
-learnings: []
+  - hash: 36fe14b
+    date: 2026-04-12
+    message: "Trailer shot list readable + Milardo meeting notes + DP candidates"
+    files_touched: 2
+    classification: content
+learnings:
+  - "Milardo advises hiring directors for bandwidth — decision: Graeme directs. Decoder ring only works with someone who knows every image."
+  - "Right DP is the key hire — sets visual language, attracts crew. Two candidates: Jeremy Cox, Norm Li."
 related_positions: []
 applied_taste_positions: []
 cross_repo: []

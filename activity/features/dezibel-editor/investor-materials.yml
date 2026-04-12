@@ -1,9 +1,9 @@
 feature: investor-materials
 project: dezibel-editor
 display_name: "Investor Materials + Project Showcase"
-status: completed
+status: wip
 created: 2026-04-03
-updated: 2026-04-03
+updated: 2026-04-12
 initiative: null
 inference_confidence: 0.9
 commits:
@@ -11,6 +11,21 @@ commits:
     date: 2026-04-03
     message: "investor deck fixes + financial leave-behind + pitch deck structure"
     files_touched: 7
+    classification: content
+  - hash: 0e02939
+    date: 2026-04-07
+    message: "Bulletproof strategy docs: fix math errors, outdated fees, uncitable claims"
+    files_touched: 4
+    classification: fix
+  - hash: c33ce37
+    date: 2026-04-07
+    message: "fix delivery description: dozens of messages/day via SMS, app, or WhatsApp"
+    files_touched: 3
+    classification: fix
+  - hash: 36fe14b
+    date: 2026-04-12
+    message: "Add ecosystem brief, Nettwerk partnership doc, trailer readables + Milardo meeting notes"
+    files_touched: 6
     classification: content
 learnings: []
 related_positions: []

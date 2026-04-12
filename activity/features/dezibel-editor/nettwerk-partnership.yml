@@ -1,0 +1,23 @@
+feature: nettwerk-partnership
+project: dezibel-editor
+display_name: "Nettwerk Partnership (Shit-Eyes)"
+status: wip
+created: 2026-04-12
+updated: 2026-04-12
+initiative: null
+inference_confidence: 0.9
+commits:
+  - hash: 36fe14b
+    date: 2026-04-12
+    message: "Nettwerk one-pager for shit-eyes distribution/sync partnership"
+    files_touched: 2
+    classification: content
+learnings:
+  - "Nettwerk did $300M management buyout with Create Music Group Feb 2026 — collapsed copyright model status uncertain post-deal."
+  - "Sync is the primary financial lever — owning masters + publishing = one-stop clearance for supervisors."
+  - "Budget to finish: $5-7K (mix completion + mastering, 16 tracks from 27 recorded)."
+  - "Positioning: not looking for a label home, looking for an operator to run the record while writing Dezibel."
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [music, distribution, sync, nettwerk, shit-eyes]

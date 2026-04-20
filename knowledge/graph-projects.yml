@@ -8,16 +8,15 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-04-12
-    summary: "Ecosystem brief published — 2-5 year plan showing all three parts (Dezibel/Invizibel/Indivizibel) with financials. Nettwerk partnership doc drafted for shit-eyes distribution/sync. First Milardo trailer meeting done — Graeme directing, two DP candidates (Jeremy Cox, Norm Li). Days 1-23 have prose; Days 24-42 need writing."
+    last_synced: 2026-04-20
+    summary: "Pitch deck reviewed and iterated (16-slide Canva PDF — spelling fixes, redundancy cuts, structural reorder). Tax structuring research completed for accountant meeting — holdco/opco, LCGE, SAFE positioning, BC IDMTC/SR&ED, Section 87 Indigenous provisions. Deck framework updated: album name corrected to Get Out Alive, label/community naming fixed (Invizibel=label, Indivizibel=community). Master checklist cleaned of Alex Nelson references."
     active_areas:
-      - strategy/indivizibel-ecosystem-brief.md
-      - strategy/indivizibel-ecosystem-brief.html
-      - strategy/marketing/nettwerk-one-pager.md
-      - strategy/marketing/trailer/shot-list.md
-      - artifacts/readable/
-    next_step: "Send Nettwerk one-pager + two songs to Laurel. Follow up with DP candidates (Cox, Li). Trademark attorney consultation. Continue writing Days 24-42."
-    context_to_restore: "Ecosystem brief at strategy/indivizibel-ecosystem-brief.md. Nettwerk doc at strategy/marketing/nettwerk-one-pager.md — positioned as distribution/sync partner for shit-eyes, not full label deal. Nettwerk did $300M buyout with Create Music Group Feb 2026 — ask if collapsed copyright model still applies. Trailer shot list at strategy/marketing/trailer/shot-list.md with Milardo meeting notes appended. Graeme directs the trailer. Budget to finish shit-eyes: $5-7K (mix + mastering, 16 tracks)."
+      - strategy/fundraising/deck-framework.md
+      - strategy/fundraising/tax-structuring-research.md
+      - strategy/master-checklist.md
+      - artifacts/readable/tax-structuring-research.html
+    next_step: "Fix remaining deck typos in Canva (8 items flagged). Set up accountant meeting to discuss holdco/estate freeze before SAFE raise. Send Nettwerk one-pager + two songs to Laurel. Continue writing Days 24-42."
+    context_to_restore: "Tax research at strategy/fundraising/tax-structuring-research.md — key urgency is holdco + estate freeze BEFORE SAFE raise establishes $8M valuation. Deck is 16-slide Canva PDF on Desktop. Naming confirmed: Invizibel=label, Dezibel=first title, Indivizibel=community. Album: Get Out Alive. Close line now: 'THE FIRST RELEASE OF A NEW MEDIA ENGINE / THIS IS SERIES A'. Still needs: Quinn stat deduplication, 'Why Now' renumbering, Price slide phrasing fix."
   brain:
     type: project
     repo: brain

@@ -3,7 +3,7 @@ project: dezibel-editor
 display_name: "Investor Materials + Project Showcase"
 status: wip
 created: 2026-04-03
-updated: 2026-04-12
+updated: 2026-04-20
 initiative: null
 inference_confidence: 0.9
 commits:
@@ -26,6 +26,11 @@ commits:
     date: 2026-04-12
     message: "Add ecosystem brief, Nettwerk partnership doc, trailer readables + Milardo meeting notes"
     files_touched: 6
+    classification: content
+  - hash: e2ae7cf
+    date: 2026-04-20
+    message: "Deck framework fixes, tax structuring research, settings cleanup"
+    files_touched: 5
     classification: content
 learnings: []
 related_positions: []

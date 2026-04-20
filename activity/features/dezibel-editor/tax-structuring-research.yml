@@ -1,0 +1,19 @@
+feature: tax-structuring-research
+project: dezibel-editor
+display_name: "Tax Structuring Research"
+status: wip
+created: 2026-04-20
+updated: 2026-04-20
+initiative: null
+inference_confidence: 0.85
+commits:
+  - hash: e2ae7cf
+    date: 2026-04-20
+    message: "Deck framework fixes, tax structuring research, settings cleanup"
+    files_touched: 5
+    classification: content
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [fundraising, tax, legal, structuring, holdco]

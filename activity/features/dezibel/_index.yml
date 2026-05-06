@@ -15,4 +15,11 @@ features:
     commit_count: 1
     date_range: [2026-05-06, 2026-05-06]
     inference_confidence: 0.85
+  - slug: db-notes-extraction
+    display_name: "DB Notes Extraction & Beat Mapping"
+    status: wip
+    initiative: null
+    commit_count: 1
+    date_range: [2026-05-06, 2026-05-06]
+    inference_confidence: 0.95
 initiatives: []

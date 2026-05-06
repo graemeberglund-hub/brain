@@ -9,14 +9,14 @@ entities:
     path: /Users/graeme/Development/dezibel-editor
     status: active
     last_synced: 2026-05-06
-    summary: "Built DayPublish module — the missing pipeline bridge from browser editor to story/days/ markdown files. Editor now exports beats+prose to day file format via File System Access API with automatic backup before overwrite. Fonts switched to sans-serif. Editor instruction manual created. Session-start trigger added to CLAUDE.md."
+    summary: "Built DayPublish pipeline bridge and extracted 29 DB notes from Apple Notes, mapping raw material to editor beats and writing tasks. Three rododendro drafts surfaced (one marked final), Alphabet City fight scene fully written, Jane letter drafted, Emma's death structural critique documented. Tooling is ahead of prose — 14/42 days have beats, 0/42 fully formatted."
     active_areas:
       - artifacts/readable/dezibel-story-map.html
       - story/days/
+      - story/notes/db-notes-recent-2026-05-06.md
       - story/notes/novella-structure.md
-      - editor/how-to-use-the-editor.md
-    next_step: "Begin writing push — fill Acts III-V prose in editor. Resolve last 2 P/F questions (Queenie second scene, Alphabet City placement). Start fundraising conversations. Test DayPublish export with real prose."
-    context_to_restore: "DayPublish module lives inside dezibel-story-map.html (~line 3589). Uses showDirectoryPicker() for story/days/ access, persists handle in IndexedDB. Backups go to story/days/.backups/ (gitignored). 14 day files exist (Days 1-14), Days 15-42 need creation. 6 writing tasks remain: miniDV, Calliope, rododendro, Emma's death, mourning, ghost ending. Editor manual at editor/how-to-use-the-editor.md + artifacts/readable/editor-manual.html."
+    next_step: "Write prose — fill Acts III-V in editor. Place DB note material into editor beats. Resolve last 2 P/F questions (Queenie second scene, Alphabet City placement). Test DayPublish export with real prose. Start fundraising."
+    context_to_restore: "DayPublish module in dezibel-story-map.html (~line 3589). 29 DB notes mapped in story/notes/db-notes-recent-2026-05-06.md — rododendro (Notes 4/8/20), Alphabet City fight (Notes 11/14/18), Jane letter (Note 13), Emma's death critique (Note 7). 14 day files exist (Days 1-14). 6 writing tasks remain but 3 have raw material. Editor manual at editor/how-to-use-the-editor.md."
   brain:
     type: project
     repo: brain

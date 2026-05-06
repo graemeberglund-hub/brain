@@ -1,0 +1,19 @@
+feature: db-notes-extraction
+project: dezibel
+display_name: "DB Notes Extraction & Beat Mapping"
+status: wip
+created: 2026-05-06
+updated: 2026-05-06
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: 76f546b
+    date: 2026-05-06
+    message: "Extract and map 29 recent DB notes (Feb-May 2026)"
+    files_touched: 1
+    classification: content
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [apple-notes, applescript, beat-mapping, content-extraction]

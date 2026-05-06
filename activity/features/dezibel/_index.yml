@@ -1,0 +1,18 @@
+repo: dezibel
+last_synced: 2026-05-06
+features:
+  - slug: day-publish-bridge
+    display_name: "Day File Publish Pipeline"
+    status: wip
+    initiative: null
+    commit_count: 1
+    date_range: [2026-05-06, 2026-05-06]
+    inference_confidence: 1.0
+  - slug: editor-manual
+    display_name: "Editor Instruction Manual"
+    status: wip
+    initiative: null
+    commit_count: 1
+    date_range: [2026-05-06, 2026-05-06]
+    inference_confidence: 0.85
+initiatives: []

@@ -8,15 +8,15 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-04-20
-    summary: "Pitch deck reviewed and iterated (16-slide Canva PDF — spelling fixes, redundancy cuts, structural reorder). Tax structuring research completed for accountant meeting — holdco/opco, LCGE, SAFE positioning, BC IDMTC/SR&ED, Section 87 Indigenous provisions. Deck framework updated: album name corrected to Get Out Alive, label/community naming fixed (Invizibel=label, Indivizibel=community). Master checklist cleaned of Alex Nelson references."
+    last_synced: 2026-05-06
+    summary: "Built DayPublish module — the missing pipeline bridge from browser editor to story/days/ markdown files. Editor now exports beats+prose to day file format via File System Access API with automatic backup before overwrite. Fonts switched to sans-serif. Editor instruction manual created. Session-start trigger added to CLAUDE.md."
     active_areas:
-      - strategy/fundraising/deck-framework.md
-      - strategy/fundraising/tax-structuring-research.md
-      - strategy/master-checklist.md
-      - artifacts/readable/tax-structuring-research.html
-    next_step: "Fix remaining deck typos in Canva (8 items flagged). Set up accountant meeting to discuss holdco/estate freeze before SAFE raise. Send Nettwerk one-pager + two songs to Laurel. Continue writing Days 24-42."
-    context_to_restore: "Tax research at strategy/fundraising/tax-structuring-research.md — key urgency is holdco + estate freeze BEFORE SAFE raise establishes $8M valuation. Deck is 16-slide Canva PDF on Desktop. Naming confirmed: Invizibel=label, Dezibel=first title, Indivizibel=community. Album: Get Out Alive. Close line now: 'THE FIRST RELEASE OF A NEW MEDIA ENGINE / THIS IS SERIES A'. Still needs: Quinn stat deduplication, 'Why Now' renumbering, Price slide phrasing fix."
+      - artifacts/readable/dezibel-story-map.html
+      - story/days/
+      - story/notes/novella-structure.md
+      - editor/how-to-use-the-editor.md
+    next_step: "Begin writing push — fill Acts III-V prose in editor. Resolve last 2 P/F questions (Queenie second scene, Alphabet City placement). Start fundraising conversations. Test DayPublish export with real prose."
+    context_to_restore: "DayPublish module lives inside dezibel-story-map.html (~line 3589). Uses showDirectoryPicker() for story/days/ access, persists handle in IndexedDB. Backups go to story/days/.backups/ (gitignored). 14 day files exist (Days 1-14), Days 15-42 need creation. 6 writing tasks remain: miniDV, Calliope, rododendro, Emma's death, mourning, ghost ending. Editor manual at editor/how-to-use-the-editor.md + artifacts/readable/editor-manual.html."
   brain:
     type: project
     repo: brain

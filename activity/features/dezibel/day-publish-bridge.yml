@@ -1,0 +1,19 @@
+feature: day-publish-bridge
+project: dezibel
+display_name: "Day File Publish Pipeline"
+status: wip
+created: 2026-05-06
+updated: 2026-05-06
+initiative: null
+inference_confidence: 1.0
+commits:
+  - hash: cc7a33a
+    date: 2026-05-06
+    message: "DayPublish: bridge editor → story/days/ pipeline, editor manual, sans-serif font"
+    files_touched: 7
+    classification: feature
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [editor, pipeline, file-system-access-api, export]

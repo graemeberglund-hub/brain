@@ -66,6 +66,16 @@ entities:
     tried: "Narrowed delivery description from multi-channel (SMS/app/WhatsApp) to 'dedicated app with 1-3 SMS triggers' in investor docs"
     failed_because: "Delivery channel is undecided research. Brain optimized for investor concreteness over accuracy and propagated the error across overview doc, financial leave-behind, and daily notes. The actual experience is dozens of messages per day, channel TBD."
     replaced_by: "Restored multi-channel description. Delivery channel flagged as open research question."
+  day-publish-pipeline-bridge:
+    type: solution
+    repo: dezibel-editor
+    date: 2026-05-06
+    problem: "Story map editor and story/days/ files were completely decoupled — prose written in browser had no path to day file format that Python audit tools read"
+    root_cause: "Editor and day files were built in parallel to solve different problems (structuring vs delivery), bridge was never prioritized during the month of editor development"
+    fix: "DayPublish module inside story map HTML — exports beat prose to YAML-frontmatter markdown using showDirectoryPicker() for directory access. Automatic backup to .backups/ before overwrite. Preserves created dates on re-export. Auto-derives status, bubble count, flags, speaker color codes from editor state."
+    files:
+      - artifacts/readable/dezibel-story-map.html
+      - story/days/README.md
   editor-prose-injection:
     type: solution
     repo: dezibel-editor

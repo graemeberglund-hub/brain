@@ -1,0 +1,22 @@
+feature: platform-architecture
+project: dezibel-platform
+display_name: "Platform Technical Architecture"
+status: completed
+created: 2026-05-08
+updated: 2026-05-08
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: efbefe7
+    date: 2026-05-08
+    message: "Platform architecture: full tech spec, channel research, cost analysis, risk assessment"
+    files_touched: 8
+    classification: infrastructure
+learnings:
+  - "WhatsApp NA costs $48/reader — makes it unviable as primary channel in North America"
+  - "Meta paused US marketing templates April 2025 — WhatsApp deferred to V1.1"
+  - "Push notifications are the universal free fallback — app is non-negotiable"
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [architecture, tech-spec, channels]

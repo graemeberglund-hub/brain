@@ -1,12 +1,12 @@
 repo: dezibel
-last_synced: 2026-05-06
+last_synced: 2026-05-12
 features:
   - slug: day-publish-bridge
     display_name: "Day File Publish Pipeline"
     status: wip
     initiative: null
-    commit_count: 1
-    date_range: [2026-05-06, 2026-05-06]
+    commit_count: 2
+    date_range: [2026-05-06, 2026-05-12]
     inference_confidence: 1.0
   - slug: editor-manual
     display_name: "Editor Instruction Manual"
@@ -21,5 +21,26 @@ features:
     initiative: null
     commit_count: 1
     date_range: [2026-05-06, 2026-05-06]
+    inference_confidence: 0.95
+  - slug: tippett-call-prep
+    display_name: "Tippett Call Prep"
+    status: completed
+    initiative: null
+    commit_count: 1
+    date_range: [2026-04-28, 2026-04-28]
+    inference_confidence: 0.9
+  - slug: novella-structure
+    display_name: "Poppi Devours Fanzo Novella Structure"
+    status: completed
+    initiative: null
+    commit_count: 1
+    date_range: [2026-04-29, 2026-04-29]
+    inference_confidence: 0.95
+  - slug: raise-strategy-research
+    display_name: "Raise Strategy Research ($285K)"
+    status: wip
+    initiative: null
+    commit_count: 1
+    date_range: [2026-05-12, 2026-05-12]
     inference_confidence: 0.95
 initiatives: []

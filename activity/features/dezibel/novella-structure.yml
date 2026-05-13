@@ -1,0 +1,19 @@
+feature: novella-structure
+project: dezibel
+display_name: "Poppi Devours Fanzo Novella Structure"
+status: completed
+created: 2026-04-29
+updated: 2026-04-29
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: e8cb453
+    date: 2026-04-29
+    message: "Add 12-part story structure for Poppi Devours Fanzo novella"
+    files_touched: 1
+    classification: content
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [story-structure, novella, poppi-devours-fanzo]

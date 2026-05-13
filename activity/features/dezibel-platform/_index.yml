@@ -1,0 +1,11 @@
+repo: dezibel-platform
+last_synced: 2026-05-08
+features:
+  - slug: platform-architecture
+    display_name: "Platform Technical Architecture"
+    status: completed
+    initiative: null
+    commit_count: 1
+    date_range: [2026-05-08, 2026-05-08]
+    inference_confidence: 0.95
+initiatives: []

@@ -1,0 +1,19 @@
+feature: tippett-call-prep
+project: dezibel
+display_name: "Tippett Call Prep"
+status: completed
+created: 2026-04-28
+updated: 2026-04-28
+initiative: null
+inference_confidence: 0.9
+commits:
+  - hash: 5795a0b
+    date: 2026-04-28
+    message: "Add Tippett call prep readable artifacts"
+    files_touched: 2
+    classification: content
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [fundraising, investor-prep]

@@ -1,0 +1,22 @@
+feature: raise-strategy-research
+project: dezibel
+display_name: "Raise Strategy Research ($285K)"
+status: wip
+created: 2026-05-12
+updated: 2026-05-12
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: f79d4f2
+    date: 2026-05-12
+    message: "Researched raise strategy: $275K minimum with sourced market rates"
+    files_touched: 5
+    classification: exploration
+learnings:
+  - "$875K front-loaded scale costs into launch — separated launch vs scale"
+  - "Market rate research reduced most line items 30-50% from prior estimates"
+  - "Revenue share at 8%/2x cap has brutal return timeline at likely scenario"
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [fundraising, market-research, budget]

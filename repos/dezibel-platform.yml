@@ -1,0 +1,8 @@
+name: dezibel-platform
+path: /Users/graeme/Development/dezibel-platform
+description: "Delivery infrastructure for Dezibel — React Native app, Node.js backend, scheduling engine, multi-channel delivery, payment processing"
+status: active
+primary_area: writing-and-film
+registered: 2026-05-12
+updated: 2026-05-12
+notes: "Technical platform repo. Architecture spec, channel strategy, cost analysis, risk assessment. Build plan assumes two-person contractor team at $90K CAD."

@@ -3,7 +3,7 @@ project: dezibel
 display_name: "Day File Publish Pipeline"
 status: wip
 created: 2026-05-06
-updated: 2026-05-06
+updated: 2026-05-12
 initiative: null
 inference_confidence: 1.0
 commits:
@@ -11,6 +11,11 @@ commits:
     date: 2026-05-06
     message: "DayPublish: bridge editor → story/days/ pipeline, editor manual, sans-serif font"
     files_touched: 7
+    classification: feature
+  - hash: f79d4f2
+    date: 2026-05-12
+    message: "DayPublish auto-save (30-min), disk indicator, permission-loss handling, integrity pulse"
+    files_touched: 1
     classification: feature
 learnings: []
 related_positions: []

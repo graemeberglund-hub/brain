@@ -85,3 +85,13 @@ entities:
     fix: "Injected 7,236 lines of master doc prose into story map beats for Days 1-23. Editor now shows actual writing alongside structural beats."
     files:
       - artifacts/readable/dezibel-story-map.html
+  875k-fundraise-plan:
+    type: dead-end
+    domain: development
+    title: "$875K fundraise plan — front-loaded scaling costs"
+    project: "Dezibel"
+    date: "2026-05-12"
+    daily_note: "[[2026-05-12]]"
+    tried: "Built an $875K fundraise plan by stacking every line item at premium rates and including scaling costs (marketing $150-300K, full website $40-60K, tech support $60K) in the launch budget. Presented to Michael Tippett as the target raise."
+    failed_because: "Tippett reacted negatively — $875K triggers institutional-grade scrutiny from individuals and sounds disconnected for a 'book project.' The plan didn't separate launch costs from scale costs. Budget lines were inherited from prior documents without market rate verification. Each reduction ($500K, $325K, $125K) was achieved by loading more work onto the founder rather than re-researching actual costs."
+    replaced_by: "Researched $285K minimum raise with every line item verified against 2025-2026 market data. Revenue waterfall phases growth through earned revenue."

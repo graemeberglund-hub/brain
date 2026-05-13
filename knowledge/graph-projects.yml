@@ -15,8 +15,8 @@ entities:
       - artifacts/readable/minimum-raise.html
       - artifacts/readable/dezibel-story-map.html
       - story/notes/novella-structure.md
-    next_step: "Finalize $285K raise plan — resolve open questions (shoot day count for multi-city production NYC+LA, producer equity specifics, Chris Ferguson/Oddfellows approach). Structure Days 15-42 from existing material. Continue writing."
-    context_to_restore: "Raise plan at strategy/minimum-raise.md — $285K with two-person tech team ($90K), producer ($35K partner track), combined shoot ($32K + $10K cast), album mixer ($7K). Revenue waterfall phases to $485-685K by Month 18. Investor terms: 8% rev share, 2x cap, 6-month grace. Key correction from prior sessions: $875K front-loaded scale costs into launch budget. Multi-city shoot (NYC+LA) not yet budgeted — could push production from $32K to $60-80K. Chris Ferguson (Oddfellows/Backrooms/Longlegs) is a potential investor with working relationship (Graeme made Backrooms artwork)."
+    next_step: "Approach Chris Ferguson as funder/partner (Backrooms artwork relationship). Resolve multi-city production budget (NYC+LA, $32K→$60-80K). Hire oBitchuary writer (needs months of pre-work). Set up Invizibel community (vital for feedback loop). Continue writing Days 15-42."
+    context_to_restore: "Raise plan at strategy/minimum-raise.md — $285K revenue share (8%, 2x cap, 6-month grace). Two-person tech team ($90K), producer ($35K + equity), combined shoot ($32K, but multi-city NYC+LA not yet budgeted — could push to $60-80K). Revenue waterfall phases to $485-685K by Month 18. Chris Ferguson (Oddfellows/Backrooms/Longlegs) reversed from post-launch to pre-launch approach — Graeme made Backrooms artwork, Ferguson has capital. Oddfellows position formally reversed. Community (Invizibel) is vital for feedback loop — not optional. oBitchuary needs hire + 6 months pre-work before Day 1. Apple June 2026 iMessage relay crackdown is imminent concern — push notifications are fallback. Alex Nelson is OUT — brand vendor TBD at $12K."
   dezibel-platform:
     type: project
     repo: dezibel-platform

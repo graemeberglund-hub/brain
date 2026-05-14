@@ -1,9 +1,9 @@
 feature: raise-strategy-research
 project: dezibel
-display_name: "Raise Strategy Research ($285K)"
+display_name: "Raise Strategy Research ($292K)"
 status: wip
 created: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-13
 initiative: null
 inference_confidence: 0.95
 commits:
@@ -12,10 +12,23 @@ commits:
     message: "Researched raise strategy: $275K minimum with sourced market rates"
     files_touched: 5
     classification: exploration
+  - hash: 026c81a
+    date: 2026-05-13
+    message: "Reframe raise strategy around 2-year thesis test with kill gate"
+    files_touched: 2
+    classification: content
+  - hash: a8f4518
+    date: 2026-05-13
+    message: "Disk-first editor saving, producer brief, raise corrected to $292K"
+    files_touched: 5
+    classification: fix
 learnings:
   - "$875K front-loaded scale costs into launch — separated launch vs scale"
   - "Market rate research reduced most line items 30-50% from prior estimates"
   - "Revenue share at 8%/2x cap has brutal return timeline at likely scenario"
+  - "Producer equity must be cross-referenced against investor deal — 5-8% was disproportionate, corrected to 1-2%"
+  - "Grace period removed — payments begin when revenue begins, simpler and more honest"
+  - "oBitchuary writer $6K was flagged in text but missing from budget numbers"
 related_positions: []
 applied_taste_positions: []
 cross_repo: []

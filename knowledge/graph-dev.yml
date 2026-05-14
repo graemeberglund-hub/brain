@@ -95,3 +95,23 @@ entities:
     tried: "Built an $875K fundraise plan by stacking every line item at premium rates and including scaling costs (marketing $150-300K, full website $40-60K, tech support $60K) in the launch budget. Presented to Michael Tippett as the target raise."
     failed_because: "Tippett reacted negatively — $875K triggers institutional-grade scrutiny from individuals and sounds disconnected for a 'book project.' The plan didn't separate launch costs from scale costs. Budget lines were inherited from prior documents without market rate verification. Each reduction ($500K, $325K, $125K) was achieved by loading more work onto the founder rather than re-researching actual costs."
     replaced_by: "Researched $285K minimum raise with every line item verified against 2025-2026 market data. Revenue waterfall phases growth through earned revenue."
+  producer-equity-5-8-percent:
+    type: dead-end
+    domain: development
+    title: "5-8% producer equity — disproportionate to investor deal"
+    project: "Dezibel"
+    date: "2026-05-13"
+    daily_note: "[[2026-05-13]]"
+    tried: "Suggested 5-8% equity (or 3-5% revenue share) for a producer hired at $35K cash for 5.5 months. This gave a short-term hire a better deal per dollar than the investor putting in $292K for a capped 8% return."
+    failed_because: "At $100M scale, 8% equity = $8M for ~$20-45K in forgone salary. The investor's $292K only returns a capped $584K. Nobody should get a better deal per dollar than the person funding the operation. Claude pulled from 'typical startup ranges' without cross-referencing against the specific deal structure."
+    replaced_by: "1-2% equity vesting 24 months (1-year cliff), or performance equity 1%→3% at milestones. Proportional to salary discount. Created mandatory financial cross-reference protocol."
+  browser-storage-false-redundancy:
+    type: dead-end
+    domain: development
+    title: "4 browser-storage backup layers presented as independent redundancy"
+    project: "Dezibel"
+    date: "2026-05-13"
+    daily_note: "[[2026-05-13]]"
+    tried: "Built 5 editor backup layers — localStorage auto-save, rolling localStorage backup, IndexedDB SnapshotVault, FileLink (disk), DayPublish (disk). Presented as 'quintuple redundancy' to the user, claiming writing was safe."
+    failed_because: "Layers 1-3 all live in browser storage. Clearing Chrome data kills all three simultaneously. They share a failure domain — depth without diversity. FileLink and DayPublish (the only disk-based layers) were opt-in and silent when disconnected. Four locks on the same door."
+    replaced_by: "Disk-first persistence — saveState() writes to FileLink before browser storage. Prose panel blocked without file linked. Non-dismissible banner forces file linking on startup."

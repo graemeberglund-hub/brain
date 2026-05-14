@@ -8,15 +8,14 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-05-12
-    summary: "Fundraising strategy completely rebuilt — $875K plan replaced with researched $285K minimum raise verified against 2025-2026 market rates (ACTRA, Arc.dev, Vancouver production benchmarks). Revenue waterfall shows phased growth to full scale through earned revenue. DayPublish module enhanced with auto-save (30-min interval), disk status indicator, permission-loss handling, and integrity pulse monitoring. Tippett call prep and Poppi Devours Fanzo 12-part novella structure also added."
+    last_synced: 2026-05-13
+    summary: "Raise corrected to $292K (oBitchuary $6K added, grace period removed, producer equity fixed from 5-8% to 1-2%). Editor persistence flipped from browser-first to disk-first — prose panel blocks without FileLink. Producer job brief created. iMessage at scale validated via managed platforms (Sendblue/Blooio) at ~$1.4-3.5K/month for 100K readers."
     active_areas:
       - strategy/minimum-raise.md
-      - artifacts/readable/minimum-raise.html
       - artifacts/readable/dezibel-story-map.html
-      - story/notes/novella-structure.md
-    next_step: "Approach Chris Ferguson as funder/partner (Backrooms artwork relationship). Resolve multi-city production budget (NYC+LA, $32K→$60-80K). Hire oBitchuary writer (needs months of pre-work). Set up Invizibel community (vital for feedback loop). Continue writing Days 15-42."
-    context_to_restore: "Raise plan at strategy/minimum-raise.md — $285K revenue share (8%, 2x cap, 6-month grace). Two-person tech team ($90K), producer ($35K + equity), combined shoot ($32K, but multi-city NYC+LA not yet budgeted — could push to $60-80K). Revenue waterfall phases to $485-685K by Month 18. Chris Ferguson (Oddfellows/Backrooms/Longlegs) reversed from post-launch to pre-launch approach — Graeme made Backrooms artwork, Ferguson has capital. Oddfellows position formally reversed. Community (Invizibel) is vital for feedback loop — not optional. oBitchuary needs hire + 6 months pre-work before Day 1. Apple June 2026 iMessage relay crackdown is imminent concern — push notifications are fallback. Brand vendor TBD at $12K."
+      - strategy/production/producer-brief.html
+    next_step: "Regenerate minimum-raise.html readable (still shows $285K, dark mode). Start producer search (WIFTV, film networks, Graeme's network). Approach investor with corrected $292K terms. Continue writing Days 15-42."
+    context_to_restore: "Raise at strategy/minimum-raise.md — $292K revenue share (8%, 2x cap at $584K, no grace period — payments begin Month 7). Producer: $35K cash + 1-2% equity or performance 1%→3%. oBitchuary writer $6K in budget (Month 1 hire). Ignition cohort: 50 hand-picked women from Graeme's network. iMessage delivery viable at scale via Sendblue ($100/line/mo) or Blooio ($39/line/mo) — Apple June 2026 crackdown is the risk, push notifications are fallback. Editor now disk-first (FileLink mandatory before writing). Financial cross-reference protocol in Claude memory — mandatory before any equity/compensation numbers."
   dezibel-platform:
     type: project
     repo: dezibel-platform

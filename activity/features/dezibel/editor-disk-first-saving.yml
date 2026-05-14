@@ -1,0 +1,22 @@
+feature: editor-disk-first-saving
+project: dezibel
+display_name: "Editor Disk-First Persistence"
+status: wip
+created: 2026-05-13
+updated: 2026-05-13
+initiative: null
+inference_confidence: 0.9
+commits:
+  - hash: a8f4518
+    date: 2026-05-13
+    message: "Disk-first editor saving, producer brief, raise corrected to $292K"
+    files_touched: 5
+    classification: fix
+learnings:
+  - "4 of 5 backup layers shared browser storage failure domain — depth without diversity"
+  - "FileLink and DayPublish were opt-in and silent when disconnected — wrong default for irreplaceable writing"
+  - "Flipped saveState() to write disk first, browser second. Prose panel gated behind FileLink."
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [editor, data-safety, file-system-access-api, persistence]

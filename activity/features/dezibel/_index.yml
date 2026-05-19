@@ -1,5 +1,5 @@
 repo: dezibel
-last_synced: 2026-05-13
+last_synced: 2026-05-19
 features:
   - slug: day-publish-bridge
     display_name: "Day File Publish Pipeline"
@@ -40,8 +40,8 @@ features:
     display_name: "Raise Strategy Research ($292K)"
     status: wip
     initiative: null
-    commit_count: 3
-    date_range: [2026-05-12, 2026-05-13]
+    commit_count: 4
+    date_range: [2026-05-12, 2026-05-19]
     inference_confidence: 0.95
   - slug: editor-disk-first-saving
     display_name: "Editor Disk-First Persistence"

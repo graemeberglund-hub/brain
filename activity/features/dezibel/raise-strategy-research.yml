@@ -3,7 +3,7 @@ project: dezibel
 display_name: "Raise Strategy Research ($292K)"
 status: wip
 created: 2026-05-12
-updated: 2026-05-13
+updated: 2026-05-19
 initiative: null
 inference_confidence: 0.95
 commits:
@@ -22,6 +22,11 @@ commits:
     message: "Disk-first editor saving, producer brief, raise corrected to $292K"
     files_touched: 5
     classification: fix
+  - hash: 7e37634
+    date: 2026-05-19
+    message: "Add investor introduction strategy, tranched funding, fix stale references"
+    files_touched: 3
+    classification: content
 learnings:
   - "$875K front-loaded scale costs into launch — separated launch vs scale"
   - "Market rate research reduced most line items 30-50% from prior estimates"
@@ -29,7 +34,15 @@ learnings:
   - "Producer equity must be cross-referenced against investor deal — 5-8% was disproportionate, corrected to 1-2%"
   - "Grace period removed — payments begin when revenue begins, simpler and more honest"
   - "oBitchuary writer $6K was flagged in text but missing from budget numbers"
+  - "Finder's fees to non-broker-dealers are illegal under SEC — pay for real work instead"
+  - "Tranched funding beats inflated budgets — deploy $292K now, commit more at milestones"
 related_positions: []
-applied_taste_positions: []
+applied_taste_positions:
+  - position: "dezibel-pricing-model"
+    date: 2026-05-19
+    reasoning: "Tranched funding and Hannah/Seb compensation all built on $49 experience pricing — investor terms, return math, overage strategy all assume experience-tier"
+  - position: "serialized-fiction-graveyard-thesis"
+    date: 2026-05-19
+    reasoning: "Refusing to inflate to $875K mirrors anti-graveyard discipline — premium single title proving economics before scaling, not burning capital on ambition"
 cross_repo: []
 tags: [fundraising, market-research, budget]

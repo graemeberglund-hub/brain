@@ -8,14 +8,14 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-05-13
-    summary: "Raise corrected to $292K (oBitchuary $6K added, grace period removed, producer equity fixed from 5-8% to 1-2%). Editor persistence flipped from browser-first to disk-first — prose panel blocks without FileLink. Producer job brief created. iMessage at scale validated via managed platforms (Sendblue/Blooio) at ~$1.4-3.5K/month for 100K readers."
+    last_synced: 2026-05-19
+    summary: "Investor introduction strategy created for Hannah/Seb lead — real work compensation ($13-18K combined), SEC-compliant, no finder's fees. Tranched funding framework built: $292K thesis test now, $300-500K at milestones. Stale $285K references fixed across strategy docs. Raise strategy docs now cover overage scenarios up to $875K with clear recommendation against inflating the budget."
     active_areas:
       - strategy/minimum-raise.md
-      - artifacts/readable/dezibel-story-map.html
-      - strategy/production/producer-brief.html
-    next_step: "Regenerate minimum-raise.html readable (still shows $285K, dark mode). Start producer search (WIFTV, film networks, Graeme's network). Approach investor with corrected $292K terms. Continue writing Days 15-42."
-    context_to_restore: "Raise at strategy/minimum-raise.md — $292K revenue share (8%, 2x cap at $584K, no grace period — payments begin Month 7). Producer: $35K cash + 1-2% equity or performance 1%→3%. oBitchuary writer $6K in budget (Month 1 hire). Ignition cohort: 50 hand-picked women from Graeme's network. iMessage delivery viable at scale via Sendblue ($100/line/mo) or Blooio ($39/line/mo) — Apple June 2026 crackdown is the risk, push notifications are fallback. Editor now disk-first (FileLink mandatory before writing). Financial cross-reference protocol in Claude memory — mandatory before any equity/compensation numbers."
+      - strategy/investor-introduction-strategy.md
+      - strategy/plan-to-launch.md
+    next_step: "Regenerate minimum-raise.html readable (still shows $285K, dark mode). Pursue Hannah/Seb investor introduction. Start producer search. Continue writing Days 15-42."
+    context_to_restore: "Raise at strategy/minimum-raise.md — $292K revenue share (8%, 2x cap at $584K, no grace period). Hannah/Seb intro at strategy/investor-introduction-strategy.md — Seb $10.5-14K shoot producer, Hannah $2.5-3.8K violinist + creative consultation. Tranched if investors offer more. Finder's fees illegal without broker-dealer registration — pay for real work only. Financial cross-reference protocol mandatory. Editor disk-first (FileLink). iMessage viable at scale via Sendblue/Blooio."
   dezibel-platform:
     type: project
     repo: dezibel-platform

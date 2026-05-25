@@ -1,5 +1,5 @@
 repo: dezibel-editor
-last_synced: 2026-04-20
+last_synced: 2026-05-25
 features:
   - slug: beat-editor-v2
     display_name: "Beat Editor v2"
@@ -99,4 +99,11 @@ features:
     commit_count: 1
     date_range: [2026-04-20, 2026-04-20]
     inference_confidence: 0.85
+  - slug: ai-interactive-sequel
+    display_name: "AI Interactive Sequel (The Investigation)"
+    status: wip
+    initiative: null
+    commit_count: 1
+    date_range: [2026-05-25, 2026-05-25]
+    inference_confidence: 0.95
 initiatives: []

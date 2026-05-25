@@ -14,8 +14,10 @@ entities:
       - strategy/minimum-raise.md
       - strategy/investor-introduction-strategy.md
       - strategy/plan-to-launch.md
-    next_step: "Regenerate minimum-raise.html readable (still shows $285K, dark mode). Pursue Hannah/Seb investor introduction. Start producer search. Continue writing Days 15-42."
-    context_to_restore: "Raise at strategy/minimum-raise.md — $292K revenue share (8%, 2x cap at $584K, no grace period). Hannah/Seb intro at strategy/investor-introduction-strategy.md — Seb $10.5-14K shoot producer, Hannah $2.5-3.8K violinist + creative consultation. Tranched if investors offer more. Finder's fees illegal without broker-dealer registration — pay for real work only. Financial cross-reference protocol mandatory. Editor disk-first (FileLink). iMessage viable at scale via Sendblue/Blooio."
+    last_synced: 2026-05-25
+    summary: "AI interactive sequel concept ('The Investigation') built — research-grounded detective mechanic where reader investigates Emma's death post-42-day story. Story tree, film unlocks, truth/lie matrix, haptic wearable layer via Lovense MCP. Competitive analysis against Duskwood, Her Story, Krimi, Vaudeville. Ace Fipke meeting went well — he's interested, wants to meet again. Hannah/Seb brief updated with future live performance note."
+    next_step: "Create dedicated repo for AI interactive sequel. Build two one-pagers for Ace Fipke pitch deck. Develop 'Be Emma' intimate AI concept as second product layer. Continue Ace relationship — send material before next meeting."
+    context_to_restore: "AI sequel concept at strategy/readable/ai-interactive-sequel-concept.html. Ace Fipke (Nerd Corps founder, $50M exit) engaged as potential advisor. Revenue share structure (not SAFE/equity). Investigation sequel priced at $29 one-time, <1% AI compute cost. Lovense MCP enables haptic integration. Hannah/Seb brief at strategy/readable/hannah-seb-meeting-brief.html."
   dezibel-platform:
     type: project
     repo: dezibel-platform

@@ -1,0 +1,24 @@
+feature: ai-interactive-sequel
+project: dezibel-editor
+display_name: "AI Interactive Sequel (The Investigation)"
+status: wip
+created: 2026-05-25
+updated: 2026-05-25
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: 08329bc
+    date: 2026-05-25
+    message: "Add AI interactive sequel concept, update Hannah/Seb brief with live event note"
+    files_touched: 2
+    classification: content
+learnings:
+  - "Vaudeville failed (49% Steam) because AI was ungrounded — no authored structure, AI invented fake NPCs and evidence"
+  - "Kindroid's cascaded memory doubled 30-day retention — memory architecture is critical"
+  - "AI compute cost is negligible: ~$0.20/playthrough at Claude Haiku pricing"
+  - "Lovense supports MCP (Model Context Protocol) — AI agent can control haptic wearable directly"
+  - "Multiple endings serve social sharing, not replay — design for one complete satisfying playthrough"
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [ai, interactive-fiction, sequel, investigation, haptic]

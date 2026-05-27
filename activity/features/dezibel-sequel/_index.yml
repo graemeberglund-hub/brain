@@ -1,0 +1,15 @@
+repo: dezibel-sequel
+last_synced: 2026-05-27
+features:
+  - slug: ace-investment-proposal
+    display_name: "Ace Fipke Investment Proposal"
+    status: wip
+    initiative: dezibel-fundraising
+    commit_count: 1
+    date_range: [2026-05-27, 2026-05-27]
+    inference_confidence: 0.9
+initiatives:
+  - slug: dezibel-fundraising
+    display_name: "Dezibel Fundraising"
+    feature_count: 1
+    status: active

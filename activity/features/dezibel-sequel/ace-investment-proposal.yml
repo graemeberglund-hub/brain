@@ -1,0 +1,19 @@
+feature: ace-investment-proposal
+project: dezibel-sequel
+display_name: "Ace Fipke Investment Proposal"
+status: wip
+created: 2026-05-27
+updated: 2026-05-27
+initiative: dezibel-fundraising
+inference_confidence: 0.9
+commits:
+  - hash: a1730f1
+    date: 2026-05-27
+    message: "Add advisor bios and investment proposal (The Ask + The Economics) deck pages"
+    files_touched: 2
+    classification: content
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [dezibel, fundraising, deck, ace-fipke]

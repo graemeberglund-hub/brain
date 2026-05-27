@@ -8,16 +8,13 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-05-19
-    summary: "Investor introduction strategy created for Hannah/Seb lead — real work compensation ($13-18K combined), SEC-compliant, no finder's fees. Tranched funding framework built: $292K thesis test now, $300-500K at milestones. Stale $285K references fixed across strategy docs. Raise strategy docs now cover overage scenarios up to $875K with clear recommendation against inflating the budget."
+    last_synced: 2026-05-27
+    summary: "Investor deck rebuilt for Ace Fipke — pivoted from revenue share to SAFE/equity ($875K at $5M pre-money cap, ~15% equity). Two-page Ask + Economics slides, advisor bios (Tippett, Ferguson/Oddfellows, Matei/Guardian), rewritten AI sequel one-pagers (The Investigation, The Affair). Full 19-slide deck reviewed for errors. Madison Isolina removed from all files. Deal structure now positioned for a media entrepreneur, not a passive angel."
     active_areas:
-      - strategy/minimum-raise.md
-      - strategy/investor-introduction-strategy.md
+      - deck/ (dezibel-sequel repo)
       - strategy/plan-to-launch.md
-    last_synced: 2026-05-25
-    summary: "AI interactive sequel concept ('The Investigation') built — research-grounded detective mechanic where reader investigates Emma's death post-42-day story. Story tree, film unlocks, truth/lie matrix, haptic wearable layer via Lovense MCP. Competitive analysis against Duskwood, Her Story, Krimi, Vaudeville. Ace Fipke meeting went well — he's interested, wants to meet again. Hannah/Seb brief updated with future live performance note."
-    next_step: "Create dedicated repo for AI interactive sequel. Build two one-pagers for Ace Fipke pitch deck. Develop 'Be Emma' intimate AI concept as second product layer. Continue Ace relationship — send material before next meeting."
-    context_to_restore: "AI sequel concept at strategy/readable/ai-interactive-sequel-concept.html. Ace Fipke (Nerd Corps founder, $50M exit) engaged as potential advisor. Revenue share structure (not SAFE/equity). Investigation sequel priced at $29 one-time, <1% AI compute cost. Lovense MCP enables haptic integration. Hannah/Seb brief at strategy/readable/hannah-seb-meeting-brief.html."
+    next_step: "Fix deck typos in Canva (mutliple, proprietery, chracters). Verify Jodi Balfour credits (Ted Lasso/Crown may be wrong — check For All Mankind). Fix Yarros book title (Onyx Storm, not Fourth Wing). Resolve email vs SMS inconsistency in deck. Send corrected deck to Ace."
+    context_to_restore: "Deck lives in dezibel-sequel repo at deck/. Investment proposal at deck/investment-proposal-ace.html. Advisor bios at deck/advisors.html. SAFE structure: $875K at $5M pre-money cap, ~15% equity in Invizibel. Ace Fipke: Nerd Corps founder, $57M CAD exit to DHX Media. Budget: $140K tech, $120K production, $125K team, $120K marketing, $60K brand, $55K content, $20K legal, $135K contingency. oBitchuary price discrepancy: deck says $5/mo, strategy docs say $10/mo — needs resolution."
   dezibel-platform:
     type: project
     repo: dezibel-platform

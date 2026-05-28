@@ -1,0 +1,22 @@
+feature: editor-production-hardening
+project: dezibel-editor
+display_name: "Editor Production Hardening"
+status: wip
+created: 2026-05-28
+updated: 2026-05-28
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: 1f569bf
+    date: 2026-05-28
+    message: "Service worker, toast severity system, keyboard help modal, and editor bug fixes"
+    files_touched: 4
+    classification: feature
+learnings:
+  - "Linear code reading produces false confidence — adversarial scenario tracing catches interaction bugs"
+  - "Return value ambiguity (false for two failure modes) is a reliable bug source"
+  - "Every editor entry point needs independent permission gates — can't rely on callers"
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [dezibel, editor, service-worker, toast, keyboard-shortcuts, bug-fix, production]

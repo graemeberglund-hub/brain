@@ -8,13 +8,14 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-05-27
-    summary: "Investor deck rebuilt for Ace Fipke — pivoted from revenue share to SAFE/equity ($875K at $5M pre-money cap, ~15% equity). Two-page Ask + Economics slides, advisor bios (Tippett, Ferguson/Oddfellows, Matei/Guardian), rewritten AI sequel one-pagers (The Investigation, The Affair). Full 19-slide deck reviewed for errors. Madison Isolina removed from all files. Deal structure now positioned for a media entrepreneur, not a passive angel."
+    last_synced: 2026-05-28
+    summary: "Editor hardened for production: service worker for offline survival, toast severity system (error toasts persist until dismissed), keyboard shortcuts help modal. Fixed 4 bugs via adversarial scenario tracing (write-lock false positive, missing permission gates, metadata leak, cleanup list gap). Engineering rules codified in CLAUDE.md. Strategy docs and deck framework updated with current raise numbers."
     active_areas:
-      - deck/ (dezibel-sequel repo)
-      - strategy/plan-to-launch.md
-    next_step: "Fix deck typos in Canva (mutliple, proprietery, chracters). Verify Jodi Balfour credits (Ted Lasso/Crown may be wrong — check For All Mankind). Fix Yarros book title (Onyx Storm, not Fourth Wing). Resolve email vs SMS inconsistency in deck. Send corrected deck to Ace."
-    context_to_restore: "Deck lives in dezibel-sequel repo at deck/. Investment proposal at deck/investment-proposal-ace.html. Advisor bios at deck/advisors.html. SAFE structure: $875K at $5M pre-money cap, ~15% equity in Invizibel. Ace Fipke: Nerd Corps founder, $57M CAD exit to DHX Media. Budget: $140K tech, $120K production, $125K team, $120K marketing, $60K brand, $55K content, $20K legal, $135K contingency. oBitchuary price discrepancy: deck says $5/mo, strategy docs say $10/mo — needs resolution."
+      - artifacts/readable/dezibel-story-map.html
+      - artifacts/readable/sw.js
+      - strategy/fundraising/
+    next_step: "Build full manuscript export (single markdown for editors/printing). Add beat word targets UI in beat modal. Continue production gap closure."
+    context_to_restore: "Editor is 14K-line single HTML file at artifacts/readable/dezibel-story-map.html. Service worker at sw.js (same dir). 5-layer backup: localStorage, rolling backup, SnapshotVault (IndexedDB), FileLink (disk-first), DayPublish. Toast severity: showToast(msg, duration, 'warn'|'error'). Engineering rules in CLAUDE.md prevent bug introduction — adversarial scenario tracing, not linear reading. Deck lives in dezibel-sequel repo."
   dezibel-platform:
     type: project
     repo: dezibel-platform

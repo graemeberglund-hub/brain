@@ -115,3 +115,33 @@ entities:
     tried: "Built 5 editor backup layers — localStorage auto-save, rolling localStorage backup, IndexedDB SnapshotVault, FileLink (disk), DayPublish (disk). Presented as 'quintuple redundancy' to the user, claiming writing was safe."
     failed_because: "Layers 1-3 all live in browser storage. Clearing Chrome data kills all three simultaneously. They share a failure domain — depth without diversity. FileLink and DayPublish (the only disk-based layers) were opt-in and silent when disconnected. Four locks on the same door."
     replaced_by: "Disk-first persistence — saveState() writes to FileLink before browser storage. Prose panel blocked without file linked. Non-dismissible banner forces file linking on startup."
+  write-lock-false-positive:
+    type: solution
+    domain: development
+    title: "Write-lock false positive triggers block overlay"
+    project: "Dezibel"
+    date: "2026-05-28"
+    daily_note: "[[2026-05-28]]"
+    problem: "Fast typing in ME (800ms auto-save) caused writeToFile to return false due to _writeLock, which saveState treated as permission failure — showing block overlay and closing prose panel during normal operation"
+    root_cause: "writeToFile returned false for both 'no handle' and 'write locked' — caller couldn't distinguish expected lock-skip from genuine permission failure"
+    fix: "writeToFile returns 'locked' string for lock-skip. saveState callback ignores 'locked', only shows block overlay on genuine false (permission failure)."
+  missing-permission-gates-editor-entries:
+    type: solution
+    domain: development
+    title: "Missing FileLink permission gates on editor entry points"
+    project: "Dezibel"
+    date: "2026-05-28"
+    daily_note: "[[2026-05-28]]"
+    problem: "meStartEdit and openProse had no FileLink permission check — after sleep/wake, permission expires silently and user types into a textarea that only saves to localStorage, not disk"
+    root_cause: "Permission gate existed on toggleProsePanel but not on the functions it calls. openProse callers (meGoToBoard) didn't await the now-async function."
+    fix: "Made meStartEdit and openProse async with permission gates. saveCurrentProse runs BEFORE permission check (don't lose existing prose), new beat setup runs AFTER. meGoToBoard awaits openProse instead of setTimeout hack."
+  linear-audit-false-confidence:
+    type: dead-end
+    domain: development
+    title: "Linear code reading for bug auditing"
+    project: "Dezibel"
+    date: "2026-05-28"
+    daily_note: "[[2026-05-28]]"
+    tried: "Reading the editor file linearly top-to-bottom to find bugs — produced 'no bugs found' reports that were later proven wrong"
+    failed_because: "Linear reading evaluates each function in isolation. Bugs live at interaction boundaries — what happens when function A's return value is misinterpreted by function B, or when async timing creates a race. Reading A and B separately shows nothing wrong with either."
+    replaced_by: "Adversarial scenario tracing — pick hostile user scenarios (sleep/wake, rapid typing, tab switch, quota full) and trace each through the full code path. Found 4 bugs that linear reading missed."

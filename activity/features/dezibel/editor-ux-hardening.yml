@@ -1,0 +1,19 @@
+feature: editor-ux-hardening
+project: dezibel
+display_name: "Editor UX Hardening"
+status: wip
+created: 2026-05-29
+updated: 2026-05-29
+initiative: null
+inference_confidence: 0.85
+commits:
+  - hash: 11f7939
+    date: 2026-05-29
+    message: "Editor completion checklist, dark mode contrast, redo button, and export preview fix"
+    files_touched: 2
+    classification: feature
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [editor, ux, dark-mode, accessibility, engineering-rules]

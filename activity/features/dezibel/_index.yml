@@ -1,5 +1,5 @@
 repo: dezibel
-last_synced: 2026-05-19
+last_synced: 2026-05-29
 features:
   - slug: day-publish-bridge
     display_name: "Day File Publish Pipeline"
@@ -56,5 +56,12 @@ features:
     initiative: null
     commit_count: 1
     date_range: [2026-05-13, 2026-05-13]
+    inference_confidence: 0.85
+  - slug: editor-ux-hardening
+    display_name: "Editor UX Hardening"
+    status: wip
+    initiative: null
+    commit_count: 1
+    date_range: [2026-05-29, 2026-05-29]
     inference_confidence: 0.85
 initiatives: []

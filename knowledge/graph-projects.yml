@@ -8,14 +8,13 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-05-28
-    summary: "Editor hardened for production: service worker for offline survival, toast severity system (error toasts persist until dismissed), keyboard shortcuts help modal. Fixed 4 bugs via adversarial scenario tracing (write-lock false positive, missing permission gates, metadata leak, cleanup list gap). Engineering rules codified in CLAUDE.md. Strategy docs and deck framework updated with current raise numbers."
+    last_synced: 2026-05-29
+    summary: "Editor engineering rules extended with completion checklist (untested assumption naming, caller listing). Dark mode contrast improved. Redo button added to toolbar. Export preview made keyboard-accessible."
     active_areas:
       - artifacts/readable/dezibel-story-map.html
-      - artifacts/readable/sw.js
-      - strategy/fundraising/
+      - CLAUDE.md
     next_step: "Build full manuscript export (single markdown for editors/printing). Add beat word targets UI in beat modal. Continue production gap closure."
-    context_to_restore: "Editor is 14K-line single HTML file at artifacts/readable/dezibel-story-map.html. Service worker at sw.js (same dir). 5-layer backup: localStorage, rolling backup, SnapshotVault (IndexedDB), FileLink (disk-first), DayPublish. Toast severity: showToast(msg, duration, 'warn'|'error'). Engineering rules in CLAUDE.md prevent bug introduction — adversarial scenario tracing, not linear reading. Deck lives in dezibel-sequel repo."
+    context_to_restore: "Editor is 14K-line single HTML file at artifacts/readable/dezibel-story-map.html. Service worker at sw.js (same dir). 5-layer backup: localStorage, rolling backup, SnapshotVault (IndexedDB), FileLink (disk-first), DayPublish. Toast severity: showToast(msg, duration, 'warn'|'error'). Engineering rules in CLAUDE.md now include 'Before saying done' gate — adversarial scenario tracing, untested assumption naming, caller listing. Deck lives in dezibel-sequel repo."
   dezibel-platform:
     type: project
     repo: dezibel-platform

@@ -1,5 +1,5 @@
 repo: dezibel
-last_synced: 2026-05-29
+last_synced: 2026-05-30
 features:
   - slug: day-publish-bridge
     display_name: "Day File Publish Pipeline"
@@ -64,4 +64,11 @@ features:
     commit_count: 1
     date_range: [2026-05-29, 2026-05-29]
     inference_confidence: 0.85
+  - slug: reader-market-analysis
+    display_name: "Reader & Market Analysis"
+    status: wip
+    initiative: null
+    commit_count: 1
+    date_range: [2026-05-30, 2026-05-30]
+    inference_confidence: 0.95
 initiatives: []

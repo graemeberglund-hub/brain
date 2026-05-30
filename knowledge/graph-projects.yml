@@ -8,13 +8,14 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-05-29
-    summary: "Editor engineering rules extended with completion checklist (untested assumption naming, caller listing). Dark mode contrast improved. Redo button added to toolbar. Export preview made keyboard-accessible."
+    last_synced: 2026-05-30
+    summary: "Reader market analysis created with verified comparables (Quinn $12M ARR, Hoover 35M copies, Yarros $610M romantasy segment) and market sizing across 5 geographic tiers. System roadmap HTML brief built. Strategy docs now investor-ready."
     active_areas:
-      - artifacts/readable/dezibel-story-map.html
-      - CLAUDE.md
-    next_step: "Build full manuscript export (single markdown for editors/printing). Add beat word targets UI in beat modal. Continue production gap closure."
-    context_to_restore: "Editor is 14K-line single HTML file at artifacts/readable/dezibel-story-map.html. Service worker at sw.js (same dir). 5-layer backup: localStorage, rolling backup, SnapshotVault (IndexedDB), FileLink (disk-first), DayPublish. Toast severity: showToast(msg, duration, 'warn'|'error'). Engineering rules in CLAUDE.md now include 'Before saying done' gate — adversarial scenario tracing, untested assumption naming, caller listing. Deck lives in dezibel-sequel repo."
+      - strategy/audience/reader-market-analysis.md
+      - strategy/readable/reader-market-analysis.html
+      - strategy/readable/system-roadmap-brief.html
+    next_step: "Finalize Ace follow-up email with market analysis summary. Build WhatsApp delivery prototype. Continue production gap closure on story content."
+    context_to_restore: "Editor is 14K-line single HTML file at artifacts/readable/dezibel-story-map.html. Reader market analysis covers local→global sizing with iMessage (267M) and WhatsApp (3.3B) channel constraints. Priority translation order: German, Spanish, French, Portuguese, Japanese. Revenue model: $49/cohort, 52 cohorts/year. Quinn is primary comparable ($12M ARR, 77% women, same demo). Raise is $292K revenue share (not equity/SAFE). Deck lives in dezibel-sequel repo."
   dezibel-platform:
     type: project
     repo: dezibel-platform

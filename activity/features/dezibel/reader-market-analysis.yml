@@ -1,0 +1,25 @@
+feature: reader-market-analysis
+project: dezibel
+display_name: "Reader & Market Analysis"
+status: wip
+created: 2026-05-30
+updated: 2026-05-30
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: 01ca3b0
+    date: 2026-05-30
+    message: "Reader market analysis with comparables and market sizing, system roadmap HTML brief"
+    files_touched: 3
+    classification: content
+learnings: []
+related_positions: []
+applied_taste_positions:
+  - position: "serialized-fiction-graveyard-thesis"
+    date: 2026-05-30
+    reasoning: "Cites Kindle Vella and Radish shutdowns as proof of dead competition"
+  - position: "dezibel-pricing-model"
+    date: 2026-05-30
+    reasoning: "Revenue model built entirely on $49/cohort experience pricing"
+cross_repo: []
+tags: [strategy, audience, market-sizing, investor, comparables]

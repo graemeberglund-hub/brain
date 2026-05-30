@@ -145,3 +145,23 @@ entities:
     tried: "Reading the editor file linearly top-to-bottom to find bugs — produced 'no bugs found' reports that were later proven wrong"
     failed_because: "Linear reading evaluates each function in isolation. Bugs live at interaction boundaries — what happens when function A's return value is misinterpreted by function B, or when async timing creates a race. Reading A and B separately shows nothing wrong with either."
     replaced_by: "Adversarial scenario tracing — pick hostile user scenarios (sleep/wake, rapid typing, tab switch, quota full) and trace each through the full code path. Found 4 bugs that linear reading missed."
+  filelink-retry-race:
+    type: solution
+    domain: development
+    title: "FileLink retry write silently drops state on failure"
+    project: "Dezibel"
+    date: "2026-05-30"
+    daily_note: "[[2026-05-30]]"
+    problem: "FileLink pending retry was fire-and-forget with no error handling. If retry failed, _pendingRetry was already nulled — state update lost silently."
+    root_cause: "Retry call had no .catch(), and outer catch block cleared _pendingRetry on any error including the retry path"
+    fix: "Added .catch() to retry that re-queues state on failure. Removed _pendingRetry = null from outer catch so retry data survives."
+  xss-in-me-close-edit:
+    type: solution
+    domain: development
+    title: "XSS via esc() in onclick attribute JS context"
+    project: "Dezibel"
+    date: "2026-05-30"
+    daily_note: "[[2026-05-30]]"
+    problem: "meCloseEdit used esc() (HTML entity encoding) inside an onclick attribute's JS string literal. HTML parser decodes entities before JS executes, so special chars in beat IDs could break the string or inject code."
+    root_cause: "Wrong encoding function — esc() is for HTML text content, escJS() is for JS strings inside HTML attributes"
+    fix: "Changed esc(meEditingBeatId) to escJS(meEditingBeatId) in the onclick attribute"

@@ -61,8 +61,8 @@ features:
     display_name: "Editor UX Hardening"
     status: wip
     initiative: null
-    commit_count: 1
-    date_range: [2026-05-29, 2026-05-29]
+    commit_count: 2
+    date_range: [2026-05-29, 2026-05-30]
     inference_confidence: 0.85
   - slug: reader-market-analysis
     display_name: "Reader & Market Analysis"

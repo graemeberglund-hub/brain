@@ -9,13 +9,14 @@ entities:
     path: /Users/graeme/Development/dezibel-editor
     status: active
     last_synced: 2026-05-30
-    summary: "Reader market analysis created with verified comparables (Quinn $12M ARR, Hoover 35M copies, Yarros $610M romantasy segment) and market sizing across 5 geographic tiers. System roadmap HTML brief built. Strategy docs now investor-ready."
+    summary: "Editor hardened with PWA install, sleep/wake recovery, quota recovery, and six bug fixes. Reader market analysis and system roadmap brief complete. Editor is now installable as standalone app — deliberate PWA architecture decision."
     active_areas:
+      - artifacts/readable/dezibel-story-map.html
+      - artifacts/readable/manifest.json
+      - artifacts/readable/sw.js
       - strategy/audience/reader-market-analysis.md
-      - strategy/readable/reader-market-analysis.html
-      - strategy/readable/system-roadmap-brief.html
-    next_step: "Finalize Ace follow-up email with market analysis summary. Build WhatsApp delivery prototype. Continue production gap closure on story content."
-    context_to_restore: "Editor is 14K-line single HTML file at artifacts/readable/dezibel-story-map.html. Reader market analysis covers local→global sizing with iMessage (267M) and WhatsApp (3.3B) channel constraints. Priority translation order: German, Spanish, French, Portuguese, Japanese. Revenue model: $49/cohort, 52 cohorts/year. Quinn is primary comparable ($12M ARR, 77% women, same demo). Raise is $292K revenue share (not equity/SAFE). Deck lives in dezibel-sequel repo."
+    next_step: "Begin writing into the editor. Finalize Ace follow-up email with market analysis summary. Continue production gap closure on story content."
+    context_to_restore: "Editor is 14.5K-line PWA at artifacts/readable/dezibel-story-map.html. Install via Chrome for standalone window. 5-layer backup: localStorage, rolling backup, FileLink (disk), SnapshotVault (IndexedDB), DayPublish (markdown). Sleep/wake recovery detects timer gaps >30s. Quota exhaustion falls back to IndexedDB+FileLink. Revenue model: $49/cohort, 52 cohorts/year. Quinn is primary comparable ($12M ARR). Raise is $292K revenue share."
   dezibel-platform:
     type: project
     repo: dezibel-platform

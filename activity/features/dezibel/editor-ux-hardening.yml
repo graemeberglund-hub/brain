@@ -3,7 +3,7 @@ project: dezibel
 display_name: "Editor UX Hardening"
 status: wip
 created: 2026-05-29
-updated: 2026-05-29
+updated: 2026-05-30
 initiative: null
 inference_confidence: 0.85
 commits:
@@ -11,6 +11,11 @@ commits:
     date: 2026-05-29
     message: "Editor completion checklist, dark mode contrast, redo button, and export preview fix"
     files_touched: 2
+    classification: feature
+  - hash: 5d6bd5b
+    date: 2026-05-30
+    message: "PWA install support, guide dropdown, sleep/wake recovery, quota recovery, and editor hardening"
+    files_touched: 5
     classification: feature
 learnings: []
 related_positions: []

@@ -1,0 +1,24 @@
+feature: electron-native-app
+project: dezibel
+display_name: "Electron Native App"
+status: wip
+created: 2026-05-31
+updated: 2026-05-31
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: dfe4487
+    date: 2026-05-31
+    message: "Electron native app, Slate theme, native file system with auto-backup"
+    files_touched: 32
+    classification: feature
+  - hash: b3428a2
+    date: 2026-05-31
+    message: "PWA hardening: manifest, icons, service worker v4, auto-update flow"
+    files_touched: 2
+    classification: infrastructure
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [electron, native-app, file-system, auto-backup]

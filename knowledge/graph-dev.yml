@@ -165,3 +165,23 @@ entities:
     problem: "meCloseEdit used esc() (HTML entity encoding) inside an onclick attribute's JS string literal. HTML parser decodes entities before JS executes, so special chars in beat IDs could break the string or inject code."
     root_cause: "Wrong encoding function — esc() is for HTML text content, escJS() is for JS strings inside HTML attributes"
     fix: "Changed esc(meEditingBeatId) to escJS(meEditingBeatId) in the onclick attribute"
+  pwa-as-native-app:
+    type: dead-end
+    domain: development
+    title: "PWA as native app replacement"
+    project: "Dezibel Editor"
+    date: "2026-05-31"
+    daily_note: "[[2026-05-31]]"
+    tried: "Chrome PWA with service worker, manifest, beforeinstallprompt for standalone app experience"
+    failed_because: "PWA is still Chrome under the hood — file permissions expire between sessions, origin changes break IndexedDB handle persistence, install goes to ~/Applications/Chrome Apps not /Applications, user sees browser permission dialogs for file access"
+    replaced_by: "Electron wrapper with native IPC file system, atomic writes, auto-backup directory"
+  prompt-consumes-user-gesture:
+    type: solution
+    domain: development
+    title: "prompt() consuming user gesture blocks file picker"
+    project: "Dezibel Editor"
+    date: "2026-05-31"
+    daily_note: "[[2026-05-31]]"
+    problem: "Clicking 'Open existing file' in the file link dialog did nothing — the native file picker never appeared"
+    root_cause: "prompt() is a synchronous blocking call that consumes the user gesture. By the time showOpenFilePicker() runs, Chrome no longer considers it user-initiated and silently blocks it"
+    fix: "Replaced prompt() dialogs with in-app HTML modals where each button is its own click event (user gesture), so the file picker has a valid gesture context"

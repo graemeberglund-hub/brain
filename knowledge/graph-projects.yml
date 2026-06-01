@@ -8,15 +8,16 @@ entities:
     repo: dezibel-editor
     path: /Users/graeme/Development/dezibel-editor
     status: active
-    last_synced: 2026-05-30
-    summary: "Editor hardened with PWA install, sleep/wake recovery, quota recovery, and six bug fixes. Reader market analysis and system roadmap brief complete. Editor is now installable as standalone app — deliberate PWA architecture decision."
+    last_synced: 2026-05-31
+    summary: "Editor runs as native Electron app (Dezibel.app) with PWA fallback hardened to v4. SW pre-caches core assets, auto-updates via skipWaiting. 22 new DB notes extracted from Apple Notes (~7,100 words of prose). Total archive: 237 DB entries, 38K words. Book estimated 80-82% complete. 129/129 Playwright tests pass. Slate theme, Inter sans-serif, 7-layer backup system."
     active_areas:
       - artifacts/readable/dezibel-story-map.html
+      - electron/main.js
+      - electron/preload.js
       - artifacts/readable/manifest.json
       - artifacts/readable/sw.js
-      - strategy/audience/reader-market-analysis.md
-    next_step: "Begin writing into the editor. Finalize Ace follow-up email with market analysis summary. Continue production gap closure on story content."
-    context_to_restore: "Editor is 14.5K-line PWA at artifacts/readable/dezibel-story-map.html. Install via Chrome for standalone window. 5-layer backup: localStorage, rolling backup, FileLink (disk), SnapshotVault (IndexedDB), DayPublish (markdown). Sleep/wake recovery detects timer gaps >30s. Quota exhaustion falls back to IndexedDB+FileLink. Revenue model: $49/cohort, 52 cohorts/year. Quinn is primary comparable ($12M ARR). Raise is $292K revenue share."
+    next_step: "Write prose into the editor. Integrate DB note scenes (Taxman, fight scene, God speech, Jane letter, shit_eyes monologue, rododendro poem) into day structure. Wire DayPublish to nativeFS in Electron."
+    context_to_restore: "Editor is ~14.7K-line single-file app at artifacts/readable/dezibel-story-map.html, wrapped by Electron (electron/main.js + preload.js). Build with 'npx electron-builder --mac --dir', copy dist/mac-arm64/Dezibel.app to /Applications. PWA manifest at artifacts/readable/manifest.json with maskable icons. SW v4 at artifacts/readable/sw.js. FileLink detects window.isElectron and uses nativeFS IPC. Auto-backup writes to ~/Library/Application Support/dezibel/backups/. Theme is Slate (--bg:#0f172a). Wife name locked as Yuen. DB notes are gitignored (off-limits source material)."
   dezibel-platform:
     type: project
     repo: dezibel-platform

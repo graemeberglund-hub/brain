@@ -87,3 +87,21 @@ Second brain for knowledge, project tracking, and cross-repo awareness.
 ## Cross-Repo Work
 
 When working on another repo from brain, read that repo's CLAUDE.md before making changes.
+
+### Dezibel Memory Sync (MANDATORY)
+
+Brain and dezibel-editor share one project. Both repos must have the same context. When brain learns something dezibel-relevant — a decision, correction, status change, new person, resolved question, or any update to strategy/story/analysis — write it directly to dezibel-editor's memory:
+
+**Path:** `/Users/graeme/.claude/projects/-Users-graeme-Development-dezibel-editor/memory/`
+
+**Key files to update:**
+- `dezibel_strategy_deep_read.md` — budget, people, products, marketing, unresolved decisions
+- `dezibel_story_deep_read.md` — story structure, characters, writing status, day pipeline
+- `dezibel_analysis_deep_read.md` — kill tests, litigation, structural questions
+- `operator_state.md` — objectives, constraints, directive changes
+- `identity.md` — profile, relationships, industry connections
+- `MEMORY.md` — index (update if adding new files)
+
+**When to sync:** At every `/sync`, `/handoff`, and `/commit` that touches dezibel content. Also immediately when the user makes a correction or decision that affects dezibel.
+
+**Do not just say "I'll share this with dezibel." Actually write the file.** Each Claude Code session is isolated — the only way to share is to write to the other repo's memory path.

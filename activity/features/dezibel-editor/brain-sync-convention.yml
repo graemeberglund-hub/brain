@@ -1,0 +1,21 @@
+feature: brain-sync-convention
+project: dezibel-editor
+display_name: "Brain Sync Convention"
+status: shipped
+created: 2026-06-04
+updated: 2026-06-04
+initiative: null
+inference_confidence: 0.9
+commits:
+  - hash: 1735d25
+    date: 2026-06-04
+    message: "Add brain sync instruction to conventions"
+    files_touched: 1
+    classification: infrastructure
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo:
+  - repo: brain
+    feature: repo-scaffold
+tags: [cross-repo, conventions, sync]

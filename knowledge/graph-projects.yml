@@ -32,15 +32,29 @@ entities:
       - docs/risks-and-problems.md
     next_step: "Begin build with two-person contractor team once raise closes. Lock V1 scope. Hire React Native contractor."
     context_to_restore: "Three build options documented: Option A ($15-25K, Graeme builds backend), Option B ($48-85K, freelance team), Option C ($80-150K, agency). Current raise plan assumes Option B at $90K CAD. Key risk: WhatsApp NA templates paused by Meta April 2025. iMessage + push are launch channels."
+  cafe-spain:
+    type: project
+    repo: cafe-spain
+    path: /Users/graeme/Desktop/DEVELOPMENT/cafe-spain
+    status: active
+    last_synced: 2026-06-04
+    summary: "New venture — cafe/wine bar in Sitges, Spain with Angie Kim (50/50 partnership). Full planning deck built: daypart model, traspaso path recommended, tertulia concept as X factor, SWOT, cost breakdown (EUR 200-300k traspaso path, EUR 400-550k total with world-class build), legal/visa roadmap, 7 hurdles ranked. Comprehensive operational playbook covering world research trip through doors open."
+    active_areas:
+      - deck/00-deck-for-angie.md
+      - deck/01-the-full-playbook.md
+      - research/concept-research.md
+    next_step: "Web research pass to validate cost/legal figures. Angie reviews deck. Decide on X-factor concept. Plan Sitges reconnaissance trip."
+    context_to_restore: "Target: Sitges, near Barcelona. Partnership: 50/50 equity, Graeme's capital as shareholder loan repaid from profits. Concept: tertulia (literary cafe + natural wine + Penedes focus). Timeline: ~2028 opening. All figures UNVERIFIED (training data). Repo registered in brain vault."
   brain:
     type: project
     repo: brain
     path: /Users/graeme/Desktop/DEVELOPMENT/brain
     status: active
-    last_synced: 2026-04-07
-    summary: "All 5 repos backed up to GitHub. Strategy docs bulletproofed. Delivery description error caught and corrected across all docs — documented as dead-end. Pricing framing idea filed in dezibel-marketing. Pitch deck copy rewritten with corrected product understanding."
+    last_synced: 2026-06-04
+    summary: "Registered cafe-spain as new repo. Added mandatory dezibel memory sync instructions to CLAUDE.md — brain and dezibel-editor now have explicit cross-repo sync protocol at every /sync, /handoff, and /commit."
     active_areas:
-      - notes/projects/dezibel.md
-      - notes/positions/
+      - repos/cafe-spain.yml
+      - CLAUDE.md
       - knowledge/graph-projects.yml
-      - knowledge/graph-dev.yml
+    next_step: "Continue cafe-spain planning. Run web research for verified costs/legal figures."
+    context_to_restore: "6 repos now registered: dezibel, dezibel-editor, dezibel-budget, dezibel-legal, dezibel-marketing, dezibel-platform, cafe-spain. CLAUDE.md now has Dezibel Memory Sync section requiring writes to dezibel-editor memory path at every sync/handoff/commit."

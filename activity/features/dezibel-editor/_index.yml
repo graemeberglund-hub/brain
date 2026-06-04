@@ -1,5 +1,5 @@
 repo: dezibel-editor
-last_synced: 2026-05-28
+last_synced: 2026-06-04
 features:
   - slug: beat-editor-v2
     display_name: "Beat Editor v2"
@@ -113,4 +113,11 @@ features:
     commit_count: 1
     date_range: [2026-05-28, 2026-05-28]
     inference_confidence: 0.95
+  - slug: brain-sync-convention
+    display_name: "Brain Sync Convention"
+    status: shipped
+    initiative: null
+    commit_count: 1
+    date_range: [2026-06-04, 2026-06-04]
+    inference_confidence: 0.9
 initiatives: []

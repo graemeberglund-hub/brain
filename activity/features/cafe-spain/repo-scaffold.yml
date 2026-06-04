@@ -1,0 +1,19 @@
+feature: repo-scaffold
+project: cafe-spain
+display_name: "Repo Scaffold & Planning Deck"
+status: wip
+created: 2026-06-04
+updated: 2026-06-04
+initiative: null
+inference_confidence: 0.95
+commits:
+  - hash: 260d0bd
+    date: 2026-06-04
+    message: "Add mandatory dezibel memory sync instructions, register cafe-spain repo"
+    files_touched: 2
+    classification: infrastructure
+learnings: []
+related_positions: []
+applied_taste_positions: []
+cross_repo: []
+tags: [cafe-spain, scaffold, planning]

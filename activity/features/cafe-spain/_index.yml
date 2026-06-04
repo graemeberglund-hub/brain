@@ -1,0 +1,11 @@
+repo: cafe-spain
+last_synced: 2026-06-04
+features:
+  - slug: repo-scaffold
+    display_name: "Repo Scaffold & Planning Deck"
+    status: wip
+    initiative: null
+    commit_count: 1
+    date_range: [2026-06-04, 2026-06-04]
+    inference_confidence: 0.95
+initiatives: []

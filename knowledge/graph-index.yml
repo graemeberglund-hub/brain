@@ -10,7 +10,7 @@ subgraphs:
     description: Project state snapshots
     entity_types: [project]
     updated_by: [sync]
-    count: 3
+    count: 4
   epistemic:
     file: graph-epistemic.yml
     description: Belief and question states

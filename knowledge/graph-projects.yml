@@ -50,11 +50,10 @@ entities:
     repo: brain
     path: /Users/graeme/Desktop/DEVELOPMENT/brain
     status: active
-    last_synced: 2026-06-04
-    summary: "Registered cafe-spain as new repo. Added mandatory dezibel memory sync instructions to CLAUDE.md — brain and dezibel-editor now have explicit cross-repo sync protocol at every /sync, /handoff, and /commit."
+    last_synced: 2026-06-05
+    summary: "Deep analysis of Ace Fipke's investor response to dezibel pitch deck. Ingested diligence memo, corrected financial model, and market projections. Identified fatal arithmetic errors and business holes. Mapped full rebuild plan for deck. Ace Fipke bio researched and written to vault."
     active_areas:
-      - repos/cafe-spain.yml
-      - CLAUDE.md
-      - knowledge/graph-projects.yml
-    next_step: "Continue cafe-spain planning. Run web research for verified costs/legal figures."
-    context_to_restore: "6 repos now registered: dezibel, dezibel-editor, dezibel-budget, dezibel-legal, dezibel-marketing, dezibel-platform, cafe-spain. CLAUDE.md now has Dezibel Memory Sync section requiring writes to dezibel-editor memory path at every sync/handoff/commit."
+      - notes/references/2026-06-05-ref-asaph-ace-fipke-bio.md
+      - notes/daily/2026-06-05.md
+    next_step: "Rebuild dezibel pitch deck around engine thesis. Run paid pilot (50-100 readers). Name tech lead. Fix financial model using Ace's corrected template."
+    context_to_restore: "Ace Fipke sent back 3 documents: diligence memo (fatal errors in math, no CAC, no recurring revenue, no tech team), corrected financial model (real LTV:CAC is 2.6x, needs 60% organic to clear 3.0x bar), and restructured ask (two tranches, milestone-gated). Deck must be rebuilt: engine first, cohort data required, Pulse cut from v1. Three prereqs before re-pitch: paid pilot, tech lead, consistent model."

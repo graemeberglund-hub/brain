@@ -1,0 +1,10 @@
+# Registered repo: brain
+name: brain
+path: "/Users/graeme/Desktop/DEVELOPMENT/brain"
+remote: "https://github.com/graemeberglund-hub/brain.git"
+description: "Second-brain knowledge vault — capture, sync, skills, metabolism pipeline"
+status: active
+primary_area: knowledge-systems
+registered: 2026-06-14
+updated: 2026-06-14
+notes: "Cross-repo sync with dezibel-editor. 17 hooks, 118 global skills, 6 agents. Git remote on graemeberglund-hub/brain."

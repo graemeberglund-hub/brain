@@ -1,0 +1,18 @@
+[
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\\\r\n"
+        },
+        "when": "terminalFocus"
+    },
+    {
+        "key": "alt+m",
+        "command": "markdownlint.toggleLinting"
+    },
+    {
+        "key": "ctrl+cmd+c",
+        "command": "workbench.files.action.collapseExplorerFolders"
+    }
+]

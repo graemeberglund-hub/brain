@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Sequels SWOT Analysis — The Investigation & The Affair</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600&display=swap');
+  :root {
+    --bg: #f5f0e8; --bg-2: #ede8df; --bg-panel: #faf7f2;
+    --bg-warm: rgba(158,124,58,0.04); --bg-cool: rgba(74,111,165,0.04);
+    --text: #1a1a18; --muted: rgba(26,26,24,.65); --faint: rgba(26,26,24,.40);
+    --ink-red: #a85656; --ink-amber: #9e7c3a; --ink-green: #4d8a74;
+    --ink-violet: #7b6bab; --ink-blue: #4a6fa5; --ink-gold: #b8960c;
+    --ink-stone: #8a7d6b; --ink-teal: #3a8a8a;
+    --border: rgba(26,26,24,.10); --border-strong: rgba(26,26,24,.18);
+    --shadow-soft: 0 2px 12px rgba(26,26,24,.06);
+    --shadow-panel: 0 1px 2px rgba(26,26,24,0.04), 0 4px 16px rgba(26,26,24,0.06);
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  [data-theme="dark"] {
+    --bg: #0d0d0d; --bg-2: #131311; --bg-panel: #161616;
+    --bg-warm: rgba(196,163,90,0.04); --bg-cool: rgba(106,144,192,0.04);
+    --text: #d4d0c8; --muted: #9a9690; --faint: #4a4840;
+    --ink-red: #c47070; --ink-amber: #c4a35a; --ink-green: #6aaa90;
+    --ink-violet: #9a8ac8; --ink-blue: #6a90c0; --ink-gold: #d4b030;
+    --ink-stone: #a09585; --ink-teal: #5aadad;
+    --border: #2a2826; --border-strong: #3a3836;
+    --shadow-soft: 0 2px 12px rgba(0,0,0,.20);
+    --shadow-panel: 0 1px 2px rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.20);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding: 40px 24px 80px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  header { margin-bottom: 32px; cursor: pointer; }
+  .date-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--faint);
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  h2 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-blue);
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  h4 {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  p {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  strong { color: var(--text); font-weight: 600; }
+  ul, ol {
+    margin: 12px 0;
+    padding-left: 20px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  li { margin-bottom: 6px; }
+  li strong { color: var(--text); }
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+  }
+  code {
+    background: var(--bg-2);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: monospace;
+  }
+  blockquote {
+    background: var(--bg-panel);
+    border-left: 3px solid var(--ink-amber);
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .warning-block {
+    background: var(--bg-panel);
+    border-left: 3px solid var(--ink-red);
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    padding: 8px 12px;
+    background: var(--bg-2);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+  }
+  a {
+    color: var(--ink-blue);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(74,111,165,0.25);
+  }
+  @media (max-width: 500px) {
+    body { padding: 24px 16px 60px; }
+    h1 { font-size: 24px; }
+    h2 { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<header onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">
+  <div class="date-label">June 10, 2026</div>
+  <h1>AI Sequels SWOT Analysis</h1>
+  <p class="subtitle">Dezibel AI-Powered Sequel Concepts — Comprehensive Strategic Analysis</p>
+</header>
+
+<h2>The Investigation ($29)</h2>
+
+<h3>SWOT Analysis</h3>
+
+<h4>Strengths</h4>
+
+<p><strong>Emotional Moat</strong></p>
+<ul>
+  <li>42 days of prior emotional investment creates attachment no competitor can replicate</li>
+  <li>Reader already knows the victim intimately — stakes are personal, not manufactured</li>
+  <li>Memory of the 42-day story becomes the gameplay mechanic — unique structural advantage</li>
+</ul>
+
+<p><strong>Competitive Positioning</strong></p>
+<ul>
+  <li>Every AI mystery starts cold (Duskwood, Krimi, Vaudeville) — this starts with deep context</li>
+  <li>Only product where reader already knows the victim before the game begins</li>
+  <li>Structural moat: authored story + AI conversation + film unlocks + haptic layer</li>
+</ul>
+
+<p><strong>Technical Architecture</strong></p>
+<ul>
+  <li>Knowledge-grounded AI (RAG from 243-page manuscript) prevents hallucination</li>
+  <li>Truth/lie matrix is authored, not generated — investigation structure is human-designed</li>
+  <li>Anti-Vaudeville guardrails: no invented NPCs, no fake evidence, no ungrounded AI</li>
+</ul>
+
+<p><strong>Economics</strong></p>
+<ul>
+  <li>AI compute cost: ~$0.20/user at Claude Haiku pricing</li>
+  <li>99%+ gross margin on AI layer</li>
+  <li>One-time pricing avoids subscription retention cliff</li>
+  <li>Film content shot during base story production ($3-5K additional, not separate line)</li>
+</ul>
+
+<p><strong>Market Validation</strong></p>
+<ul>
+  <li>Duskwood: 10M+ downloads, active fandom years after conclusion</li>
+  <li>Her Story: BAFTA winner, proved contemplative investigation works</li>
+  <li>Simulacra: millions of downloads via YouTuber virality (shareable format)</li>
+</ul>
+
+<h4>Weaknesses</h4>
+
+<p><strong>Completion Risk</strong></p>
+<ul>
+  <li>Average game completion rate: 35% (Steam data)</li>
+  <li>Story-heavy games reach 50-70% (Heavy Rain: 70%) — but still significant drop-off</li>
+  <li>Investigation requires sustained engagement over weeks — plateau risk</li>
+</ul>
+
+<p><strong>Complexity</strong></p>
+<ul>
+  <li>Multiple systems: story tree, evidence board, film vault, AI messenger</li>
+  <li>Higher technical complexity than base iMessage delivery</li>
+  <li>Requires dedicated app (separate from iMessage) — friction point</li>
+</ul>
+
+<p><strong>Production Requirements</strong></p>
+<ul>
+  <li>Film content must be shot during base story production</li>
+  <li>Requires cast availability for additional evidence footage</li>
+  <li>If base story production delays, investigation content is blocked</li>
+</ul>
+
+<p><strong>Memory Dependency</strong></p>
+<ul>
+  <li>Gameplay depends on reader remembering details from 42-day story</li>
+  <li>If reader forgot key details, investigation mechanics break</li>
+  <li>No in-story refresher mechanism documented</li>
+</ul>
+
+<h4>Opportunities</h4>
+
+<p><strong>Social Sharing Engine</strong></p>
+<ul>
+  <li>Multiple truths (accident, suicide, silenced, naming operation) create word-of-mouth</li>
+  <li>"Wait — you got the naming operation ending? I got suicide" drives conversation</li>
+  <li>YouTuber/TikTok reaction videos to different revelations (Simulacra viral pattern)</li>
+</ul>
+
+<p><strong>IP Multiplier</strong></p>
+<ul>
+  <li>Every future Dezibel title generates its own investigation layer</li>
+  <li>Character repos and infrastructure built once, reused across catalogue</li>
+  <li>At 10+ titles: 60+ AI-powered characters across multiple worlds</li>
+</ul>
+
+<p><strong>Cross-Synergy with The Affair</strong></p>
+<ul>
+  <li>Both can run simultaneously — investigating Emma's disappearance while sleeping with her partner</li>
+  <li>Combined LTV uplift: $49 → $97 (+98%)</li>
+  <li>Bundle pricing ($69) creates upsell path</li>
+</ul>
+
+<p><strong>Platform Extension</strong></p>
+<ul>
+  <li>Investigation app becomes platform for future titles</li>
+  <li>Story tree, evidence board, film vault architecture reusable</li>
+  <li>Could license investigation engine to other authors</li>
+</ul>
+
+<h4>Threats</h4>
+
+<p><strong>AI Competition</strong></p>
+<ul>
+  <li>AI mystery space is crowded (Duskwood, Krimi, Vaudeville, Kindroid)</li>
+  <li>Competitors could add emotional backstory to cold-start mysteries</li>
+  <li>LLM pricing dropping — cost advantage may erode</li>
+</ul>
+
+<p><strong>Regulatory Risk</strong></p>
+<ul>
+  <li>AI deception mechanics (characters lying) could face scrutiny</li>
+  <li>Truth/lie matrix may need transparency disclosures</li>
+  <li>Haptic layer integration with intimacy hardware raises regulatory questions</li>
+</ul>
+
+<p><strong>Market Saturation</strong></p>
+<ul>
+  <li>AI companion market: $9B in 2026, 250-300M MAU globally</li>
+  <li>Consumer AI companion apps: $200M+ annual revenue</li>
+  <li>Risk of AI fatigue as category becomes saturated</li>
+</ul>
+
+<p><strong>Technical Execution Risk</strong></p>
+<ul>
+  <li>Vaudeville failed (49% Steam) due to AI hallucination and poor structure</li>
+  <li>If AI drifts from character voice or invents evidence, trust breaks</li>
+  <li>Fast inference required (sub-second) — technical complexity</li>
+</ul>
+
+<hr>
+
+<h2>The Affair / Be Emma ($19)</h2>
+
+<h3>SWOT Analysis</h3>
+
+<h4>Strengths</h4>
+
+<p><strong>Emotional Runway</strong></p>
+<ul>
+  <li>42 days of earned emotional attachment before first message</li>
+  <li>Reader already knows Hasta's voice, humor, tenderness, and edge</li>
+  <li>AI doesn't have to build chemistry — the story already did</li>
+</ul>
+
+<p><strong>Market Validation</strong></p>
+<ul>
+  <li>Quinn: $12M+ ARR, 440% YoY growth, 300K subscribers</li>
+  <li>Dipsea: acquired (proves market for premium intimate content)</li>
+  <li>Sexual wellness market: $41.5-46B globally</li>
+</ul>
+
+<p><strong>Technical Simplicity</strong></p>
+<ul>
+  <li>Single-character interaction (Hasta) vs. multi-character investigation</li>
+  <li>Shorter sessions than Investigation — lower AI compute (~$0.15/user)</li>
+  <li>Authored arc structure prevents wandering — more controlled than open-ended companions</li>
+</ul>
+
+<p><strong>Hardware Integration</strong></p>
+<ul>
+  <li>Lovense supports MCP (Model Context Protocol) — same standard as Claude</li>
+  <li>No custom hardware, no SDK — reader buys $30-80 consumer device</li>
+  <li>AI agent controls intensity directly via HTTPS API</li>
+</ul>
+
+<p><strong>Differentiation</strong></p>
+<ul>
+  <li>Not porn — intimate, authored, emotionally grounded</li>
+  <li>Character built from deep manuscript data (243 pages), not personality quiz</li>
+  <li>Haptic layer makes it physical — no competitor has this integration</li>
+</ul>
+
+<h4>Weaknesses</h4>
+
+<p><strong>Completion Gating</strong></p>
+<ul>
+  <li>Requires finishing $49 story first — smaller addressable market</li>
+  <li>Only readers who completed base story can access</li>
+  <li>If base story completion is low, sequel market is tiny</li>
+</ul>
+
+<p><strong>Market Positioning Risk</strong></p>
+<ul>
+  <li>"Sleeping with Emma's partner" may feel transgressive to some readers</li>
+  <li>Emotional betrayal of Emma (even though she's "dead") could alienate base audience</li>
+  <li>Risk of reader feeling they're violating the story's emotional contract</li>
+</ul>
+
+<p><strong>Technical Dependency</strong></p>
+<ul>
+  <li>Requires reader to purchase haptic hardware ($30-80)</li>
+  <li>Hardware adoption creates friction</li>
+  <li>If reader doesn't have wearable, experience is diminished</li>
+</ul>
+
+<p><strong>Limited Documentation</strong></p>
+<ul>
+  <li>Only one-pager exists vs. 600-line Investigation concept</li>
+  <li>Story arc structure not detailed</li>
+  <li>Character AI architecture less specified than Investigation</li>
+</ul>
+
+<p><strong>Regulatory Sensitivity</strong></p>
+<ul>
+  <li>Intimate AI content + haptic hardware = higher regulatory scrutiny</li>
+  <li>Replika banned intimate mode — precedent for regulatory risk</li>
+  <li>Age verification and consent mechanisms required</li>
+</ul>
+
+<h4>Opportunities</h4>
+
+<p><strong>IP Multiplier</strong></p>
+<ul>
+  <li>Every Dezibel title with central relationship generates intimate layer</li>
+  <li>Character voice engine, haptic integration, arc structure built once</li>
+  <li>Library of emotionally grounded intimate AI experiences at catalogue scale</li>
+</ul>
+
+<p><strong>LTV Stacking</strong></p>
+<ul>
+  <li>Stacks with Investigation: $49 → $97 (+98% LTV uplift)</li>
+  <li>Can run simultaneously with Investigation</li>
+  <li>Bundle pricing creates clear upsell path</li>
+</ul>
+
+<p><strong>Hardware Partnership</strong></p>
+<ul>
+  <li>Lovense partnership could be exclusive or co-marketed</li>
+  <li>Hardware vendor could subsidize device cost for Dezibel readers</li>
+  <li>Co-branded "Dezibel x Lovense" limited edition device</li>
+</ul>
+
+<p><strong>Market Expansion</strong></p>
+<ul>
+  <li>Intimate content market underserved by quality offerings</li>
+  <li>Female-gaze positioning (Quinn proved this works)</li>
+  <li>Literary framing elevates above porn category</li>
+</ul>
+
+<p><strong>Character Expansion</strong></p>
+<ul>
+  <li>Could expand beyond Hasta to other characters (Jane, Fanciulla)</li>
+  <li>Multiple intimate paths based on reader preference</li>
+  <li>Character repos already built from manuscript data</li>
+</ul>
+
+<h4>Threats</h4>
+
+<p><strong>Competition</strong></p>
+<ul>
+  <li>Quinn, Dipsea, Emjoy already in intimate content space</li>
+  <li>Kindroid, Replika in AI companion space</li>
+  <li>Could add emotional backstory to compete</li>
+</ul>
+
+<p><strong>Regulatory Crackdown</strong></p>
+<ul>
+  <li>AI intimacy facing increasing scrutiny</li>
+  <li>Age verification requirements becoming stricter</li>
+  <li>Haptic hardware integration may face specific regulations</li>
+</ul>
+
+<p><strong>Cultural Backlash</strong></p>
+<ul>
+  <li>"AI boyfriend" stigma could affect brand perception</li>
+  <li>Risk of being categorized as porn rather than literary</li>
+  <li>Mainstream press could frame negatively</li>
+</ul>
+
+<p><strong>Technical Execution</strong></p>
+<ul>
+  <li>AI must stay in character while being intimate</li>
+  <li>Risk of AI generating non-consensual or problematic content</li>
+  <li>Haptic timing must align with narrative intensity — technical complexity</li>
+</ul>
+
+<p><strong>Hardware Fragmentation</strong></p>
+<ul>
+  <li>Lovense is one vendor — what if they exit market?</li>
+  <li>Other hardware vendors may not support MCP</li>
+  <li>Reader locked into specific hardware ecosystem</li>
+</ul>
+
+<hr>
+
+<h2>Comparative Pros/Cons</h2>
+
+<h3>The Investigation</h3>
+
+<h4>Pros</h4>
+<ul>
+  <li>Stronger competitive differentiation (emotional moat is unique)</li>
+  <li>Multiple social sharing mechanics (different truths drive conversation)</li>
+  <li>More robust documentation and concept development</li>
+  <li>Lower regulatory risk (mystery vs. intimate content)</li>
+  <li>Stronger IP multiplier potential (investigation layer applies to any story)</li>
+  <li>Film content production already planned</li>
+  <li>Higher price point ($29 vs. $19)</li>
+</ul>
+
+<h4>Cons</h4>
+<ul>
+  <li>Higher technical complexity (multiple systems)</li>
+  <li>Higher production requirements (film content)</li>
+  <li>Memory dependency risk (reader must remember 42-day story)</li>
+  <li>Completion rate risk (investigations have lower completion than intimate experiences)</li>
+  <li>Requires dedicated app (friction point)</li>
+  <li>More characters to AI-train (Jane, Hasta, Todd, Cleo)</li>
+</ul>
+
+<h3>The Affair / Be Emma</h3>
+
+<h4>Pros</h4>
+<ul>
+  <li>Simpler technical architecture (single character)</li>
+  <li>Lower AI compute cost (~$0.15 vs. ~0.20)</li>
+  <li>Stronger market validation (Quinn, Dipsea proven)</li>
+  <li>Hardware integration creates unique experience</li>
+  <li>Shorter development timeline (less content to produce)</li>
+  <li>Higher emotional intensity (intimacy vs. investigation)</li>
+  <li>Stacks cleanly with Investigation</li>
+</ul>
+
+<h4>Cons</h4>
+<ul>
+  <li>Completion gating (requires finishing base story first)</li>
+  <li>Higher regulatory risk (intimate content)</li>
+  <li>Hardware friction (reader must buy device)</li>
+  <li>Limited documentation (concept less developed)</li>
+  <li>Transgression risk (sleeping with Emma's partner)</li>
+  <li>Lower price point ($19 vs. $29)</li>
+  <li>Smaller addressable market (subset of base story completers)</li>
+</ul>
+
+<hr>
+
+<h2>Challenges and Risks</h2>
+
+<h3>Shared Challenges</h3>
+
+<p><strong>Base Story Dependency</strong></p>
+<ul>
+  <li>Both sequels require readers to complete the 42-day story first</li>
+  <li>If base story completion rate is low, sequel market is tiny</li>
+  <li>No data on actual completion rates yet</li>
+  <li>Mitigation: Build completion incentives into base story, track metrics from pilot</li>
+</ul>
+
+<p><strong>AI Quality Risk</strong></p>
+<ul>
+  <li>Both depend on AI staying in character and within authored guardrails</li>
+  <li>Vaudeville failure (49% Steam) proves AI can break experience</li>
+  <li>Drift detection and quality control systems required</li>
+  <li>Mitigation: Rigorous testing, voice validation against source text, human oversight</li>
+</ul>
+
+<p><strong>Market Timing</strong></p>
+<ul>
+  <li>AI companion market saturating rapidly</li>
+  <li>LLM pricing dropping — cost advantage eroding</li>
+  <li>Risk of being "too late" to AI trend</li>
+  <li>Mitigation: Lead with emotional moat (not AI tech), position as literary experience not AI product</li>
+</ul>
+
+<p><strong>Production Coordination</strong></p>
+<ul>
+  <li>Both require additional content production during base story filming</li>
+  <li>If base story production delays, sequels are blocked</li>
+  <li>Cast availability for additional content</li>
+  <li>Mitigation: Plan sequel content shoots as part of base production, budget contingency</li>
+</ul>
+
+<h3>The Investigation-Specific Challenges</h3>
+
+<p><strong>Memory Mechanics</strong></p>
+<ul>
+  <li>Gameplay depends on reader remembering 42-day story details</li>
+  <li>No in-story refresher mechanism documented</li>
+  <li>Risk of reader frustration if they can't remember key evidence</li>
+  <li>Mitigation: Build evidence refresher into investigation app, allow re-access to story moments</li>
+</ul>
+
+<p><strong>Complexity Management</strong></p>
+<ul>
+  <li>Multiple systems (story tree, evidence board, film vault, AI messenger)</li>
+  <li>Higher technical complexity increases development risk</li>
+  <li>User onboarding complexity</li>
+  <li>Mitigation: Phased rollout, extensive user testing, clear UI design</li>
+</ul>
+
+<p><strong>Truth/Lie Balance</strong></p>
+<ul>
+  <li>Too easy = boring, too hard = frustrating</li>
+  <li>Multiple truths must all feel legitimate</li>
+  <li>Risk of reader feeling cheated if their truth feels "wrong"</li>
+  <li>Mitigation: Extensive playtesting, balance tuning, ensure all truths are supported by evidence</li>
+</ul>
+
+<h3>The Affair-Specific Challenges</h3>
+
+<p><strong>Regulatory Compliance</strong></p>
+<ul>
+  <li>Intimate AI content faces increasing scrutiny</li>
+  <li>Age verification and consent mechanisms required</li>
+  <li>Haptic hardware integration may face specific regulations</li>
+  <li>Mitigation: Legal review early, conservative compliance approach, clear age gates</li>
+</ul>
+
+<p><strong>Hardware Adoption</strong></p>
+<ul>
+  <li>Reader must purchase $30-80 device</li>
+  <li>Creates friction and narrows addressable market</li>
+  <li>Risk of reader feeling "nickel-and-dimed"</li>
+  <li>Mitigation: Partner with hardware vendor on subsidies, offer non-haptic tier, clear value proposition</li>
+</ul>
+
+<p><strong>Emotional Contract Violation</strong></p>
+<ul>
+  <li>Reader may feel betrayed by sleeping with Emma's partner</li>
+  <li>Risk of alienating base audience</li>
+  <li>Could damage Dezibel brand perception</li>
+  <li>Mitigation: Position as "what if" alternate timeline, test with focus groups, make opt-in very clear</li>
+</ul>
+
+<p><strong>Content Quality</strong></p>
+<ul>
+  <li>AI must generate intimate content that feels authentic, not mechanical</li>
+  <li>Risk of awkward or cringe-inducing AI responses</li>
+  <li>Intimacy requires nuance that AI may struggle with</li>
+  <li>Mitigation: Extensive voice training from manuscript, human content review, fallback to authored content for key moments</li>
+</ul>
+
+<hr>
+
+<h2>Strategic Recommendations</h2>
+
+<h3>Prioritization</h3>
+
+<p><strong>Phase 1: The Investigation First</strong></p>
+<ul>
+  <li>Stronger competitive differentiation</li>
+  <li>Lower regulatory risk</li>
+  <li>More developed concept</li>
+  <li>Higher price point</li>
+  <li>Better IP multiplier potential</li>
+  <li>Can be built without hardware dependency</li>
+</ul>
+
+<p><strong>Phase 2: The Affair Second</strong></p>
+<ul>
+  <li>Requires hardware ecosystem to mature</li>
+  <li>Regulatory landscape needs clarity</li>
+  <li>Base story completion data needed to validate market size</li>
+  <li>Can learn from Investigation technical execution</li>
+</ul>
+
+<h3>Development Strategy</h3>
+
+<p><strong>The Investigation</strong></p>
+<ol>
+  <li>Build investigation app architecture first (story tree, evidence board, film vault)</li>
+  <li>Develop AI character repos for Jane, Hasta, Todd, Cleo</li>
+  <li>Shoot film content during base story production</li>
+  <li>Implement memory refresher mechanism</li>
+  <li>Extensive playtesting for truth/lie balance</li>
+  <li>Launch 3-6 months after base story</li>
+</ol>
+
+<p><strong>The Affair</strong></p>
+<ol>
+  <li>Develop Hasta AI repo (can reuse from Investigation)</li>
+  <li>Build haptic integration with Lovense</li>
+  <li>Design authored intimacy arc structure</li>
+  <li>Implement age verification and consent systems</li>
+  <li>Legal review for regulatory compliance</li>
+  <li>Launch 6-12 months after Investigation</li>
+</ol>
+
+<h3>Risk Mitigation</h3>
+
+<p><strong>Shared</strong></p>
+<ul>
+  <li>Track base story completion metrics from pilot</li>
+  <li>Build AI quality control and drift detection systems</li>
+  <li>Plan sequel content shoots as part of base production</li>
+  <li>Budget for legal review and compliance</li>
+</ul>
+
+<p><strong>The Investigation</strong></p>
+<ul>
+  <li>Implement evidence refresher in app</li>
+  <li>Phased feature rollout to manage complexity</li>
+  <li>Extensive playtesting for difficulty balance</li>
+  <li>Clear onboarding and tutorial design</li>
+</ul>
+
+<p><strong>The Affair</strong></p>
+<ul>
+  <li>Partner with hardware vendor early</li>
+  <li>Offer non-haptic tier for broader access</li>
+  <li>Focus group testing for emotional contract</li>
+  <li>Conservative regulatory compliance approach</li>
+</ul>
+
+<h3>Go/No-Go Criteria</h3>
+
+<p><strong>The Investigation</strong></p>
+<ul>
+  <li>Base story completion rate >40%</li>
+  <li>Pilot reader interest in sequel concept >60%</li>
+  <li>AI character voice validation passes quality gates</li>
+  <li>Film content production completed on schedule</li>
+</ul>
+
+<p><strong>The Affair</strong></p>
+<ul>
+  <li>Investigation achieves >30% conversion from base story completers</li>
+  <li>Hardware partner agreement secured</li>
+  <li>Legal review clears regulatory path</li>
+  <li>Focus group testing validates emotional contract</li>
+</ul>
+
+<h3>Bundle Strategy</h3>
+
+<p><strong>Initial Bundle</strong></p>
+<ul>
+  <li>Base story ($49) + Investigation ($29) = $69 (+41% vs. base alone)</li>
+  <li>Clear value proposition: full Dezibel experience</li>
+</ul>
+
+<p><strong>Full Bundle</strong></p>
+<ul>
+  <li>Base story ($49) + Investigation ($29) + Affair ($19) = $89 (+82% vs. base alone)</li>
+  <li>Position as complete Dezibel world</li>
+</ul>
+
+<p><strong>Tiered Approach</strong></p>
+<ul>
+  <li>Base story only: $49</li>
+  <li>Base + Investigation: $69</li>
+  <li>Base + Affair: $68</li>
+  <li>All three: $89</li>
+  <li>Investigation only (for base story completers): $29</li>
+  <li>Affair only (for base story completers): $19</li>
+</ul>
+
+<hr>
+
+<h2>Conclusion</h2>
+
+<p><strong>The Investigation is the stronger lead product</strong> due to:</p>
+<ul>
+  <li>Unique competitive positioning (emotional moat)</li>
+  <li>Lower regulatory risk</li>
+  <li>More developed concept</li>
+  <li>Higher price point</li>
+  <li>Better IP multiplier potential</li>
+  <li>No hardware dependency</li>
+</ul>
+
+<p><strong>The Affair is a strong follow-up</strong> but should be Phase 2 due to:</p>
+<ul>
+  <li>Regulatory complexity</li>
+  <li>Hardware dependency</li>
+  <li>Smaller addressable market</li>
+  <li>Less developed concept</li>
+  <li>Higher emotional risk</li>
+</ul>
+
+<p><strong>Both sequels depend on base story success</strong> — the critical path is:</p>
+<ol>
+  <li>Lock base story demo</li>
+  <li>Run pilot with 50-100 readers</li>
+  <li>Measure completion rate and sequel interest</li>
+  <li>Use pilot data to validate sequel market size</li>
+  <li>Build Investigation if criteria met</li>
+  <li>Build Affair if Investigation succeeds and regulatory path clears</li>
+</ol>
+
+<p><strong>The combined LTV uplift is compelling</strong> ($49 → $97, +98%) but only achievable if base story completion is strong. Sequels should not distract from base story execution — they are Phase 2 growth levers, not Phase 1 priorities.</p>
+
+</body>
+</html>

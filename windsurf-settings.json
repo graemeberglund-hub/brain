@@ -1,0 +1,5 @@
+{
+    "explorer.confirmDragAndDrop": false,
+    "terminal.integrated.showCommandHint": false,
+    "git.openRepositoryInParentFolders": "always"
+}
